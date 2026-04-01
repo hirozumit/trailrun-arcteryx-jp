@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "next-devtools": {
+      "command": "npx",
+      "args": ["-y", "next-devtools-mcp@latest"]
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/mcp-figma@latest"],
+      "env": {
+        "FIGMA_ACCESS_TOKEN": ""
+      }
+    }
+  }
+}
