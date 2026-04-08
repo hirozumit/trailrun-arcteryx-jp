@@ -1,9 +1,15 @@
-import styles from "./page.module.css";
+import { Header } from "@/components/header/header";
+import { ScrollVideo } from "@/components/scroll-video/scroll-video";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <p>staging</p>
-    </div>
+    <>
+      <Header />
+      <main>
+        <ScrollVideo
+          src="/videos/test-landscape.mp4"
+          scrollLength={3} />
+      </main>
+    </>
   );
 }

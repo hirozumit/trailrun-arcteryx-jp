@@ -1,0 +1,32 @@
+.header {
+  --t: 0;
+  --logo-expanded: 10rem;
+  --logo-compact: 3.75rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100svh - (100svh - var(--header-compact-h, 10.25rem)) * var(--t));
+  mix-blend-mode: difference;
+}
+
+.logo {
+  display: block;
+  width: calc(var(--logo-expanded) - (var(--logo-expanded) - var(--logo-compact)) * var(--t));
+  height: auto;
+  opacity: 0;
+  transition: opacity 1s 1s ease-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.spacer {
+  height: 100svh;
+}
