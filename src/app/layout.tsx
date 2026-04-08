@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yamae.arcteryx.jp"),
   title: {
     default: siteName,
-    template: `%s | YAMAE`,
+    template: `%s - 山へ | ARC'TERYX`,
   },
   description: siteDescription,
   openGraph: {
