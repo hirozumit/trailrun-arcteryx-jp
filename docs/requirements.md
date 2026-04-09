@@ -117,7 +117,7 @@ Reference: https://tmp.thirozumi.org/yamae/video-prototype/
 
 ## Assets
 
-- 動画フォーマット: WebM（軽量・高画質を優先）
+- 動画フォーマット: MP4 (H.264)。スクロール駆動再生のシーク性能とiOS互換性を優先
 - アセット配信: Cloudflare Pages に同梱（`public/` 配置）
 - 画像・動画は Figma デザインおよび別途提供されるファイルを使用
 

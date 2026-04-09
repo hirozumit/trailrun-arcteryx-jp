@@ -1,0 +1,61 @@
+.footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 8rem var(--content-px);
+  color: var(--color-bg);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.brand img {
+  width: 6rem;
+  height: auto;
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.social a {
+  font-family: var(--font-spectral);
+  font-size: var(--font-size-caption);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: inherit;
+  text-decoration: none;
+}
+
+.legal {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
+.legal a {
+  font-family: var(--font-spectral);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+  color: inherit;
+  text-decoration: none;
+}
+
+.copyright {
+  font-family: var(--font-spectral);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.25;
+}

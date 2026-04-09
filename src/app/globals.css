@@ -1,6 +1,27 @@
 :root {
   --color-bg: #fff;
   --color-fg: #171717;
+  --color-border: currentColor;
+
+  --content-max-width: 64rem;
+  --content-px: 1rem;
+
+  --section-py: 8rem;
+  --section-gap: 8rem;
+
+  --font-size-section-label: 2.5rem;
+  --font-size-heading: 1.5rem;
+  --font-size-title: 1.25rem;
+  --font-size-body: 1.125rem;
+  --font-size-body-small: 1rem;
+  --font-size-caption: 0.875rem;
+}
+
+@media (min-width: 48rem) {
+  :root {
+    --section-py: 16rem;
+    --section-gap: 16rem;
+  }
 }
 
 html {
