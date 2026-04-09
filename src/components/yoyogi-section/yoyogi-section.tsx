@@ -18,9 +18,9 @@ export function YoyogiSection() {
           <p className={styles.caption}>
             オープン期間：2026年5月2日〜31日
           </p>
-          <a href="/trail/yoyogi" className={styles.button}>
+          {/* <a href="/trail/yoyogi" className={styles.button}>
             詳細をみる
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
