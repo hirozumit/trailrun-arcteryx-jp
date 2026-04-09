@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding: 8rem var(--content-px);
+  padding: 4rem var(--content-px);
   color: var(--color-bg);
 }
 

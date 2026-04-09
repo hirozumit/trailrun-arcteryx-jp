@@ -1,7 +1,7 @@
 import styles from "./footer.module.css";
 
 const socialLinks = [
-  { label: "Youtube", href: "https://www.youtube.com/@arcteryxjp" },
+  { label: "YouTube", href: "https://www.youtube.com/@arcteryxjp" },
   { label: "Facebook", href: "https://www.facebook.com/arcteryx" },
   { label: "X", href: "https://x.com/arcteryx_jp" },
   { label: "Instagram", href: "https://www.instagram.com/arcteryx_jp/" },
@@ -43,7 +43,7 @@ export function Footer() {
             </li>
           ))}
         </ul>
-        <p className={styles.copyright}>&copy; 2026 Arc&apos;teryx</p>
+        <p className={styles.copyright}>&copy; 2026 ARC&apos;TERYX</p>
       </div>
     </footer>
   );
