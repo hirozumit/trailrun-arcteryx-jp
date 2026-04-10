@@ -9,7 +9,7 @@ type ScrollVideoProps = {
   scrollLength?: number;
 };
 
-export function ScrollVideo({ src, scrollLength = 3 }: ScrollVideoProps) {
+export function ScrollVideo({ src, scrollLength = 1 }: ScrollVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -45,7 +45,7 @@ export function ScrollVideo({ src, scrollLength = 3 }: ScrollVideoProps) {
       // Video enters viewport when rect.top < vh (bottom of viewport)
       // Fully scrolled when rect.bottom <= vh
       const scrolled = vh - rect.top;
-      const scrollRange = container.offsetHeight;
+      const scrollRange = container.offsetHeight + vh;
       const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
 
       if (video.duration) {

@@ -12,11 +12,11 @@ export default function Home() {
     <>
       <Header />
       <main>
-        <ScrollVideo src="/videos/test-landscape.mp4" />
+        <ScrollVideo src="/videos/test_5s.mp4" />
         <ChayaSection />
-        <ScrollVideo src="/videos/test-landscape.mp4" />
+        <ScrollVideo src="/videos/test_10s.mp4" />
         <GearSection />
-        <ScrollVideo src="/videos/test-landscape.mp4" />
+        <ScrollVideo src="/videos/test_3s.mp4" />
         <EventSection />
         <YoyogiSection />
         <FullImage src="/images/poster.jpg" />
