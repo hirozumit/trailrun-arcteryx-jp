@@ -21,7 +21,7 @@ const siteDescription =
   "xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://yamae.arcteryx.jp"),
+  metadataBase: new URL("https://trailrun.arcteryx.jp"),
   title: {
     default: siteName,
     template: `%s - 山へ | ARC'TERYX`,
