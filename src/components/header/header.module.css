@@ -1,6 +1,6 @@
 .header {
   --t: 0;
-  --logo-expanded: 10rem;
+  --logo-expanded: 7.5rem;
   --logo-compact: 3.75rem;
 
   position: fixed;
