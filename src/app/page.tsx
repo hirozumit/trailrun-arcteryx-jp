@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 export default function Home() {
   return (
     <div className={styles.page}>
-      <p>main</p>
+      <p>trailrun-arcteryx-jp</p>
     </div>
   );
 }
