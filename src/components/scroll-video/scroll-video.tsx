@@ -63,9 +63,13 @@ export function ScrollVideo({ src, scrollLength = 1 }: ScrollVideoProps) {
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
+    video.addEventListener("loadedmetadata", update);
     update();
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      video.removeEventListener("loadedmetadata", update);
+    };
   }, []);
 
   return (
