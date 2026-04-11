@@ -1,37 +1,55 @@
-.overlay {
+.splash {
+  --t: 0;
+  --logo-expanded: 7.5rem;
+  --logo-compact: 3.75rem;
+
   position: fixed;
-  inset: 0;
-  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--background);
+  height: calc(100svh - (100svh - var(--header-compact-h, 10.25rem)) * var(--t));
+  mix-blend-mode: difference;
+}
+
+.copy {
+  position: absolute;
+  height: auto;
   opacity: 0;
-  animation:
-    fade-in 0.8s ease-out forwards,
-    fade-out 0.6s ease-in 2.2s forwards;
-  pointer-events: none;
 }
 
 .logo {
-  width: 10rem;
+  display: block;
+  width: calc(var(--logo-expanded) - (var(--logo-expanded) - var(--logo-compact)) * var(--t));
   height: auto;
+  opacity: 0;
+}
+
+.visible.copy {
+  animation: fade-in-out 3s ease-out forwards;
+}
+
+.visible.logo {
+  animation: fade-in 0.5s 3s ease-out forwards;
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0; }
+  17% { opacity: 1; }
+  83% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 @keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
+.spacer {
+  position: relative;
+  height: 100svh;
+  background: var(--color-bg);
 }

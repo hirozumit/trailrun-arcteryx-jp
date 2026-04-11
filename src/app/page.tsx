@@ -1,4 +1,4 @@
-import { Header } from "@/components/header/header";
+import { Splash } from "@/components/splash/splash";
 import { ScrollVideo } from "@/components/scroll-video/scroll-video";
 import { ChayaSection } from "@/components/chaya-section/chaya-section";
 import { GearSection } from "@/components/gear-section/gear-section";
@@ -10,7 +10,7 @@ import { Footer } from "@/components/footer/footer";
 export default function Home() {
   return (
     <>
-      <Header />
+      <Splash />
       <main>
         <ScrollVideo src="/videos/test_5s.mp4" />
         <ChayaSection />

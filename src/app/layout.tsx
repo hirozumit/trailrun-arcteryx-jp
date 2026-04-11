@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Spectral, Zen_Old_Mincho } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const spectral = Spectral({
@@ -13,6 +14,15 @@ const zenOldMincho = Zen_Old_Mincho({
   weight: ["400", "700"],
   subsets: ["latin"],
   variable: "--font-zen-old-mincho",
+  display: "swap",
+});
+
+const itcElanBook = localFont({
+  src: [
+    { path: "../fonts/ITCElanBook_normal_normal.woff2", weight: "400", style: "normal" },
+    { path: "../fonts/ITCElanBook_normal_normal.woff", weight: "400", style: "normal" },
+  ],
+  variable: "--font-itc-elan-book",
   display: "swap",
 });
 
@@ -47,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja" className={`${spectral.variable} ${zenOldMincho.variable}`}>
+    <html lang="ja" className={`${spectral.variable} ${zenOldMincho.variable} ${itcElanBook.variable}`}>
       <body>{children}</body>
     </html>
   );
