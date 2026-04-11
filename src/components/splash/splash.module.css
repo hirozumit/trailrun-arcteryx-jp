@@ -13,14 +13,14 @@
 
 .splash {
   --t: 0;
-  --logo-expanded: 7.5rem;
-  --logo-compact: 3rem;
+  --logo-expanded: 9rem;
+  --logo-compact: 3.75rem;
 
   position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  height: calc(100svh - (100svh - var(--header-compact-h, 8.75rem)) * var(--t));
+  height: calc(100svh - (100svh - var(--header-compact-h, 10.25rem)) * var(--t));
   display: flex;
   align-items: center;
   justify-content: center;
