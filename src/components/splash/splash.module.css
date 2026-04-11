@@ -1,18 +1,30 @@
+.wrapper {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  z-index: 100;
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.offset {
+  margin-top: -100svh;
+}
+
 .splash {
   --t: 0;
   --logo-expanded: 7.5rem;
   --logo-compact: 3rem;
 
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  height: calc(100svh - (100svh - var(--header-compact-h, 8.75rem)) * var(--t));
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100svh - (100svh - var(--header-compact-h, 8.75rem)) * var(--t));
-  mix-blend-mode: difference;
+  pointer-events: auto;
 }
 
 .copy {

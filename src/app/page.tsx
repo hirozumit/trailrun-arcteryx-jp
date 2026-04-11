@@ -10,8 +10,8 @@ import { Footer } from "@/components/footer/footer";
 export default function Home() {
   return (
     <>
-      <Splash />
       <main>
+        <Splash />
         <Header />
         <ScrollVideo src="/videos/test_5s.mp4" />
         <ChayaSection />

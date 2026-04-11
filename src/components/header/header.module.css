@@ -41,12 +41,11 @@
   letter-spacing: -0.05em;
   color: #fff;
   text-decoration: none;
-  padding-inline: 0.5rem;
   pointer-events: auto;
 }
 
-.navItem:first-child {
-  border-inline-start: 1px solid #fff;
+.navItem.current {
+  border-left: 1px solid #fff;
 }
 
 /* --- title --- */
@@ -63,4 +62,12 @@
   line-height: 1;
   color: #fff;
   text-align: center;
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+}
+
+.title.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
