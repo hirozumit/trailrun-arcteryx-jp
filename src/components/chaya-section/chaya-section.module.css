@@ -51,7 +51,7 @@
 }
 
 .label-en {
-  font-family: var(--font-spectral);
+  font-family: var(--font-itc-elan-book);
   font-size: var(--font-size-caption);
   writing-mode: vertical-rl;
   line-height: 1;

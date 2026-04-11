@@ -99,21 +99,18 @@ export function Splash() {
 
   return (
     <>
-      <div className={styles.wrapper}>
-        <div ref={splashRef} className={styles.splash}>
-          <img
-            src={copy.src}
-            alt="（拝啓）山へ／山へ（行こう）"
-            className={`${styles.copy} ${ready ? styles.visible : ""}`}
-          />
-          <img
-            className={`${styles.logo} ${ready ? styles.visible : ""}`}
-            src={logoYamae.src}
-            alt="山へ"
-          />
-        </div>
+      <div ref={splashRef} className={styles.splash}>
+        <img
+          src={copy.src}
+          alt="（拝啓）山へ／山へ（行こう）"
+          className={`${styles.copy} ${ready ? styles.visible : ""}`}
+        />
+        <img
+          className={`${styles.logo} ${ready ? styles.visible : ""}`}
+          src={logoYamae.src}
+          alt="山へ"
+        />
       </div>
-      <div className={styles.offset} />
       <div className={styles.spacer} />
     </>
   );

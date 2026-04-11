@@ -12,8 +12,8 @@ const NAV_ITEMS = [
 const SECTION_IDS = NAV_ITEMS.map((item) => item.href.slice(1));
 
 export function Header() {
-  const titleRef = useRef<HTMLHeadingElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
   // Title fade-in on viewport entry
   useEffect(() => {
@@ -77,17 +77,15 @@ export function Header() {
 
   return (
     <>
-      <div className={styles.header}>
-        <nav ref={navRef} className={styles.nav} aria-label="セクションナビゲーション">
-          {NAV_ITEMS.map(({ label, href }) => (
-            <a key={href} href={href} className={styles.navItem} onClick={handleClick}>
-              {label}
-            </a>
-          ))}
-        </nav>
-        <h1 ref={titleRef} className={styles.title}>TRAIL RUNNING</h1>
-      </div>
-      <div className={styles.offset} />
+      <nav ref={navRef} className={styles.nav} aria-label="セクションナビゲーション">
+        {NAV_ITEMS.map(({ label, href }) => (
+          <a key={href} href={href} className={styles.navItem} onClick={handleClick}>
+            {label}
+          </a>
+        ))}
+      </nav>
+      <div className={styles.navOffset} />
+      <h1 ref={titleRef} className={styles.title}>TRAIL RUNNING</h1>
     </>
   );
 }
