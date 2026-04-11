@@ -43,6 +43,8 @@ export function Splash() {
       if (!video) { resolve(); return; }
       if (video.readyState >= 2) { resolve(); return; }
       video.addEventListener("loadeddata", () => resolve(), { once: true });
+      // iOS does not preload video without user interaction — don't block forever
+      setTimeout(resolve, 3000);
     });
 
     const waitForTimer = new Promise<void>((resolve) => {
@@ -52,9 +54,12 @@ export function Splash() {
     let active = true;
     Promise.all([waitForVideo, waitForTimer]).then(() => {
       if (!active) return;
-      // Unlock scrolling, then auto-scroll
+      // Unlock scrolling, wait one frame for layout update, then auto-scroll
       document.documentElement.style.overflow = "";
-      smoothScrollTo(window.innerHeight * 0.5, 1000);
+      requestAnimationFrame(() => {
+        if (!active) return;
+        smoothScrollTo(window.innerHeight * 0.5, 1000);
+      });
     });
 
     return () => {
