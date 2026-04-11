@@ -1,7 +1,7 @@
 .splash {
   --t: 0;
   --logo-expanded: 7.5rem;
-  --logo-compact: 3.75rem;
+  --logo-compact: 3rem;
 
   position: fixed;
   top: 0;
@@ -11,7 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100svh - (100svh - var(--header-compact-h, 10.25rem)) * var(--t));
+  height: calc(100svh - (100svh - var(--header-compact-h, 8.75rem)) * var(--t));
   mix-blend-mode: difference;
 }
 
@@ -50,6 +50,7 @@
 
 .spacer {
   position: relative;
+  z-index: 51;
   height: 100svh;
   background: var(--color-bg);
 }

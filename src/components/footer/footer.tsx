@@ -1,5 +1,9 @@
 import styles from "./footer.module.css";
 
+type FooterProps = {
+  poster?: string;
+};
+
 const socialLinks = [
   { label: "YouTube", href: "https://www.youtube.com/@arcteryxjp" },
   { label: "Facebook", href: "https://www.facebook.com/arcteryx" },
@@ -15,9 +19,12 @@ const legalLinks = [
   { label: "Legal Notice", href: "#" },
 ];
 
-export function Footer() {
+export function Footer({ poster }: FooterProps) {
   return (
     <footer className={styles.footer}>
+      {poster && (
+        <img className={styles.poster} src={poster} alt="" />
+      )}
       <div className={styles.inner}>
         <a
           href="https://arcteryx.jp"
