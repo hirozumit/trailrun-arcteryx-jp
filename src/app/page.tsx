@@ -13,7 +13,7 @@ export default function Home() {
       <main>
         <Splash />
         <Header />
-        <ScrollVideo src="/videos/test_3s.mp4" />
+        <ScrollVideo src="/videos/test_3s.mp4" priority />
         <ChayaSection />
         <ScrollVideo src="/videos/test_3s.mp4" />
         <GearSection />

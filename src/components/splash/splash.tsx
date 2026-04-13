@@ -35,16 +35,13 @@ export function Splash() {
     requestAnimationFrame(() => setReady(true));
 
     // Auto-scroll after logo is visible for 2s (logo appears at 3.5s)
-    // and the first video is ready to play
+    // and the first ScrollVideo signals readiness
     const LOGO_VISIBLE_AT = 5500; // 3s copy + 0.5s fade-in + 2s hold
 
     const waitForVideo = new Promise<void>((resolve) => {
-      const video = document.querySelector("video");
-      if (!video) { resolve(); return; }
-      if (video.readyState >= 2) { resolve(); return; }
-      video.addEventListener("loadeddata", () => resolve(), { once: true });
-      // iOS does not preload video without user interaction — don't block forever
-      setTimeout(resolve, 3000);
+      window.addEventListener("scrollvideo:ready", () => resolve(), { once: true });
+      // Fallback: poster image provides visual continuity, so don't block too long
+      setTimeout(resolve, 10000);
     });
 
     const waitForTimer = new Promise<void>((resolve) => {
