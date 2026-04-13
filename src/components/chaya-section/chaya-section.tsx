@@ -14,7 +14,7 @@ function Service({ heading, body, reverse }: ServiceProps) {
   return (
     <div
       className={`${styles.service} ${reverse ? styles["service-reverse"] : ""}`}
-      data-reveal="fade-up"
+      data-reveal="clip-left"
     >
       <div className={styles["service-text"]}>
         <h3 className={styles["service-heading"]}>{heading}</h3>
@@ -36,12 +36,12 @@ export function ChayaSection() {
     <section ref={sectionRef} className={styles.section} id="chaya">
       <div className={styles.inner}>
         {/* Header: section label + intro */}
-        <div className={styles.header} data-reveal="fade-up">
-          <div className={styles.label}>
+        <div className={styles.header}>
+          <div className={styles.label} data-reveal="clip-down">
             <span className={styles["label-ja"]}>茶屋</span>
             <span className={styles["label-en"]}>The Chaya</span>
           </div>
-          <div className={styles.intro}>
+          <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>ARC&apos;TERYX TRAIL HUB TAKAO</h2>
             <p className={styles.body}>
               ARC&apos;TERYX TRAIL HUB TAKAO

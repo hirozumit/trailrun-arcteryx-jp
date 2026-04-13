@@ -12,7 +12,7 @@ export function YoyogiSection() {
     <section ref={sectionRef} className={styles.section} id="yoyogi">
       <div className={styles.inner}>
         <div className={styles.poster} data-reveal="fade-up" />
-        <div className={styles.body} data-reveal="fade-up">
+        <div className={styles.body} data-reveal="clip-left">
           <div className={styles.header}>
             <p className={styles.subtitle}>
               ARC&apos;TERYX TRAIL HUB YOYOGI

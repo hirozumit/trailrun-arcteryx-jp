@@ -13,7 +13,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: calc(10svh * (1 - var(--t)));
+  padding-bottom: calc(5svh * (1 - var(--t)));
   pointer-events: none;
 }
 
