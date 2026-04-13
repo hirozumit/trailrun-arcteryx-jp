@@ -23,11 +23,22 @@ function smoothScrollTo(target: number, duration: number) {
 export function Splash() {
   const splashRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
+  const [skipped, setSkipped] = useState(false);
 
   useEffect(() => {
+    const skip = process.env.NEXT_PUBLIC_SKIP_SPLASH === "1";
+
     // Prevent browser from restoring scroll position on reload
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
+
+    if (skip) {
+      splashRef.current?.style.setProperty("--t", "1");
+      setSkipped(true);
+      setReady(true);
+      window.scrollTo(0, window.innerHeight * 0.5);
+      return;
+    }
 
     // Lock scrolling during splash animation
     document.documentElement.style.overflow = "hidden";
@@ -100,10 +111,10 @@ export function Splash() {
         <img
           src={copy.src}
           alt="（拝啓）山へ／山へ（行こう）"
-          className={`${styles.copy} ${ready ? styles.visible : ""}`}
+          className={`${styles.copy} ${ready && !skipped ? styles.visible : ""}`}
         />
         <img
-          className={`${styles.logo} ${ready ? styles.visible : ""}`}
+          className={`${styles.logo} ${ready ? styles.visible : ""} ${skipped ? styles.skipped : ""}`}
           src={logoYamae.src}
           alt="山へ"
         />

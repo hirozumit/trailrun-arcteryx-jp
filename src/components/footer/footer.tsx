@@ -26,7 +26,6 @@ export function Footer({ poster }: FooterProps) {
       {poster && (
         <img className={styles.poster} src={poster} alt="" />
       )}
-      <img className={styles.logoYamae} src={logoYamae.src} alt="" aria-hidden="true" />
       <div className={styles.inner}>
         <a
           href="https://arcteryx.jp"

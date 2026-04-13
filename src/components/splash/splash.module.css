@@ -36,6 +36,11 @@
   animation: fade-in 0.5s 3s ease-out forwards;
 }
 
+.skipped.logo {
+  animation: none;
+  opacity: 1;
+}
+
 @keyframes fade-in-out {
   0% { opacity: 0; }
   17% { opacity: 1; }
