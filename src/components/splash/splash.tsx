@@ -51,8 +51,10 @@ export function Splash() {
 
     const waitForVideo = new Promise<void>((resolve) => {
       window.addEventListener("scrollvideo:ready", () => resolve(), { once: true });
-      // Fallback: poster image provides visual continuity, so don't block too long
-      setTimeout(resolve, 10000);
+      // Fallback: mobile browsers often ignore preload="auto" so loadeddata
+      // may never fire without user interaction. Poster image provides visual
+      // continuity, so keep the fallback short.
+      setTimeout(resolve, 1000);
     });
 
     const waitForTimer = new Promise<void>((resolve) => {
