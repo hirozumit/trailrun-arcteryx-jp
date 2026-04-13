@@ -45,9 +45,9 @@ export function Splash() {
 
     requestAnimationFrame(() => setReady(true));
 
-    // Auto-scroll after logo is visible for 2s (logo appears at 3.5s)
+    // Auto-scroll after logo is visible for 1s (logo appears at 2.5s)
     // and the first ScrollVideo signals readiness
-    const LOGO_VISIBLE_AT = 5500; // 3s copy + 0.5s fade-in + 2s hold
+    const LOGO_VISIBLE_AT = 3500; // 2s copy + 0.5s fade-in + 1s hold
 
     const waitForVideo = new Promise<void>((resolve) => {
       window.addEventListener("scrollvideo:ready", () => resolve(), { once: true });
