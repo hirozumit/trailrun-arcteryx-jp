@@ -65,8 +65,8 @@ function GearPanel({ item, index }: { item: GearItem; index: number }) {
   return (
     <div
       className={styles.panel}
-      data-reveal-child
-      style={{ "--reveal-index": index } as React.CSSProperties}
+      data-reveal="fade-up"
+      style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
@@ -105,7 +105,7 @@ function GearCategory({
       <div
         className={`${styles["category-grid"]} ${styles["desktop-only"]}`}
         style={{ "--columns": columns } as React.CSSProperties}
-        data-reveal="fade-up"
+        data-reveal="clip-left"
       >
         {visibleItems.map((item, i) => (
           <GearPanel key={item.name} item={item} index={i} />
@@ -114,7 +114,7 @@ function GearCategory({
       {/* Mobile: full carousel */}
       <div
         className={`${styles["category-grid"]} ${styles["mobile-only"]}`}
-        data-reveal="fade-up"
+        data-reveal="clip-left"
       >
         {allItems.map((item, i) => (
           <GearPanel key={item.name} item={item} index={i} />
@@ -139,12 +139,12 @@ export function GearSection() {
   return (
     <section ref={sectionRef} className={styles.section} id="gear">
       <div className={styles.inner}>
-        <div className={styles.header} data-reveal="fade-up">
-          <div className={styles.label}>
+        <div className={styles.header}>
+          <div className={styles.label} data-reveal="clip-down">
             <span className={styles["label-ja"]}>ギア</span>
             <span className={styles["label-en"]}>The Gear</span>
           </div>
-          <div className={styles.intro}>
+          <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>
               あのイーハトーヴォのすきとおった風、
               <br />

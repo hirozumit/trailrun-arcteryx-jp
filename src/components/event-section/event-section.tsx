@@ -30,8 +30,8 @@ function EventPanel({ item, index }: { item: EventItem; index: number }) {
   return (
     <div
       className={styles.panel}
-      data-reveal-child
-      style={{ "--reveal-index": index } as React.CSSProperties}
+      data-reveal="fade-up"
+      style={{ transitionDelay: `${index * 80}ms` }}
     >
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
@@ -64,7 +64,7 @@ function EventCategory({
       {/* Desktop: sliced grid */}
       <div
         className={`${styles["category-grid"]} ${styles["desktop-only"]}`}
-        data-reveal="fade-up"
+        data-reveal="clip-left"
       >
         {visibleItems.map((item, i) => (
           <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} index={i} />
@@ -73,7 +73,7 @@ function EventCategory({
       {/* Mobile: full carousel */}
       <div
         className={`${styles["category-grid"]} ${styles["mobile-only"]}`}
-        data-reveal="fade-up"
+        data-reveal="clip-left"
       >
         {items.map((item, i) => (
           <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} index={i} />
@@ -98,12 +98,12 @@ export function EventSection() {
   return (
     <section ref={sectionRef} className={styles.section} id="events">
       <div className={styles.inner}>
-        <div className={styles.header} data-reveal="fade-up">
-          <div className={styles.label}>
+        <div className={styles.header}>
+          <div className={styles.label} data-reveal="clip-down">
             <span className={styles["label-ja"]}>イベント</span>
             <span className={styles["label-en"]}>The Community Events</span>
           </div>
-          <div className={styles.intro}>
+          <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>
               あのイーハトーヴォのすきとおった風、
               <br />
