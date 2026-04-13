@@ -83,8 +83,22 @@ export function Splash() {
     let ticking = false;
 
     const update = () => {
-      const t = Math.min(window.scrollY / window.innerHeight, 1);
+      const vh = window.innerHeight;
+      const scrollY = window.scrollY;
+
+      // Opening: 0→1 over first viewport
+      const tOpen = Math.min(scrollY / vh, 1);
+
+      // Closing: 1→0 over last viewport (footer area)
+      const maxScroll = document.documentElement.scrollHeight - vh;
+      const tClose = 1 - Math.max(0, Math.min((scrollY - (maxScroll - vh)) / vh, 1));
+
+      const t = Math.min(tOpen, tClose);
       splash.style.setProperty("--t", String(t));
+
+      // Raise above footer when logo is expanding back
+      splash.style.zIndex = tClose < 1 ? "102" : "";
+
       ticking = false;
     };
 

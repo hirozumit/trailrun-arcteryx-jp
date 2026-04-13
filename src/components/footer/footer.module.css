@@ -5,7 +5,7 @@
   align-items: flex-end;
   justify-content: center;
   min-height: 100lvh;
-  padding: 4rem var(--content-px);
+  padding: 2rem var(--content-px);
   color: var(--color-bg);
   overflow: hidden;
 }
@@ -17,13 +17,14 @@
   height: 100%;
   object-fit: cover;
   z-index: -1;
+  filter: brightness(0.4);
 }
 
 .inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
 .brand img {
@@ -57,7 +58,6 @@
 .legal a {
   font-family: var(--font-itc-elan-book);
   font-size: 0.75rem;
-  font-weight: 300;
   line-height: 1.25;
   color: inherit;
   text-decoration: none;
@@ -66,6 +66,5 @@
 .copyright {
   font-family: var(--font-itc-elan-book);
   font-size: 0.75rem;
-  font-weight: 300;
   line-height: 1.25;
 }
