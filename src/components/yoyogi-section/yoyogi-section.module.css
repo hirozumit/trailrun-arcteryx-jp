@@ -42,6 +42,8 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  font-family: var(--font-zen-old-mincho);
+  letter-spacing: -0.05em;
 }
 
 .header {
@@ -59,26 +61,18 @@
 }
 
 .title {
-  font-family: var(--font-zen-old-mincho);
   font-size: var(--font-size-section-label);
-  font-weight: 400;
-  letter-spacing: -0.05em;
   line-height: 1.25;
 }
 
 .text {
-  font-family: var(--font-zen-old-mincho);
   font-size: var(--font-size-body);
-  font-weight: 400;
   line-height: 1.75;
-  letter-spacing: -0.05em;
 }
 
 .caption {
-  font-family: var(--font-zen-old-mincho);
   font-size: var(--font-size-caption);
   line-height: 1.75;
-  letter-spacing: -0.05em;
 }
 
 /* ── CTA button (mobile only) ── */
@@ -91,7 +85,6 @@
   padding: 1.5rem;
   border: 1px solid rgba(0, 0, 0, 0.5);
   background: none;
-  font-family: var(--font-zen-old-mincho);
   font-size: var(--font-size-body-small);
   color: inherit;
   text-decoration: none;

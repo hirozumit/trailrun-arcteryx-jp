@@ -106,7 +106,7 @@ Reference: https://tmp.thirozumi.org/yamae/video-prototype/
 
 - 値のハードコードは禁止。色・フォントサイズ・スペーシング等はすべて CSS custom property として `globals.css` に定義し、各モジュールから `var()` で参照する
 - フォントサイズ・スペーシングは `rem` ベース。`html` 要素に `clamp()` 等を設定しレスポンシブに対応できる設計とする
-- `font-size`, `line-height`, `font-family` 等の継承可能なプロパティは親要素からの継承を優先し、個別指定は必要最低限にとどめる
+- `font-family`, `font-size`, `line-height`, `letter-spacing`, `font-weight`, `color` 等の継承可能なプロパティは親要素に一度だけ指定し、子要素では継承を活用する。子要素で個別に値が異なる場合のみ上書きする
 
 ## Naming Conventions
 
