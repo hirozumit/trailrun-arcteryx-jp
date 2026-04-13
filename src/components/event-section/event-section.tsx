@@ -26,13 +26,9 @@ const storeEvents: EventItem[] = [
   { name: "CITY TRAIL MEET UP", location: "心斎橋", date: "2026-05-09 SAT" },
 ];
 
-function EventPanel({ item, index }: { item: EventItem; index: number }) {
+function EventPanel({ item }: { item: EventItem }) {
   return (
-    <div
-      className={styles.panel}
-      data-reveal="fade-up"
-      style={{ transitionDelay: `${index * 80}ms` }}
-    >
+    <div className={styles.panel}>
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
         <div className={styles["panel-meta"]}>
@@ -67,7 +63,7 @@ function EventCategory({
         data-reveal="clip-left"
       >
         {visibleItems.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} index={i} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
         ))}
       </div>
       {/* Mobile: full carousel */}
@@ -76,7 +72,7 @@ function EventCategory({
         data-reveal="clip-left"
       >
         {items.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} index={i} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
         ))}
       </div>
       {hasMore && !expanded && (

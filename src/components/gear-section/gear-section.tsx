@@ -61,13 +61,9 @@ const apparel: GearItem[] = [
   },
 ];
 
-function GearPanel({ item, index }: { item: GearItem; index: number }) {
+function GearPanel({ item }: { item: GearItem }) {
   return (
-    <div
-      className={styles.panel}
-      data-reveal="fade-up"
-      style={{ transitionDelay: `${index * 80}ms` }}
-    >
+    <div className={styles.panel}>
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
         <p className={styles["panel-name"]}>{item.name}</p>
@@ -107,8 +103,8 @@ function GearCategory({
         style={{ "--columns": columns } as React.CSSProperties}
         data-reveal="clip-left"
       >
-        {visibleItems.map((item, i) => (
-          <GearPanel key={item.name} item={item} index={i} />
+        {visibleItems.map((item) => (
+          <GearPanel key={item.name} item={item} />
         ))}
       </div>
       {/* Mobile: full carousel */}
@@ -116,8 +112,8 @@ function GearCategory({
         className={`${styles["category-grid"]} ${styles["mobile-only"]}`}
         data-reveal="clip-left"
       >
-        {allItems.map((item, i) => (
-          <GearPanel key={item.name} item={item} index={i} />
+        {allItems.map((item) => (
+          <GearPanel key={item.name} item={item} />
         ))}
       </div>
       {hasMore && !expanded && (
