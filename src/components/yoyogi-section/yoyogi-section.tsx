@@ -1,11 +1,18 @@
+"use client";
+
+import { useRef } from "react";
+import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./yoyogi-section.module.css";
 
 export function YoyogiSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useRevealAll(sectionRef);
+
   return (
-    <section className={styles.section} id="yoyogi">
+    <section ref={sectionRef} className={styles.section} id="yoyogi">
       <div className={styles.inner}>
-        <div className={styles.poster} />
-        <div className={styles.body}>
+        <div className={styles.poster} data-reveal="fade-up" />
+        <div className={styles.body} data-reveal="fade-up">
           <div className={styles.header}>
             <p className={styles.subtitle}>
               ARC&apos;TERYX TRAIL HUB YOYOGI

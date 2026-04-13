@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./event-section.module.css";
 
 type EventItem = {
@@ -25,9 +26,13 @@ const storeEvents: EventItem[] = [
   { name: "CITY TRAIL MEET UP", location: "心斎橋", date: "2026-05-09 SAT" },
 ];
 
-function EventPanel({ item }: { item: EventItem }) {
+function EventPanel({ item, index }: { item: EventItem; index: number }) {
   return (
-    <div className={styles.panel}>
+    <div
+      className={styles.panel}
+      data-reveal-child
+      style={{ "--reveal-index": index } as React.CSSProperties}
+    >
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
         <div className={styles["panel-meta"]}>
@@ -55,17 +60,23 @@ function EventCategory({
 
   return (
     <div className={styles.category}>
-      <h3 className={styles["category-title"]}>{title}</h3>
+      <h3 className={styles["category-title"]} data-reveal="fade-up">{title}</h3>
       {/* Desktop: sliced grid */}
-      <div className={`${styles["category-grid"]} ${styles["desktop-only"]}`}>
+      <div
+        className={`${styles["category-grid"]} ${styles["desktop-only"]}`}
+        data-reveal="fade-up"
+      >
         {visibleItems.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} index={i} />
         ))}
       </div>
       {/* Mobile: full carousel */}
-      <div className={`${styles["category-grid"]} ${styles["mobile-only"]}`}>
+      <div
+        className={`${styles["category-grid"]} ${styles["mobile-only"]}`}
+        data-reveal="fade-up"
+      >
         {items.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} index={i} />
         ))}
       </div>
       {hasMore && !expanded && (
@@ -81,10 +92,13 @@ function EventCategory({
 }
 
 export function EventSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useRevealAll(sectionRef);
+
   return (
-    <section className={styles.section} id="events">
+    <section ref={sectionRef} className={styles.section} id="events">
       <div className={styles.inner}>
-        <div className={styles.header}>
+        <div className={styles.header} data-reveal="fade-up">
           <div className={styles.label}>
             <span className={styles["label-ja"]}>イベント</span>
             <span className={styles["label-en"]}>The Community Events</span>

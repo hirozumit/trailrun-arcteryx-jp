@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef } from "react";
+import { useReveal } from "@/hooks/use-reveal";
 import styles from "./header.module.css";
 
 const NAV_ITEMS = [
@@ -15,24 +16,7 @@ export function Header() {
   const navRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
 
-  // Title fade-in on viewport entry
-  useEffect(() => {
-    const el = titleRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add(styles.visible);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0 },
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  useReveal(titleRef, { threshold: 0, rootMargin: "0px" });
 
   // Current section indicator
   useEffect(() => {
@@ -85,7 +69,7 @@ export function Header() {
         ))}
       </nav>
       <div className={styles.navOffset} />
-      <h1 ref={titleRef} className={styles.title}>TRAIL RUNNING</h1>
+      <h1 ref={titleRef} className={styles.title} data-reveal="fade">TRAIL RUNNING</h1>
     </>
   );
 }

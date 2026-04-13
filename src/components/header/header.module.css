@@ -57,18 +57,22 @@
   padding: 1rem;
   font-family: var(--font-itc-elan-book), serif;
   font-weight: 400;
-  font-size: 1.5rem;
-  line-height: 1;
+  font-size: 1.25rem;
+  line-height: 1.25;
   color: #fff;
   text-align: center;
   mix-blend-mode: difference;
   pointer-events: none;
-  opacity: 0;
-  transform: translateY(1rem);
-  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
-}
 
-.title.visible {
-  opacity: 1;
-  transform: translateY(0);
+  @media (min-width: 48rem) {
+    writing-mode: vertical-rl;
+    top: 0;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 }

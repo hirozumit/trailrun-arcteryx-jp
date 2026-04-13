@@ -1,4 +1,7 @@
-import logoYamae from "@/components/splash/logo-yamae.svg";
+"use client";
+
+import { useRef } from "react";
+import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./footer.module.css";
 
 type FooterProps = {
@@ -21,12 +24,15 @@ const legalLinks = [
 ];
 
 export function Footer({ poster }: FooterProps) {
+  const footerRef = useRef<HTMLElement>(null);
+  useRevealAll(footerRef);
+
   return (
-    <footer className={styles.footer}>
+    <footer ref={footerRef} className={styles.footer}>
       {poster && (
         <img className={styles.poster} src={poster} alt="" />
       )}
-      <div className={styles.inner}>
+      <div className={styles.inner} data-reveal="fade-up">
         <a
           href="https://arcteryx.jp"
           className={styles.brand}

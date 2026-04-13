@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Spectral, Zen_Old_Mincho } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
+import "@/styles/reveal.css";
 
 const spectral = Spectral({
   weight: ["400", "600"],

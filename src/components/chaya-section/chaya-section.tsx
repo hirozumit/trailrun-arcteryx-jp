@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef } from "react";
+import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./chaya-section.module.css";
 
 type ServiceProps = {
@@ -10,6 +14,7 @@ function Service({ heading, body, reverse }: ServiceProps) {
   return (
     <div
       className={`${styles.service} ${reverse ? styles["service-reverse"] : ""}`}
+      data-reveal="fade-up"
     >
       <div className={styles["service-text"]}>
         <h3 className={styles["service-heading"]}>{heading}</h3>
@@ -24,11 +29,14 @@ function Service({ heading, body, reverse }: ServiceProps) {
 }
 
 export function ChayaSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  useRevealAll(sectionRef);
+
   return (
-    <section className={styles.section} id="chaya">
+    <section ref={sectionRef} className={styles.section} id="chaya">
       <div className={styles.inner}>
         {/* Header: section label + intro */}
-        <div className={styles.header}>
+        <div className={styles.header} data-reveal="fade-up">
           <div className={styles.label}>
             <span className={styles["label-ja"]}>茶屋</span>
             <span className={styles["label-en"]}>The Chaya</span>
@@ -46,7 +54,7 @@ export function ChayaSection() {
         </div>
 
         {/* Hero image */}
-        <div className={styles["hero-image"]} />
+        <div className={styles["hero-image"]} data-reveal="fade-up" />
 
         {/* Services */}
         <Service
@@ -64,7 +72,7 @@ export function ChayaSection() {
         />
 
         {/* Map + Address */}
-        <div className={styles["map-block"]}>
+        <div className={styles["map-block"]} data-reveal="fade-up">
           <div className={styles.map}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3244.5!2d139.2707!3d35.6321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM3JzU1LjYiTiAxMznCsDE2JzE0LjUiRQ!5e0!3m2!1sja!2sjp!4v1"

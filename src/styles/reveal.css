@@ -1,0 +1,57 @@
+/* ---- fade-up ---- */
+[data-reveal="fade-up"] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+[data-reveal="fade-up"][data-revealed] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- fade ---- */
+[data-reveal="fade"] {
+  opacity: 0;
+  transition: opacity 0.6s ease-out;
+}
+[data-reveal="fade"][data-revealed] {
+  opacity: 1;
+}
+
+/* ---- clip-down ---- */
+[data-reveal="clip-down"] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.8s ease-out;
+}
+[data-reveal="clip-down"][data-revealed] {
+  clip-path: inset(0);
+}
+
+/* ---- clip-left ---- */
+[data-reveal="clip-left"] {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.8s ease-out;
+}
+[data-reveal="clip-left"][data-revealed] {
+  clip-path: inset(0);
+}
+
+/* ---- stagger children ---- */
+[data-reveal-child] {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition-delay: calc(var(--reveal-index, 0) * 80ms);
+}
+[data-revealed] > [data-reveal-child] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- reduced motion: keep reveal logic, skip animation ---- */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal],
+  [data-reveal-child] {
+    transition-duration: 0s !important;
+  }
+}
