@@ -71,14 +71,15 @@ export function ScrollVideo({
     const update = () => {
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight;
-      // Video enters viewport when rect.top < vh (bottom of viewport)
-      // Fully scrolled when rect.bottom <= vh
       const scrolled = vh - rect.top;
       const scrollRange = container.offsetHeight + vh;
       const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
 
-      if (video.duration) {
+      if (Number.isFinite(video.duration) && video.duration > 0) {
         video.currentTime = progress * video.duration;
+      } else {
+        // Metadata not yet available — retry when it loads
+        video.addEventListener("loadedmetadata", update, { once: true });
       }
 
       ticking = false;
@@ -92,7 +93,6 @@ export function ScrollVideo({
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    video.addEventListener("loadedmetadata", update);
     update();
 
     return () => {
