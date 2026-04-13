@@ -17,7 +17,7 @@ export function YoyogiSection() {
             <p className={styles.subtitle}>
               ARC&apos;TERYX TRAIL HUB YOYOGI
             </p>
-            <h2 className={styles.title}>トレイルに備える</h2>
+            <h2 className={styles.title}>トレイルに<br />備える</h2>
           </div>
           <p className={styles.text}>
             本格的なトレランの準備の拠点として、代々木公園のクロカンコースで、ギアを試したり、トレランに必要な知識を得たりすることができる拠点が期間限定オープンします。
