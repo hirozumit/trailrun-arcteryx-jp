@@ -27,19 +27,17 @@ export function ScrollVideo({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // Source resolution, activation, and scroll-driven playback in a single
-  // effect so timing between src assignment and event listeners is guaranteed.
   useEffect(() => {
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
 
-    // 1. Resolve and assign source
-    const resolved =
-      mobileSrc && window.matchMedia(MOBILE_MQ).matches ? mobileSrc : src;
-    video.src = resolved;
+    // Swap to mobile source if needed (desktop src is already in the HTML)
+    if (mobileSrc && window.matchMedia(MOBILE_MQ).matches) {
+      video.src = mobileSrc;
+    }
 
-    // 2. Scroll-driven seek
+    // Scroll-driven seek
     let ticking = false;
 
     const seek = () => {
@@ -64,8 +62,8 @@ export function ScrollVideo({
       }
     };
 
-    // 3. Activate video (required on iOS to render frames via currentTime)
-    //    then sync to current scroll position.
+    // Activate video (iOS requires play/pause to render frames via currentTime)
+    // then sync to current scroll position.
     const activate = () => {
       video
         .play()
@@ -111,6 +109,7 @@ export function ScrollVideo({
         <video
           ref={videoRef}
           className={styles.video}
+          src={src}
           muted
           playsInline
           preload="auto"
