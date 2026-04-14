@@ -15,6 +15,8 @@ type ScrollVideoProps = {
   priority?: boolean;
 };
 
+const MOBILE_MQ = "(max-width: 47.999rem)";
+
 export function ScrollVideo({
   src,
   mobileSrc,
@@ -25,7 +27,19 @@ export function ScrollVideo({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  // iOS autoplay unlock
+  // Resolve source via matchMedia — avoids <source> elements which
+  // browsers won't re-evaluate when React adds them dynamically.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const resolved =
+      mobileSrc && window.matchMedia(MOBILE_MQ).matches ? mobileSrc : src;
+    video.src = resolved;
+  }, [src, mobileSrc]);
+
+  // iOS autoplay unlock — use touchstart only so it doesn't race with
+  // the scroll-driven currentTime updates on the first scroll event.
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -35,12 +49,8 @@ export function ScrollVideo({
     };
 
     window.addEventListener("touchstart", unlock, { once: true, passive: true });
-    window.addEventListener("scroll", unlock, { once: true, passive: true });
 
-    return () => {
-      window.removeEventListener("touchstart", unlock);
-      window.removeEventListener("scroll", unlock);
-    };
+    return () => window.removeEventListener("touchstart", unlock);
   }, []);
 
   // Signal readiness for priority video
@@ -53,7 +63,6 @@ export function ScrollVideo({
       window.dispatchEvent(new Event("scrollvideo:ready"));
     };
 
-    // HAVE_CURRENT_DATA (readyState >= 2): first frame is available
     if (video.readyState >= 2) {
       signal();
       return;
@@ -63,7 +72,7 @@ export function ScrollVideo({
     return () => video.removeEventListener("loadeddata", signal);
   }, [priority]);
 
-  // Scroll-driven playback: starts when video enters viewport
+  // Scroll-driven playback
   useEffect(() => {
     const container = containerRef.current;
     const video = videoRef.current;
@@ -71,7 +80,7 @@ export function ScrollVideo({
 
     let ticking = false;
 
-    const update = () => {
+    const seek = () => {
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight;
       const scrolled = vh - rect.top;
@@ -80,11 +89,11 @@ export function ScrollVideo({
 
       if (Number.isFinite(video.duration) && video.duration > 0) {
         video.currentTime = progress * video.duration;
-      } else {
-        // Metadata not yet available — retry when it loads
-        video.addEventListener("loadedmetadata", update, { once: true });
       }
+    };
 
+    const update = () => {
+      seek();
       ticking = false;
     };
 
@@ -95,12 +104,16 @@ export function ScrollVideo({
       }
     };
 
+    // When metadata arrives (possibly after scroll has started), sync position
+    const onMetadata = () => requestAnimationFrame(seek);
+
+    video.addEventListener("loadedmetadata", onMetadata, { once: true });
     window.addEventListener("scroll", onScroll, { passive: true });
-    update();
+    seek();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      video.removeEventListener("loadedmetadata", update);
+      video.removeEventListener("loadedmetadata", onMetadata);
     };
   }, []);
 
@@ -121,19 +134,11 @@ export function ScrollVideo({
         <video
           ref={videoRef}
           className={styles.video}
-          src={mobileSrc ? undefined : src}
           muted
           playsInline
           preload="auto"
           poster={poster}
-        >
-          {mobileSrc && (
-            <>
-              <source src={mobileSrc} media="(max-width: 47.999rem)" type="video/mp4" />
-              <source src={src} media="(min-width: 48rem)" type="video/mp4" />
-            </>
-          )}
-        </video>
+        />
       </div>
     </div>
   );
