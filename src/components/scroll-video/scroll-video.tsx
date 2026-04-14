@@ -27,31 +27,74 @@ export function ScrollVideo({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  // Swap to mobile source if needed
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !mobileSrc) return;
+
+    if (window.matchMedia(MOBILE_MQ).matches) {
+      video.src = mobileSrc;
+    }
+  }, [mobileSrc]);
+
+  // iOS autoplay unlock
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const unlock = () => {
+      video.play().then(() => video.pause()).catch(() => {});
+    };
+
+    window.addEventListener("touchstart", unlock, { once: true, passive: true });
+    window.addEventListener("scroll", unlock, { once: true, passive: true });
+
+    return () => {
+      window.removeEventListener("touchstart", unlock);
+      window.removeEventListener("scroll", unlock);
+    };
+  }, []);
+
+  // Signal readiness for priority video
+  useEffect(() => {
+    if (!priority) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    const signal = () => {
+      window.dispatchEvent(new Event("scrollvideo:ready"));
+    };
+
+    if (video.readyState >= 2) {
+      signal();
+      return;
+    }
+
+    video.addEventListener("loadeddata", signal, { once: true });
+    return () => video.removeEventListener("loadeddata", signal);
+  }, [priority]);
+
+  // Scroll-driven playback
   useEffect(() => {
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
 
-    // Swap to mobile source if needed (desktop src is already in the HTML)
-    if (mobileSrc && window.matchMedia(MOBILE_MQ).matches) {
-      video.src = mobileSrc;
-    }
-
-    // Scroll-driven seek
     let ticking = false;
 
-    const seek = () => {
-      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+    const update = () => {
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight;
       const scrolled = vh - rect.top;
       const scrollRange = container.offsetHeight + vh;
       const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
-      video.currentTime = progress * video.duration;
-    };
 
-    const update = () => {
-      seek();
+      if (Number.isFinite(video.duration) && video.duration > 0) {
+        video.currentTime = progress * video.duration;
+      } else {
+        video.addEventListener("loadedmetadata", update, { once: true });
+      }
+
       ticking = false;
     };
 
@@ -62,35 +105,14 @@ export function ScrollVideo({
       }
     };
 
-    // Activate video (iOS requires play/pause to render frames via currentTime)
-    // then sync to current scroll position.
-    const activate = () => {
-      video
-        .play()
-        .then(() => {
-          video.pause();
-          seek();
-        })
-        .catch(() => seek());
-
-      if (priority) {
-        window.dispatchEvent(new Event("scrollvideo:ready"));
-      }
-    };
-
-    if (video.readyState >= 2) {
-      activate();
-    } else {
-      video.addEventListener("loadeddata", activate, { once: true });
-    }
-
     window.addEventListener("scroll", onScroll, { passive: true });
+    update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      video.removeEventListener("loadeddata", activate);
+      video.removeEventListener("loadedmetadata", update);
     };
-  }, [src, mobileSrc, priority]);
+  }, []);
 
   return (
     <div
