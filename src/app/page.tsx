@@ -13,13 +13,13 @@ export default function Home() {
       <main>
         <Splash />
         <Header />
-        <ScrollVideo src="/videos/test_3s.mp4" />
-        <ChayaSection />
         <ScrollVideo
           src="/videos/straw_3s_landscape.mp4"
           mobileSrc="/videos/straw_3s_portrait.mp4"
           priority
-        />
+        />        
+        <ChayaSection />
+        <ScrollVideo src="/videos/test_3s.mp4" />
         <GearSection />
         <ScrollVideo src="/videos/test_3s.mp4" />
         <EventSection />
