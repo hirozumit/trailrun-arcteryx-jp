@@ -5,6 +5,8 @@ import styles from "./scroll-video.module.css";
 
 type ScrollVideoProps = {
   src: string;
+  /** Video source for mobile (<48rem). When omitted, src is used for all viewports */
+  mobileSrc?: string;
   /** Scroll distance as a multiple of 100svh. Default: 3 */
   scrollLength?: number;
   /** Poster image shown while the video is loading */
@@ -15,7 +17,8 @@ type ScrollVideoProps = {
 
 export function ScrollVideo({
   src,
-  scrollLength = 1,
+  mobileSrc,
+  scrollLength = 3,
   poster,
   priority,
 }: ScrollVideoProps) {
@@ -118,12 +121,19 @@ export function ScrollVideo({
         <video
           ref={videoRef}
           className={styles.video}
-          src={src}
+          src={mobileSrc ? undefined : src}
           muted
           playsInline
           preload="auto"
           poster={poster}
-        />
+        >
+          {mobileSrc && (
+            <>
+              <source src={mobileSrc} media="(max-width: 47.999rem)" type="video/mp4" />
+              <source src={src} media="(min-width: 48rem)" type="video/mp4" />
+            </>
+          )}
+        </video>
       </div>
     </div>
   );
