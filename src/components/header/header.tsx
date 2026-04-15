@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import styles from "./header.module.css";
 
@@ -15,6 +15,7 @@ const SECTION_IDS = NAV_ITEMS.map((item) => item.href.slice(1));
 export function Header() {
   const navRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useReveal(titleRef, { threshold: 0, rootMargin: "0px" });
 
@@ -62,11 +63,22 @@ export function Header() {
   return (
     <>
       <nav ref={navRef} className={styles.nav} aria-label="セクションナビゲーション">
-        {NAV_ITEMS.map(({ label, href }) => (
-          <a key={href} href={href} className={styles.navItem} onClick={handleClick}>
-            {label}
-          </a>
-        ))}
+        <div className={`${styles.menu} ${menuOpen ? styles.open : ""}`}>
+          {NAV_ITEMS.map(({ label, href }) => (
+            <a key={href} href={href} className={styles.navItem} onClick={handleClick}>
+              <span className={styles.dot} />
+              <span className={styles.label}>{label}</span>
+            </a>
+          ))}
+        </div>
+        <button
+          className={styles.toggle}
+          onClick={() => setMenuOpen((v) => !v)}
+          aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? "−" : "+"}
+        </button>
       </nav>
       <div className={styles.navOffset} />
       <h1 ref={titleRef} className={styles.title} data-reveal="fade">TRAIL RUNNING</h1>
