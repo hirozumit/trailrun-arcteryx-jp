@@ -11,7 +11,9 @@ export function YoyogiSection() {
   return (
     <section ref={sectionRef} className={styles.section} id="yoyogi">
       <div className={styles.inner}>
-        <div className={styles.poster} data-reveal="fade-up" />
+        <div className={styles.poster} data-reveal="fade-up">
+          <img src="/images/yoyogi-poster.jpg" alt="" />
+        </div>
         <div className={styles.body} data-reveal="clip-left">
           <div className={styles.header}>
             <p className={styles.subtitle}>

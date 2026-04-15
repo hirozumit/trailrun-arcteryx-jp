@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import copy from "./copy.svg";
+import copyLine1 from "./copy-line1.svg";
+import copyLine2 from "./copy-line2.svg";
 import logoYamae from "./logo-yamae.svg";
 import styles from "./splash.module.css";
 
@@ -45,9 +46,9 @@ export function Splash() {
 
     requestAnimationFrame(() => setReady(true));
 
-    // Auto-scroll after logo is visible for 1s (logo appears at 2.5s)
+    // Auto-scroll after logo is visible for 1s (logo appears at 3.5s)
     // and the first ScrollVideo signals readiness
-    const LOGO_VISIBLE_AT = 3500; // 2s copy + 0.5s fade-in + 1s hold
+    const LOGO_VISIBLE_AT = 4500; // 3s copy + 0.5s fade-in + 1s hold
 
     const waitForVideo = new Promise<void>((resolve) => {
       window.addEventListener("scrollvideo:ready", () => resolve(), { once: true });
@@ -124,11 +125,10 @@ export function Splash() {
   return (
     <>
       <div ref={splashRef} className={styles.splash}>
-        <img
-          src={copy.src}
-          alt="（拝啓）山へ／山へ（行こう）"
-          className={`${styles.copy} ${ready && !skipped ? styles.visible : ""}`}
-        />
+        <div className={`${styles.copy} ${ready && !skipped ? styles.visible : ""}`}>
+          <img src={copyLine2.src} alt="" className={styles.copyLine} />
+          <img src={copyLine1.src} alt="" className={styles.copyLine} />
+        </div>
         <img
           className={`${styles.logo} ${ready ? styles.visible : ""} ${skipped ? styles.skipped : ""}`}
           src={logoYamae.src}

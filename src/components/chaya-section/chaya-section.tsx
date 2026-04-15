@@ -1,6 +1,6 @@
 "use client";
 
-import { type ReactNode, useRef } from "react";
+import { type ReactNode, useRef, useState } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./chaya-section.module.css";
 
@@ -9,10 +9,13 @@ type ServiceProps = {
   body: string;
   reverse?: boolean;
   images?: string[];
+  noteLabel?: string;
   children?: ReactNode;
 };
 
-function Service({ heading, body, reverse, images = [], children }: ServiceProps) {
+function Service({ heading, body, reverse, images = [], noteLabel, children }: ServiceProps) {
+  const [noteOpen, setNoteOpen] = useState(false);
+
   return (
     <div
       className={`${styles.service} ${reverse ? styles["service-reverse"] : ""}`}
@@ -20,7 +23,18 @@ function Service({ heading, body, reverse, images = [], children }: ServiceProps
       <div className={styles["service-text"]} data-reveal="fade-up">
         <h3 className={styles["service-heading"]}>{heading}</h3>
         <p className={styles["service-body"]}>{body}</p>
-        {children && <div className={styles["service-note"]}>{children}</div>}
+        {noteOpen && children && (
+          <div className={styles["service-note"]}>{children}</div>
+        )}        
+        {noteLabel && (
+          <button
+            className={styles["note-toggle"]}
+            onClick={() => setNoteOpen((v) => !v)}
+            aria-expanded={noteOpen}
+          >
+            {noteOpen ? "−" : "+"} {noteLabel}
+          </button>
+        )}
       </div>
       <div
         className={`${styles["service-images"]} ${images.length === 1 ? styles["service-images-single"] : ""}`}
@@ -76,9 +90,10 @@ export function ChayaSection() {
           heading="ギアを試す"
           body="アークテリクスの最新のトレイルラン フットウェアをレンタルし、高尾山のフィールドでお試しいただけます。ウェアも実物をご覧いただけます。"
           images={["/images/gear-1.jpg", "/images/gear-2.jpg"]}
+          noteLabel="お貸し出しについて"
         >
-          <p className={styles["note-heading"]}>お貸し出しについて</p>
           <ul className={styles["note-list"]}>
+
             <li>
               BIRD
               CLUB会員の方もしくはLINEで友だち登録された方はレンタル料無料となります。
@@ -95,9 +110,9 @@ export function ChayaSection() {
           heading="ようかんとお茶"
           body="山への出発前や下山後のひとときに、高尾茶屋限定の羊羹セットをお楽しみいただけます（有料）。アンケートに答えていただいた方には、ドリンクをサービスいたします。"
           images={["/images/yokan.jpg"]}
+          noteLabel="カフェ内スペシャルメニュー"
           reverse
         >
-          <p className={styles["note-heading"]}>カフェ内スペシャルメニュー</p>
           <ul className={styles["note-list"]}>
             <li>羊羹セット（880円）</li>
             <li>お団子セット（880円）</li>
@@ -107,6 +122,7 @@ export function ChayaSection() {
           heading="ノベルティ"
           body="高尾茶屋にてアークテリクスのギアをレンタルの上、いただいた方に、限定のノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
+          noteLabel="ノベルティについて"
         >
           <p>
             ギアをレンタルされた方には「オリジナル

@@ -1,6 +1,6 @@
 .splash {
   --t: 0;
-  --logo-expanded: 9rem;
+  --logo-expanded: 10rem;
   --logo-compact: 3.75rem;
 
   position: fixed;
@@ -17,11 +17,48 @@
   pointer-events: none;
 }
 
+/* ── Copy text (2-line vertical) ── */
+
 .copy {
   position: absolute;
-  height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 1rem;
+  height: 17rem;
   opacity: 0;
 }
+
+.copyLine {
+  display: block;
+  height: 100%;
+  width: auto;
+  clip-path: inset(0 0 100% 0);
+}
+
+.visible.copy {
+  opacity: 1;
+  animation: copy-fade-out 0.5s 2.5s ease forwards;
+}
+
+.visible .copyLine:nth-child(1) {
+  animation: clip-reveal 0.5s ease forwards;
+}
+
+.visible .copyLine:nth-child(2) {
+  animation: clip-reveal 0.5s 1s ease forwards;
+}
+
+@keyframes clip-reveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes copy-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ── Logo ── */
 
 .logo {
   display: block;
@@ -30,12 +67,8 @@
   opacity: 0;
 }
 
-.visible.copy {
-  animation: fade-in-out 2s ease-out forwards;
-}
-
 .visible.logo {
-  animation: fade-in 0.5s 2s ease-out forwards;
+  animation: fade-in 0.5s 3s ease-out forwards;
 }
 
 .skipped.logo {
@@ -43,17 +76,12 @@
   opacity: 1;
 }
 
-@keyframes fade-in-out {
-  0% { opacity: 0; }
-  17% { opacity: 1; }
-  83% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/* ── Spacer ── */
 
 .spacer {
   position: relative;

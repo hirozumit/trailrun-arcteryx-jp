@@ -25,7 +25,6 @@
 .poster {
   flex: 1;
   aspect-ratio: 4 / 5;
-  background: #e5e5e5;
   overflow: hidden;
 }
 
