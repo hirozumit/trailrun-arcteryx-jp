@@ -47,12 +47,8 @@ export function ScrollVideo({
     };
 
     window.addEventListener("touchstart", unlock, { once: true, passive: true });
-    window.addEventListener("scroll", unlock, { once: true, passive: true });
 
-    return () => {
-      window.removeEventListener("touchstart", unlock);
-      window.removeEventListener("scroll", unlock);
-    };
+    return () => window.removeEventListener("touchstart", unlock);
   }, []);
 
   // Signal readiness for priority video
