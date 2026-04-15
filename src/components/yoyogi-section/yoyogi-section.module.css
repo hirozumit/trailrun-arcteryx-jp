@@ -60,6 +60,7 @@
 
 .title {
   font-size: var(--font-size-section-label);
+  font-weight: 400;
   line-height: 1.25;
 }
 

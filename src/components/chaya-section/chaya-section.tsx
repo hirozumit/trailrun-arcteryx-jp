@@ -16,15 +16,15 @@ function Service({ heading, body, reverse, images = [], children }: ServiceProps
   return (
     <div
       className={`${styles.service} ${reverse ? styles["service-reverse"] : ""}`}
-      data-reveal="clip-left"
     >
-      <div className={styles["service-text"]}>
+      <div className={styles["service-text"]} data-reveal="fade-up">
         <h3 className={styles["service-heading"]}>{heading}</h3>
         <p className={styles["service-body"]}>{body}</p>
         {children && <div className={styles["service-note"]}>{children}</div>}
       </div>
       <div
         className={`${styles["service-images"]} ${images.length === 1 ? styles["service-images-single"] : ""}`}
+        data-reveal="clip-left"
       >
         {images.map((src) => (
           <div key={src} className={styles["service-image"]}>
@@ -100,7 +100,7 @@ export function ChayaSection() {
           images={["/images/yokan.jpg"]}
           reverse
         >
-          <p className={styles["note-heading"]}>カフェ内スペシャルメニュー</p>
+          <p>カフェ内スペシャルメニュー</p>
           <ul className={styles["note-list"]}>
             <li>羊羹セット（880円）</li>
             <li>お団子セット（880円）</li>
@@ -111,12 +111,10 @@ export function ChayaSection() {
           body="高尾茶屋にてアークテリクスのギアをレンタルの上、いただいた方に、限定のノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
         >
-          <p className={styles["note-heading"]}>ギアをレンタルされた方</p>
-          <p className={styles["note-body"]}>オリジナル 羊羹</p>
-          <p className={styles["note-heading"]}>
-            BIRD CLUB会員の方、LINE友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方
+          <p>
+            ギアをレンタルされた方には「オリジナル
+            羊羹」、BIRD CLUB会員の方、LINE友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル 手ぬぐい・ステッカー」を差し上げます
           </p>
-          <p className={styles["note-body"]}>オリジナル 手ぬぐい・ステッカー</p>
         </Service>
 
         {/* Map + Address */}
@@ -131,10 +129,10 @@ export function ChayaSection() {
             />
           </div>
           <div className={styles.address}>
-            <p className={styles["address-title"]}>
-              ARC&apos;TERYX TRAIL HUB TAKAO
+            <p className={styles["address-title"]} data-reveal="fade-up">
+              ARC'TERYX TRAIL HUB TAKAO
             </p>
-            <div className={styles["address-detail"]}>
+            <div className={styles["address-detail"]} data-reveal="fade-up">
               <p>
                 東京都八王子市高尾町1799-3　Mt.TAKAO BASE
                 CAMP　京王線高尾山口駅より徒歩3分
@@ -143,7 +141,9 @@ export function ChayaSection() {
               <p>
                 レンタル・カフェ営業時間：平日 8:00〜20:00　土日祝日 7:00〜20:00
               </p>
-              <p className={styles["address-caption"]}>
+            </div>
+            <div className={styles["address-caption"]} data-reveal="fade-up">
+              <p>
                 ※期間中土日祝日はARC&apos;TERYX STAFF がおります。
               </p>
             </div>

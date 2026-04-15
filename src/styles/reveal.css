@@ -40,16 +40,3 @@
 [data-reveal="clip-left"][data-revealed] {
   clip-path: inset(0);
 }
-
-/* ---- reduced motion: instant transitions ---- */
-@media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
-    transition-duration: 0s !important;
-  }
-
-  /* clip-path variants: remove clip so content is never hidden */
-  [data-reveal="clip-down"],
-  [data-reveal="clip-left"] {
-    clip-path: none !important;
-  }
-}
