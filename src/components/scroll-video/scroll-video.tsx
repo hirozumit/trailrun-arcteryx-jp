@@ -85,11 +85,18 @@ export function ScrollVideo({
       }
     };
 
-    if (video.readyState >= 2) {
-      activate();
-    } else {
-      video.addEventListener("loadeddata", activate, { once: true });
-    }
+    // Call play() immediately to force loading on iOS (which ignores
+    // preload="auto"). If play() rejects (rare), fall back to loadeddata.
+    video
+      .play()
+      .then(() => {
+        video.pause();
+        seek();
+        if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
+      })
+      .catch(() => {
+        video.addEventListener("loadeddata", activate, { once: true });
+      });
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
