@@ -42,7 +42,12 @@ export function GearSection() {
           </div>
           <div className={styles["panel-overlay"]}>
             <p className={styles["panel-title"]}>Footwear + Apparel</p>
-            <a href="#" className={styles["panel-link"]}>
+            <a
+              href="https://arcteryx.jp/pages/260326_sylan2"
+              className={styles["panel-link"]}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               More
             </a>
           </div>

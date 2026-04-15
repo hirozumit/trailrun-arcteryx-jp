@@ -28,7 +28,7 @@ const storeEvents: EventItem[] = [
 
 function EventPanel({ item }: { item: EventItem }) {
   return (
-    <div className={styles.panel}>
+    <div className={styles.panel} data-reveal="clip-left">
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
         <div className={styles["panel-meta"]}>
@@ -60,7 +60,6 @@ function EventCategory({
       {/* Desktop: sliced grid */}
       <div
         className={`${styles["category-grid"]} ${styles["desktop-only"]}`}
-        data-reveal="clip-left"
       >
         {visibleItems.map((item, i) => (
           <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
@@ -69,7 +68,6 @@ function EventCategory({
       {/* Mobile: full carousel */}
       <div
         className={`${styles["category-grid"]} ${styles["mobile-only"]}`}
-        data-reveal="clip-left"
       >
         {items.map((item, i) => (
           <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />

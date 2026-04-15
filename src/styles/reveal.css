@@ -1,6 +1,6 @@
 :root {
   --reveal-duration: 0.5s;
-  --reveal-easing: ease-out;
+  --reveal-easing: ease;
 }
 
 /* ---- fade-up ---- */
