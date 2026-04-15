@@ -68,7 +68,6 @@ export function Header() {
           </a>
         ))}
       </nav>
-      <div className={styles.navOffset} />
       <h1 ref={titleRef} className={styles.title} data-reveal="fade">TRAIL RUNNING</h1>
     </>
   );

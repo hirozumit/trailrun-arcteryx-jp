@@ -1,4 +1,4 @@
-/* --- nav-local (sticky, scrolls out with main) --- */
+/* --- nav-local (fixed) --- */
 
 .nav {
   display: none;
@@ -6,9 +6,10 @@
 
 @media (min-width: 48rem) {
   .nav {
-    position: sticky;
+    position: fixed;
     top: 0;
-    height: 100lvh;
+    left: 0;
+    bottom: 0;
     z-index: 50;
     pointer-events: none;
     mix-blend-mode: difference;
@@ -19,17 +20,6 @@
     gap: 1.5rem;
     width: 4rem;
     padding: 1.5rem 1rem;
-  }
-}
-
-.navOffset {
-  display: none;
-}
-
-@media (min-width: 48rem) {
-  .navOffset {
-    display: block;
-    margin-top: -100lvh;
   }
 }
 
