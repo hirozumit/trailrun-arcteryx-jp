@@ -28,58 +28,21 @@ export function ScrollVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
-  // Mobile source swap — disabled for testing
-  // useEffect(() => {
-  //   const video = videoRef.current;
-  //   if (!video || !mobileSrc) return;
-  //   if (window.matchMedia(MOBILE_MQ).matches) {
-  //     video.src = mobileSrc;
-  //     video.play().then(() => video.pause()).catch(() => {});
-  //   }
-  // }, [mobileSrc]);
-
-  // iOS autoplay unlock
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const unlock = () => {
-      video.play().then(() => video.pause()).catch(() => {});
-    };
-
-    window.addEventListener("touchstart", unlock, { once: true, passive: true });
-
-    return () => window.removeEventListener("touchstart", unlock);
-  }, []);
-
-  // Signal readiness for priority video
-  useEffect(() => {
-    if (!priority) return;
-    const video = videoRef.current;
-    if (!video) return;
-
-    const signal = () => {
-      window.dispatchEvent(new Event("scrollvideo:ready"));
-    };
-
-    if (video.readyState >= 2) {
-      signal();
-      return;
-    }
-
-    video.addEventListener("loadeddata", signal, { once: true });
-    return () => video.removeEventListener("loadeddata", signal);
-  }, [priority]);
-
-  // Scroll-driven playback
   useEffect(() => {
     const container = containerRef.current;
     const video = videoRef.current;
     if (!container || !video) return;
 
+    // 1. Swap to mobile source if needed
+    if (mobileSrc && window.matchMedia(MOBILE_MQ).matches) {
+      video.src = mobileSrc;
+    }
+
+    // 2. Scroll-driven seek
     let ticking = false;
 
-    const update = () => {
+    const seek = () => {
+      if (!Number.isFinite(video.duration) || video.duration <= 0) return;
       const rect = container.getBoundingClientRect();
       const vh = window.innerHeight;
       const scrolled = vh - rect.top;
@@ -89,12 +52,11 @@ export function ScrollVideo({
       const bar = progressRef.current;
       if (bar) bar.style.width = `${progress * 100}%`;
 
-      if (Number.isFinite(video.duration) && video.duration > 0) {
-        video.currentTime = progress * video.duration;
-      } else {
-        video.addEventListener("loadedmetadata", update, { once: true });
-      }
+      video.currentTime = progress * video.duration;
+    };
 
+    const update = () => {
+      seek();
       ticking = false;
     };
 
@@ -105,14 +67,37 @@ export function ScrollVideo({
       }
     };
 
+    // 3. Activate video decoder via play/pause — required when the server
+    //    does not support Range requests (e.g. behind Cloudflare Access).
+    //    Without activation, setting currentTime won't render frames.
+    //    Triggered by loadeddata (not scroll) to avoid racing with seek.
+    const activate = () => {
+      video
+        .play()
+        .then(() => {
+          video.pause();
+          seek();
+        })
+        .catch(() => seek());
+
+      if (priority) {
+        window.dispatchEvent(new Event("scrollvideo:ready"));
+      }
+    };
+
+    if (video.readyState >= 2) {
+      activate();
+    } else {
+      video.addEventListener("loadeddata", activate, { once: true });
+    }
+
     window.addEventListener("scroll", onScroll, { passive: true });
-    update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      video.removeEventListener("loadedmetadata", update);
+      video.removeEventListener("loadeddata", activate);
     };
-  }, []);
+  }, [src, mobileSrc, priority]);
 
   return (
     <div
