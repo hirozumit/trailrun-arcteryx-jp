@@ -58,11 +58,10 @@ export function ChayaSection() {
           <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>ARC&apos;TERYX TRAIL HUB TAKAO</h2>
             <p className={styles.body}>
-              ARC&apos;TERYX TRAIL HUB TAKAO
-              は、、、、あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。
+              トレイルランニングが生まれる遥か昔から、日本では、山間の街道沿いに茶屋が点在し、旅行者のための休息地として機能してきました。アークテリクスは、トレイルランナーをサポートし、人々を山へと誘うための茶屋を、高尾山に期間限定でオープンします。ラン前後の燃料やカレル―補給の拠点として、山のコンディションやルートの案内拠点として、ランナー同士の情報交換や最新のギアの試着の場として、どうぞお気軽にお立ち寄りください。
             </p>
             <p className={styles.caption}>
-              オープン期間：2026年4月17日〜6月末
+              期間：2026年4月17日(金) 〜 6月28日(日)
             </p>
           </div>
         </div>
@@ -78,16 +77,14 @@ export function ChayaSection() {
           body="アークテリクスの最新のトレイルラン フットウェアをレンタルし、高尾山のフィールドでお試しいただけます。ウェアも実物をご覧いただけます。"
           images={["/images/gear-1.jpg", "/images/gear-2.jpg"]}
         >
-          <p className={styles["note-heading"]}>
-            フットウェア・ランニングベストのお貸し出しについて
-          </p>
+          <p className={styles["note-heading"]}>お貸し出しについて</p>
           <ul className={styles["note-list"]}>
             <li>
               BIRD
-              CLUB会員の方 もしくは LINEで友だち登録された方はレンタル料無料となります。
+              CLUB会員の方もしくはLINEで友だち登録された方はレンタル料無料となります。
             </li>
             <li>
-              上記に該当しない方でも通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
+              上記に該当しない方でも通常料金 (フットウェア &amp; ベスト 330円/1日) でお貸し出し可能です。
             </li>
           </ul>
           <p className={styles["note-caption"]}>
@@ -100,7 +97,7 @@ export function ChayaSection() {
           images={["/images/yokan.jpg"]}
           reverse
         >
-          <p>カフェ内スペシャルメニュー</p>
+          <p className={styles["note-heading"]}>カフェ内スペシャルメニュー</p>
           <ul className={styles["note-list"]}>
             <li>羊羹セット（880円）</li>
             <li>お団子セット（880円）</li>
@@ -113,20 +110,14 @@ export function ChayaSection() {
         >
           <p>
             ギアをレンタルされた方には「オリジナル
-            羊羹」、BIRD CLUB会員の方、LINE友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル 手ぬぐい・ステッカー」を差し上げます
+            羊羹」、BIRD CLUB 会員の方、LINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます
           </p>
         </Service>
 
         {/* Map + Address */}
         <div className={styles["map-block"]} data-reveal="fade-up">
           <div className={styles.map}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3244.5!2d139.2707!3d35.6321!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM3JzU1LjYiTiAxMznCsDE2JzE0LjUiRQ!5e0!3m2!1sja!2sjp!4v1"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="ARC'TERYX TRAIL HUB TAKAO"
-            />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.7122737469517!2d139.26784277695484!3d35.63481907260237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60191959193b2129%3A0xfb4f2d7e71c9e7df!2zTXQuVGFrYW8gQmFzZSBDYW1wLCDvvJHvvJfvvJnvvJniiJLvvJMg6auY5bC-55S6IOWFq-eOi-WtkOW4giDmnbHkuqzpg70gMTkzLTA4NDQ!5e0!3m2!1sja!2sjp!4v1776213846478!5m2!1sja!2sjp" width={600} height={450} style={{ border: "0" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div className={styles.address}>
             <p className={styles["address-title"]} data-reveal="fade-up">
@@ -137,7 +128,7 @@ export function ChayaSection() {
                 東京都八王子市高尾町1799-3　Mt.TAKAO BASE
                 CAMP　京王線高尾山口駅より徒歩3分
               </p>
-              <p>期間：2026年4月17日（金）〜6月30日（火）</p>
+              <p>期間：2026年4月17日(金) 〜 6月30日(火)</p>
               <p>
                 レンタル・カフェ営業時間：平日 8:00〜20:00　土日祝日 7:00〜20:00
               </p>
