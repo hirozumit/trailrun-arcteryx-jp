@@ -36,7 +36,7 @@ function observe(el: HTMLElement, threshold: number, rootMargin: string) {
 /** Reveal a single element with `data-reveal`. */
 export function useReveal(
   ref: RefObject<HTMLElement | null>,
-  { threshold = 0.15, rootMargin = "0px 0px -15% 0px" } = {},
+  { threshold = 0.1, rootMargin = "0px 0px -10% 0px" } = {},
 ) {
   useEffect(() => {
     const el = ref.current;
