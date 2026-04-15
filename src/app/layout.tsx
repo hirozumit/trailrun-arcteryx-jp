@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Spectral, Zen_Old_Mincho } from "next/font/google";
 import localFont from "next/font/local";
+import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import "@/styles/reveal.css";
 
@@ -59,7 +60,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${spectral.variable} ${zenOldMincho.variable} ${itcElanBook.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+        )}
+        {process.env.NEXT_PUBLIC_GA4_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
+        )}
+      </body>
     </html>
   );
 }
