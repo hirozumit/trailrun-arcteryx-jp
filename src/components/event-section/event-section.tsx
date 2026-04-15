@@ -6,24 +6,23 @@ import styles from "./event-section.module.css";
 
 type EventItem = {
   name: string;
-  location: string;
   date: string;
 };
 
 const communityEvents: EventItem[] = [
-  { name: "TRAIL CLINIC", location: "高尾", date: "2026-04-26 SUN" },
-  { name: "TRAIL CLINIC", location: "六甲山", date: "2026-05-16 SAT" },
-  { name: "TRAIL CLINIC", location: "高尾", date: "2026-05-23 FRI" },
-  { name: "TRAIL CLINIC", location: "高尾", date: "2026-05-16 SAT" },
-  { name: "TRAIL CLINIC", location: "高尾", date: "2026-05-16 SAT" },
+  { name: "TRAIL CLINIC TAKAO", date: "2026-04-26 SUN" },
+  { name: "TRAIL CLINIC ROKKO", date: "2026-05-16 SAT" },
+  { name: "TRAIL CLINIC TAKAO", date: "2026-05-23 FRI" },
+  { name: "TRAIL CLINIC TAKAO", date: "2026-05-16 SAT" },
+  { name: "TRAIL CLINIC TAKAO", date: "2026-05-16 SAT" },
 ];
 
 const storeEvents: EventItem[] = [
-  { name: "CITY TRAIL MEET UP", location: "神戸", date: "2026-05-03 SUN" },
-  { name: "CITY TRAIL MEET UP", location: "神戸", date: "2026-05-05 TUE" },
-  { name: "CITY TRAIL MEET UP", location: "心斎橋", date: "2026-05-09 SAT" },
-  { name: "CITY TRAIL MEET UP", location: "神戸", date: "2026-05-03 SUN" },
-  { name: "CITY TRAIL MEET UP", location: "心斎橋", date: "2026-05-09 SAT" },
+  { name: "CITY TRAIL MEET UP KOBE", date: "2026-05-03 SUN" },
+  { name: "CITY TRAIL MEET UP KOBE", date: "2026-05-05 TUE" },
+  { name: "CITY TRAIL MEET UP SHINSAIBASHI", date: "2026-05-09 SAT" },
+  { name: "CITY TRAIL MEET UP KOBE", date: "2026-05-03 SUN" },
+  { name: "CITY TRAIL MEET UP SHINSAIBASHI", date: "2026-05-09 SAT" },
 ];
 
 function EventPanel({ item }: { item: EventItem }) {
@@ -31,10 +30,7 @@ function EventPanel({ item }: { item: EventItem }) {
     <div className={styles.panel} data-reveal="clip-left">
       <div className={styles["panel-image"]} />
       <div className={styles["panel-info"]}>
-        <div className={styles["panel-meta"]}>
-          <span className={styles["panel-tag"]}>{item.location}</span>
-          <p className={styles["panel-name"]}>{item.name}</p>
-        </div>
+        <p className={styles["panel-name"]}>{item.name}</p>
         <p className={styles["panel-date"]}>{item.date}</p>
       </div>
     </div>
@@ -99,12 +95,12 @@ export function EventSection() {
           </div>
           <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>
-              あのイーハトーヴォのすきとおった風、
+              XXXXX XXXXX XXXXX XXXXX 
               <br />
-              夏でも底に冷たさをもつ青いそら。
+              XXXXX XXXXX XXXXX 
             </h2>
             <p className={styles.body}>
-              あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら。
+              高尾の茶屋などのTRAIL HUBを拠点としたコミュニティイベントや、最新ギアをお試しできるストアイベントが開催されます。高尾では、バリエーション豊かなルートを持つ高尾山を一緒に走るイベントを開催します。最新のトレランギアを試すことができるイベントが同時期に全国各地で行われます。
             </p>
           </div>
         </div>
