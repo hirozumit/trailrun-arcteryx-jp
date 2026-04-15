@@ -28,15 +28,15 @@ export function ScrollVideo({
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressRef = useRef<HTMLDivElement>(null);
 
-  // Swap to mobile source if needed
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !mobileSrc) return;
-
-    if (window.matchMedia(MOBILE_MQ).matches) {
-      video.src = mobileSrc;
-    }
-  }, [mobileSrc]);
+  // Mobile source swap — disabled for testing
+  // useEffect(() => {
+  //   const video = videoRef.current;
+  //   if (!video || !mobileSrc) return;
+  //   if (window.matchMedia(MOBILE_MQ).matches) {
+  //     video.src = mobileSrc;
+  //     video.play().then(() => video.pause()).catch(() => {});
+  //   }
+  // }, [mobileSrc]);
 
   // iOS autoplay unlock
   useEffect(() => {
