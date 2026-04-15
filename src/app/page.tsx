@@ -14,7 +14,7 @@ export default function Home() {
         <Splash />
         <Header />
         <ScrollVideo
-          src="/videos/straw_3s_landscape.mp4"
+          src="/videos/straw_158_3s_landscape.mp4"
           mobileSrc="/videos/straw_3s_portrait.mp4"
           priority
         />        

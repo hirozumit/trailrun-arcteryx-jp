@@ -1,127 +1,49 @@
 /* --- nav-local (sticky, scrolls out with main) --- */
 
 .nav {
-  position: sticky;
-  top: 0;
-  height: 100lvh;
-  z-index: 50;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 2rem;
-  width: 4rem;
-  padding: 1rem;
+  display: none;
 }
 
 @media (min-width: 48rem) {
   .nav {
+    position: sticky;
+    top: 0;
+    height: 100lvh;
+    z-index: 50;
+    pointer-events: none;
     mix-blend-mode: difference;
-    justify-content: center;
+    display: flex;
+    flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     gap: 1.5rem;
+    width: 4rem;
     padding: 1.5rem 1rem;
   }
 }
 
 .navOffset {
-  margin-top: -100lvh;
-}
-
-/* --- menu (nav items wrapper) --- */
-
-.menu {
   display: none;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-}
-
-.menu.open {
-  display: flex;
 }
 
 @media (min-width: 48rem) {
-  .menu {
-    display: flex;
-    gap: 1.5rem;
+  .navOffset {
+    display: block;
+    margin-top: -100lvh;
   }
 }
-
-/* --- toggle button (mobile only) --- */
-
-.toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border: none;
-  border-radius: 50%;
-  background: #000;
-  color: #fff;
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  pointer-events: auto;
-}
-
-@media (min-width: 48rem) {
-  .toggle {
-    display: none;
-  }
-}
-
-/* --- nav item --- */
 
 .navItem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  writing-mode: vertical-rl;
+  font-family: var(--font-zen-old-mincho), serif;
+  color: #fff;
+  font-size: 1.125rem;
   text-decoration: none;
   pointer-events: auto;
 }
 
-/* Dot indicator (mobile) */
-
-.dot {
-  display: block;
-  width: 0.75rem;
-  height: 0.75rem;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  background: #fff;
-}
-
-.navItem.current .dot {
-  background: #000;
-}
-
-@media (min-width: 48rem) {
-  .dot {
-    display: none;
-  }
-}
-
-/* Text label (desktop) */
-
-.label {
-  display: none;
-}
-
-@media (min-width: 48rem) {
-  .label {
-    display: block;
-    writing-mode: vertical-rl;
-    font-family: var(--font-zen-old-mincho), serif;
-    color: #fff;
-    font-size: 1.125rem;
-  }
-
-  .navItem.current .label {
-    border-left: 1px solid #fff;
-  }
+.navItem.current {
+  border-left: 1px solid #fff;
 }
 
 /* --- title (fixed, footer covers it) --- */

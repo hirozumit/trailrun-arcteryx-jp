@@ -27,7 +27,7 @@ const itcElanBook = localFont({
   display: "swap",
 });
 
-const siteName = "TRAIL RUNNING - 山へ | ARC'TERYX";
+const siteName = "山へ - TRAIL RUNNING | ARC'TERYX";
 const siteDescription =
   "xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx";
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://trailrun.arcteryx.jp"),
   title: {
     default: siteName,
-    template: `%s - TRAIL RUNNING - 山へ | ARC'TERYX`,
+    template: `%s | 山へ - TRAIL RUNNING | ARC'TERYX`,
   },
   description: siteDescription,
   openGraph: {

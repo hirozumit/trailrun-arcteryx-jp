@@ -26,6 +26,7 @@ export function ScrollVideo({
 }: ScrollVideoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   // Swap to mobile source if needed
   useEffect(() => {
@@ -85,6 +86,9 @@ export function ScrollVideo({
       const scrollRange = container.offsetHeight + vh;
       const progress = Math.max(0, Math.min(1, scrolled / scrollRange));
 
+      const bar = progressRef.current;
+      if (bar) bar.style.width = `${progress * 100}%`;
+
       if (Number.isFinite(video.duration) && video.duration > 0) {
         video.currentTime = progress * video.duration;
       } else {
@@ -133,6 +137,9 @@ export function ScrollVideo({
           preload="auto"
           poster={poster}
         />
+        <div className={styles.timeline}>
+          <div ref={progressRef} className={styles.timelineProgress} />
+        </div>
       </div>
     </div>
   );
