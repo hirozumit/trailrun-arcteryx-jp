@@ -38,7 +38,7 @@
 .timelineProgress {
   height: 100%;
   width: 0;
-  background: #fff;
+  background: var(--color-bg);
   mix-blend-mode: difference;
   transition: width 0.05s linear;
 }

@@ -9,7 +9,7 @@
   color: var(--color-bg);
   overflow: hidden;
   font-family: var(--font-itc-elan-book);
-  font-size: 0.75rem;
+  font-size: var(--font-size-note);
   line-height: 1.25;
 }
 

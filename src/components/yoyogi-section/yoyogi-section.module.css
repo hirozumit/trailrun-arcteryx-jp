@@ -59,7 +59,6 @@
 
 .title {
   font-size: var(--font-size-section-label);
-  font-weight: 400;
   line-height: 1.25;
 }
 
@@ -81,7 +80,7 @@
   justify-content: center;
   align-self: flex-start;
   padding: 1.5rem;
-  border: 1px solid rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--color-border-subtle);
   background: none;
   font-size: var(--font-size-body-small);
   color: inherit;
