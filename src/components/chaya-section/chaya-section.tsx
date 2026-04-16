@@ -147,7 +147,7 @@ export function ChayaSection() {
             <div className={styles["address-detail"]} data-reveal="fade-up">
               <p>
                 東京都八王子市高尾町1799-3　Mt.TAKAO BASE
-                CAMP　京王線高尾山口駅より徒歩3分
+                CAMP<br />京王線高尾山口駅より徒歩3分
               </p>
               <p>期間：2026年4月17日(金) 〜 6月28日(日)</p>
               <p>
