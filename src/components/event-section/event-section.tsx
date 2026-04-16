@@ -14,7 +14,7 @@ type EventItem = {
 
 const communityEvents: EventItem[] = [
   {
-    name: "TRAIL CLINIC 高尾",
+    name: "TRAIL CLINIC 高尾山",
     date: "2026年4月26日(日)",
     image: "/images/events/trail-clinic-takao.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260426",
@@ -26,7 +26,7 @@ const communityEvents: EventItem[] = [
     url: "https://arcteryx.jp/pages/trail_clinic_20260516",
   },
   {
-    name: "TRAIL CLINIC 高尾",
+    name: "TRAIL CLINIC 高尾山",
     date: "2026年5月23日(土)",
     image: "/images/events/trail-clinic-takao.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260523",
@@ -135,8 +135,8 @@ export function EventSection() {
             </p>
           </div>
         </div>
-        <EventCategory title="Community Event" items={communityEvents} />
-        <EventCategory title="Store Event" items={storeEvents} />
+        <EventCategory title="Community Events" items={communityEvents} />
+        <EventCategory title="Store Events" items={storeEvents} />
       </div>
     </section>
   );

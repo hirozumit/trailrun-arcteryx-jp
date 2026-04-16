@@ -93,7 +93,7 @@ export function ChayaSection() {
         <Service
           id="try-gear"
           heading="ギアを試す"
-          body="アークテリクスの最新のトレイルラン フットウェアをレンタルし、高尾山のフィールドでお試しいただけます。ウェアも実物をご覧いただけます。"
+          body="アークテリクスの最新のトレイルラン フットウェアをレンタルし、高尾山のフィールドでお試しいただけます。"
           images={["/images/gear-1.jpg", "/images/gear-2.jpg"]}
           noteLabel="お貸し出しについて"
         >
@@ -125,13 +125,13 @@ export function ChayaSection() {
         <Service
           id="novelty"
           heading="ノベルティ"
-          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方や、BIRD CLUB会員の方、LINEで友だち登録していただいた方に、限定のノベルティを差し上げます。"
+          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方に、限定のノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
           noteLabel="ノベルティについて"
         >
           <p>
             ギアをレンタルされた方には「オリジナル
-            羊羹」、BIRD CLUB 会員の方、LINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます
+            羊羹」、さらに BIRD CLUB 会員の方、LINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます
           </p>
         </Service>
 
