@@ -28,16 +28,30 @@ export function Splash() {
 
   useEffect(() => {
     const skip = process.env.NEXT_PUBLIC_SKIP_SPLASH === "1";
+    const hash = window.location.hash;
 
     // Prevent browser from restoring scroll position on reload
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
 
-    if (skip) {
+    if (skip || hash) {
       splashRef.current?.style.setProperty("--t", "1");
       setSkipped(true);
       setReady(true);
-      window.scrollTo(0, window.innerHeight * 0.5);
+
+      if (hash) {
+        // Wait one frame for layout, then scroll to anchor
+        requestAnimationFrame(() => {
+          const target = document.querySelector(hash);
+          if (target) {
+            target.scrollIntoView();
+          } else {
+            window.scrollTo(0, window.innerHeight * 0.5);
+          }
+        });
+      } else {
+        window.scrollTo(0, window.innerHeight * 0.5);
+      }
       return;
     }
 
