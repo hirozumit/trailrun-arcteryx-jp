@@ -77,7 +77,7 @@
   display: block;
   color: inherit;
   text-decoration: none;
-  transition: filter 0.25s ease;
+  transition: filter 0.25s ease, clip-path var(--reveal-duration) var(--reveal-easing);
   &:hover {
     filter: brightness(1.1);
   }
