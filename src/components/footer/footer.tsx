@@ -9,18 +9,18 @@ type FooterProps = {
 };
 
 const socialLinks = [
-  { label: "YouTube", href: "https://www.youtube.com/@arcteryxjp" },
-  { label: "Facebook", href: "https://www.facebook.com/arcteryx" },
+  { label: "YouTube", href: "https://www.youtube.com/@arcteryxjapan" },
+  { label: "Facebook", href: "https://www.facebook.com/ARCTERYXJP/" },
   { label: "X", href: "https://x.com/arcteryx_jp" },
-  { label: "Instagram", href: "https://www.instagram.com/arcteryx_jp/" },
-  { label: "Line", href: "#" },
+  { label: "Instagram", href: "https://www.instagram.com/arcteryx_jp" },
+  { label: "Line", href: "https://lin.ee/s9QngwV" },
 ];
 
 const legalLinks = [
-  { label: "Cookie Policy", href: "#" },
-  { label: "Privacy Policy", href: "#" },
-  { label: "Terms of Service", href: "#" },
-  { label: "Legal Notice", href: "#" },
+  { label: "Cookie Policy", href: "https://arcteryx.jp/pages/cookies" },
+  { label: "Privacy Policy", href: "https://arcteryx.jp/policies/privacy-policy" },
+  { label: "Terms of Service", href: "https://arcteryx.jp/policies/terms-of-service" },
+  { label: "Legal Notice", href: "https://arcteryx.jp/policies/legal-notice" },
 ];
 
 export function Footer({ poster }: FooterProps) {
