@@ -46,9 +46,9 @@ export function Splash() {
 
     requestAnimationFrame(() => setReady(true));
 
-    // Auto-scroll after logo is visible for 1s (logo appears at 3.5s)
+    // Auto-scroll after logo is visible for 1s (logo appears at 4.5s)
     // and the first ScrollVideo signals readiness
-    const LOGO_VISIBLE_AT = 4500; // 3s copy + 0.5s fade-in + 1s hold
+    const LOGO_VISIBLE_AT = 5500; // 1s blank + 3s copy + 0.5s fade-in + 1s hold
 
     const waitForVideo = new Promise<void>((resolve) => {
       window.addEventListener("scrollvideo:ready", () => resolve(), { once: true });
@@ -126,8 +126,8 @@ export function Splash() {
     <>
       <div ref={splashRef} className={styles.splash}>
         <div className={`${styles.copy} ${ready && !skipped ? styles.visible : ""}`}>
-          <img src={copyLine2.src} alt="" className={styles.copyLine} />
           <img src={copyLine1.src} alt="" className={styles.copyLine} />
+          <img src={copyLine2.src} alt="" className={styles.copyLine} />
         </div>
         <img
           className={`${styles.logo} ${ready ? styles.visible : ""} ${skipped ? styles.skipped : ""}`}

@@ -8,9 +8,9 @@
   padding: 2rem var(--content-px);
   color: var(--color-bg);
   overflow: hidden;
-  font-family: var(--font-itc-elan-book);
-  font-size: var(--font-size-note);
-  line-height: 1.25;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  line-height: var(--leading-tight);
 }
 
 .poster {

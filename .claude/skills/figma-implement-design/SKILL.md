@@ -154,7 +154,7 @@ Before marking complete, validate the final UI against the Figma screenshot.
 
 - Each component gets its own `.module.css` file — no global class names
 - Map Figma design tokens (colors, typography, spacing) to CSS custom properties in `src/app/globals.css`
-- Reference tokens in modules via `var(--color-primary)`, `var(--font-size-lg)`, etc.
+- Reference tokens in modules via `var(--color-primary)`, `var(--text-lg)`, etc.
 - Use standard CSS features (flexbox, grid, `@media` queries) for layout — no utility-class frameworks
 - Import styles as `import styles from './Component.module.css'` and apply via `className={styles.xxx}`
 

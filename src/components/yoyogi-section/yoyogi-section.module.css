@@ -41,7 +41,6 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  font-family: var(--font-zen-old-mincho);
 }
 
 .header {
@@ -50,26 +49,25 @@
   gap: 1rem;
 }
 
-.subtitle {
-  font-family: var(--font-itc-elan-book);
-  font-size: var(--font-size-body-small);
-  font-weight: 300;
-  line-height: 1.25;
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
 }
 
-.title {
-  font-size: var(--font-size-section-label);
-  line-height: 1.25;
+.title small {
+  margin-top: 1rem;
+  display: block;
+  font-size: var(--text-sm);
 }
 
 .text {
-  font-size: var(--font-size-body);
-  line-height: 1.75;
+  font-size: var(--text-base);
+  line-height: var(--leading-cozy);
 }
 
 .caption {
-  font-size: var(--font-size-caption);
-  line-height: 1.75;
+  font-size: var(--text-xs);
+  line-height: var(--leading-cozy);
 }
 
 /* ── CTA button (mobile only) ── */
@@ -82,8 +80,8 @@
   padding: 1.5rem;
   border: 1px solid var(--color-border-subtle);
   background: none;
-  font-size: var(--font-size-body-small);
+  font-size: var(--text-sm);
   color: inherit;
   text-decoration: none;
-  line-height: 1;
+  line-height: var(--leading-none);
 }

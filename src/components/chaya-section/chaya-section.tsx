@@ -72,7 +72,7 @@ export function ChayaSection() {
           <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>ARC&apos;TERYX TRAIL HUB TAKAO</h2>
             <p className={styles.body}>
-              トレイルランニングが生まれる遥か昔から、日本では、山間の街道沿いに茶屋が点在し、旅行者のための休息地として機能してきました。アークテリクスは、トレイルランナーをサポートし、人々を山へと誘うための茶屋を、高尾山に期間限定でオープンします。ラン前後の燃料やカレル―補給の拠点として、山のコンディションやルートの案内拠点として、ランナー同士の情報交換や最新のギアの試着の場として、どうぞお気軽にお立ち寄りください。
+              トレイルランニングが生まれる何世紀も以前から、日本では、山間の街道沿いに茶屋が点在し、旅行者のための休息所として機能してきました。アークテリクスは、トレイルランナーをサポートし、人々を山へと誘うための茶屋を、高尾山麓に期間限定でオープンしました。ランの前後の休憩やエネルギー補給の拠点として、山のコンディションやルートの情報交換、最新のギアの試着の場として。山へと向かう前に、山から降りた後に、どうぞお立ち寄りください。
             </p>
             <p className={styles.caption}>
               期間：2026年4月17日(金) 〜 6月28日(日)
@@ -93,22 +93,20 @@ export function ChayaSection() {
           noteLabel="お貸し出しについて"
         >
           <ul className={styles["note-list"]}>
-
             <li>
-              BIRD
-              CLUB会員の方もしくはLINEで友だち登録された方はレンタル料無料となります。
+              BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
             </li>
             <li>
-              上記に該当しない方でも通常料金 (フットウェア &amp; ベスト 330円/1日) でお貸し出し可能です。
+              上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
             </li>
           </ul>
           <p className={styles["note-caption"]}>
-            ※無料でご利用の方はお一人さま1回とさせていただきます。ご了承ください。
+            ※無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
           </p>
         </Service>
         <Service
-          heading="ようかんとお茶"
-          body="山への出発前や下山後のひとときに、高尾茶屋限定の羊羹セットをお楽しみいただけます（有料）。アンケートに答えていただいた方には、ドリンクをサービスいたします。"
+          heading="羊羹＆お茶"
+          body="出発前や下山後のひとときに、 TRAIL HUB TAKAO限定の羊羹セットやお団子セットをお楽しみいただけます（有料）。"
           images={["/images/yokan.jpg"]}
           noteLabel="カフェ内スペシャルメニュー"
           reverse
@@ -120,7 +118,7 @@ export function ChayaSection() {
         </Service>
         <Service
           heading="ノベルティ"
-          body="高尾茶屋にてアークテリクスのギアをレンタルの上、いただいた方に、限定のノベルティを差し上げます。"
+          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方や、BIRD CLUB会員の方、LINEで友だち登録していただいた方に、限定のノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
           noteLabel="ノベルティについて"
         >
@@ -146,12 +144,10 @@ export function ChayaSection() {
               </p>
               <p>期間：2026年4月17日(金) 〜 6月30日(火)</p>
               <p>
-                レンタル・カフェ営業時間：平日 8:00〜20:00　土日祝日 7:00〜20:00
+                レンタル・カフェ営業時間：平日 8:00〜20:00　土・日・祝日 7:00〜20:00
               </p>
-            </div>
-            <div className={styles["address-caption"]} data-reveal="fade-up">
-              <p>
-                ※期間中土日祝日はARC&apos;TERYX STAFF がおります。
+              <p className={styles["address-caption"]}>
+                ※期間中の土・日・祝日は、ARC’TERYX STAFFが16:00まで駐在。
               </p>
             </div>
           </div>

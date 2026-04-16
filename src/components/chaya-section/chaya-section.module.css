@@ -44,17 +44,16 @@
 }
 
 .label-ja {
-  font-family: var(--font-zen-old-mincho);
-  font-size: var(--font-size-section-label);
+  font-size: var(--text-2xl);
   writing-mode: vertical-rl;
-  line-height: 1;
+  line-height: var(--leading-none);
 }
 
 .label-en {
-  font-family: var(--font-itc-elan-book);
-  font-size: var(--font-size-caption);
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
   writing-mode: vertical-rl;
-  line-height: 1;
+  line-height: var(--leading-none);
 }
 
 /* Intro text */
@@ -63,7 +62,6 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  font-family: var(--font-zen-old-mincho);
 }
 
 @media (min-width: 48rem) {
@@ -74,18 +72,17 @@
 }
 
 .title {
-  font-family: var(--font-itc-elan-book);
-  font-size: var(--font-size-title);
-  line-height: 1.25;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
 }
 
 .body {
-  font-size: var(--font-size-body);
-  line-height: 1.75;
+  font-size: var(--text-base);
+  line-height: var(--leading-cozy);
 }
 
 .caption {
-  font-size: var(--font-size-caption);
+  font-size: var(--text-xs);
 }
 
 /* ── Hero image ── */
@@ -127,7 +124,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  font-family: var(--font-zen-old-mincho);
 }
 
 @media (min-width: 48rem) {
@@ -137,13 +133,13 @@
 }
 
 .service-heading {
-  font-size: var(--font-size-heading);
-  line-height: 1;
+  font-size: var(--text-xl);
+  line-height: var(--leading-none);
 }
 
 .service-body {
-  font-size: var(--font-size-body-small);
-  line-height: 1.5;
+  font-size: var(--text-base);
+  line-height: var(--leading-cozy);
 }
 
 /* Note toggle */
@@ -154,8 +150,8 @@
   border: none;
   background: none;
   font-family: inherit;
-  font-size: var(--font-size-note);
-  line-height: 1.5;
+  font-size: var(--text-xs);
+  line-height: var(--leading-base);
   color: inherit;
   cursor: pointer;
   text-align: left;
@@ -169,8 +165,7 @@
   gap: 0.5rem;
   border: 1px solid var(--color-border-subtle);
   padding: 1rem;
-  font-size: var(--font-size-note);
-  line-height: 1.5;
+  font-size: var(--text-xs);
 }
 
 .note-heading {
@@ -185,10 +180,6 @@
     position: absolute;
     margin-left: -1.125rem;
   }
-}
-
-.note-caption {
-  font-size: var(--font-size-micro);
 }
 
 .service-images {
@@ -251,20 +242,19 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  font-family: var(--font-zen-old-mincho);
 }
 
 .address-title {
-  font-family: var(--font-itc-elan-book);
-  font-size: var(--font-size-title);
-  line-height: 1;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-none);
 }
 
 .address-detail {
-  font-size: var(--font-size-caption);
-  line-height: 1.5;
+  font-size: var(--text-xs);
 }
 
 .address-caption {
-  font-size: var(--font-size-note);
+  margin-top: 1.5rem;
+  font-size: var(--text-xs);
 }

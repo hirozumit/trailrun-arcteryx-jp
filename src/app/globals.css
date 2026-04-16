@@ -1,4 +1,7 @@
 :root {
+  --font-serif: var(--font-spectral), var(--font-zen-old-mincho), serif;
+  --font-display: var(--font-itc-elan-book), var(--font-zen-old-mincho), serif;
+
   --color-bg: #fff;
   --color-fg: #171717;
   --color-border: currentColor;
@@ -11,14 +14,17 @@
   --section-py: 8rem;
   --section-gap: 8rem;
 
-  --font-size-section-label: 2.5rem;
-  --font-size-heading: 1.5rem;
-  --font-size-title: 1.25rem;
-  --font-size-body: 1.125rem;
-  --font-size-body-small: 1rem;
-  --font-size-caption: 0.875rem;
-  --font-size-note: 0.75rem;
-  --font-size-micro: 0.625rem;
+  --text-2xl: 2.5rem;
+  --text-xl: 1.5rem;
+  --text-lg: 1.25rem;
+  --text-base: 1rem;
+  --text-sm: 0.875rem;
+  --text-xs: 0.75rem;
+
+  --leading-cozy: 1.75;
+  --leading-base: 1.5;
+  --leading-tight: 1.25;
+  --leading-none: 1;
 }
 
 @media (min-width: 48rem) {
@@ -30,12 +36,15 @@
 
 html {
   height: 100%;
+  font-size: clamp(1rem, 0.975rem + 0.13vw, 1.125rem);
   overscroll-behavior-y: none;
   scrollbar-gutter: stable;
 }
 
 body {
   min-height: 100%;
+  font-family: var(--font-serif);
+  line-height: var(--leading-base);
   color: var(--color-fg);
   background: var(--color-bg);
   -webkit-font-smoothing: antialiased;
@@ -49,7 +58,8 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 400;
+  font-weight: normal;
+  line-height: var(--leading-tight);
 }
 
 img, picture {

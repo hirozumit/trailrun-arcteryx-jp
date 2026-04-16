@@ -23,29 +23,30 @@
   position: absolute;
   display: flex;
   flex-direction: row-reverse;
+  align-items: flex-start;
   gap: 1rem;
-  height: 17rem;
+  width: 4.8rem;
   opacity: 0;
 }
 
 .copyLine {
   display: block;
-  height: 100%;
-  width: auto;
+  width: 100%;
+  height: auto;
   clip-path: inset(0 0 100% 0);
 }
 
 .visible.copy {
   opacity: 1;
-  animation: copy-fade-out 0.5s 2.5s ease forwards;
+  animation: copy-fade-out 0.5s 3.5s ease forwards;
 }
 
 .visible .copyLine:nth-child(1) {
-  animation: clip-reveal 0.5s ease forwards;
+  animation: clip-reveal 0.5s 1s ease forwards;
 }
 
 .visible .copyLine:nth-child(2) {
-  animation: clip-reveal 0.5s 1s ease forwards;
+  animation: clip-reveal 0.5s 2s ease forwards;
 }
 
 @keyframes clip-reveal {
@@ -68,7 +69,7 @@
 }
 
 .visible.logo {
-  animation: fade-in 0.5s 3s ease-out forwards;
+  animation: fade-in 0.5s 4s ease-out forwards;
 }
 
 .skipped.logo {
