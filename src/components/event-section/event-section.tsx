@@ -128,7 +128,7 @@ export function EventSection() {
           </div>
           <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>
-              山へと走り、山へと備える。ともに。
+              山へと走り、<br />山へと備える。ともに。
             </h2>
             <p className={styles.body}>
               期間中、TRAIL HUB TAKAO などを拠点としたコミュニティイベントや、ストアイベントを開催します。高尾では、草戸山を周遊する約11kmのコースを一緒に走る、TRAIL CLINIC を開催。最新ギアもお試しいただくことができます。後日オープンする ARC’TERYX TRAIL HUB YOYOGI では、トレイルランニング初心者に向けて、山への備えを学ぶことができる TRAIL CLINIC を開催予定です。一部ストアでは、ランニング初心者でもご参加いただける CITY TRAIL MEET UP を開催予定です。

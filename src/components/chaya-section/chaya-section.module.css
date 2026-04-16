@@ -212,6 +212,10 @@
   overflow: hidden;
 }
 
+.service-images-single .service-image {
+  aspect-ratio: 584 / 400;
+}
+
 @media (min-width: 48rem) {
   .service-image {
     flex: none;
@@ -220,7 +224,6 @@
 
   .service-images-single .service-image {
     width: 36.5rem;
-    aspect-ratio: 584 / 400;
   }
 }
 

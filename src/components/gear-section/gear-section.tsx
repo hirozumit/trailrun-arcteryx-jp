@@ -17,7 +17,7 @@ export function GearSection() {
             <span className={styles["label-en"]}>The Gear</span>
           </div>
           <div className={styles.intro} data-reveal="fade-up">
-            <h2 className={styles.title}>山を行く人を支える、装備の数々。</h2>
+            <h2 className={styles.title}>山を行く人を支える、<br />装備の数々。</h2>
             <div className={styles.body}>
               <p>
                 これまで以上に推進力を追求した、レースにも最適な「SYLAN2」をはじめ、叶えたいランに合わせて選べるシューズや、軽量で通気性の高いウエアなど。山での実地テストを繰り返しクリアし、機能性・快適性・安心感を兼ね備えた、過酷な環境にも対応できるマウンテンラン＆トレイルランニング ギアを揃えました。
