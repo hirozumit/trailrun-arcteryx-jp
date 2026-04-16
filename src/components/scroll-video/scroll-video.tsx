@@ -66,40 +66,42 @@ export function ScrollVideo({
       }
     };
 
-    // 3. Fetch video as Blob and use a Blob URL.
-    //    This ensures seeking works even when the server does not support
-    //    Range requests (e.g. Cloudflare Pages returning 200 instead of 206).
+    // 3. Load and activate video
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent);
     const controller = new AbortController();
 
-    fetch(resolvedSrc, { signal: controller.signal })
-      .then((res) => res.blob())
-      .then((blob) => {
-        if (controller.signal.aborted) return;
-        const blobUrl = URL.createObjectURL(blob);
-        video.src = blobUrl;
-        video.addEventListener(
-          "loadeddata",
-          () => {
-            seek();
-            if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
-          },
-          { once: true },
-        );
-      })
-      .catch(() => {
-        // Fetch failed (e.g. aborted) — fall back to original src
-        if (!controller.signal.aborted) {
+    const ready = () => {
+      seek();
+      if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
+    };
+
+    if (isIOS) {
+      // iOS ignores preload="auto" — call play() to force loading
+      if (resolvedSrc !== src) video.src = resolvedSrc;
+      video
+        .play()
+        .then(() => { video.pause(); ready(); })
+        .catch(() => {
+          video.addEventListener("loadeddata", () => {
+            video.play().then(() => { video.pause(); ready(); }).catch(ready);
+          }, { once: true });
+        });
+    } else {
+      // Desktop: fetch as Blob to bypass Range request requirement
+      // (Cloudflare Pages returns 200 instead of 206, breaking currentTime seek)
+      fetch(resolvedSrc, { signal: controller.signal })
+        .then((res) => res.blob())
+        .then((blob) => {
+          if (controller.signal.aborted) return;
+          video.src = URL.createObjectURL(blob);
+          video.addEventListener("loadeddata", ready, { once: true });
+        })
+        .catch(() => {
+          if (controller.signal.aborted) return;
           video.src = resolvedSrc;
-          video.addEventListener(
-            "loadeddata",
-            () => {
-              seek();
-              if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
-            },
-            { once: true },
-          );
-        }
-      });
+          video.addEventListener("loadeddata", ready, { once: true });
+        });
+    }
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
