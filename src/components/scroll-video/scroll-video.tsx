@@ -85,23 +85,24 @@ export function ScrollVideo({
       }
     };
 
-    // Call play() immediately to force loading on iOS (which ignores
-    // preload="auto"). If play() rejects (rare), fall back to loadeddata.
-    video
-      .play()
-      .then(() => {
-        video.pause();
-        seek();
-        if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
-      })
-      .catch(() => {
-        if (video.readyState >= 2) {
-          // loadeddata already fired — activate immediately
-          activate();
-        } else {
+    // iOS ignores preload="auto", so call play() to force loading.
+    // On desktop, preload works normally — skip play() and use loadeddata.
+    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
+      video
+        .play()
+        .then(() => {
+          video.pause();
+          seek();
+          if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
+        })
+        .catch(() => {
           video.addEventListener("loadeddata", activate, { once: true });
-        }
-      });
+        });
+    } else if (video.readyState >= 2) {
+      activate();
+    } else {
+      video.addEventListener("loadeddata", activate, { once: true });
+    }
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
