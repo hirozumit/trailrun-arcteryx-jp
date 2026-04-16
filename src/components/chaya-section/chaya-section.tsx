@@ -23,17 +23,19 @@ function Service({ heading, body, reverse, images = [], noteLabel, children }: S
       <div className={styles["service-text"]} data-reveal="fade-up">
         <h3 className={styles["service-heading"]}>{heading}</h3>
         <p className={styles["service-body"]}>{body}</p>
-        {noteOpen && children && (
-          <div className={styles["service-note"]}>{children}</div>
-        )}        
         {noteLabel && (
-          <button
-            className={styles["note-toggle"]}
-            onClick={() => setNoteOpen((v) => !v)}
-            aria-expanded={noteOpen}
-          >
-            {noteOpen ? "−" : "+"} {noteLabel}
-          </button>
+          <div className={styles["note-group"]}>
+            <button
+              className={styles["note-toggle"]}
+              onClick={() => setNoteOpen((v) => !v)}
+              aria-expanded={noteOpen}
+            >
+              {noteOpen ? "−" : "+"} {noteLabel}
+            </button>
+            {noteOpen && children && (
+              <div className={styles["service-note"]}>{children}</div>
+            )}
+          </div>
         )}
       </div>
       <div

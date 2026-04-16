@@ -159,6 +159,18 @@
 
 /* Supplementary notes below body */
 
+.note-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .note-group {
+    flex-direction: column-reverse;
+  }
+}
+
 .service-note {
   display: flex;
   flex-direction: column;
