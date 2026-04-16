@@ -33,10 +33,9 @@ export function ScrollVideo({
     const video = videoRef.current;
     if (!container || !video) return;
 
-    // 1. Swap to mobile source if needed
-    if (mobileSrc && window.matchMedia(MOBILE_MQ).matches) {
-      video.src = mobileSrc;
-    }
+    // 1. Determine the correct source
+    const resolvedSrc =
+      mobileSrc && window.matchMedia(MOBILE_MQ).matches ? mobileSrc : src;
 
     // 2. Scroll-driven seek
     let ticking = false;
@@ -67,48 +66,47 @@ export function ScrollVideo({
       }
     };
 
-    // 3. Activate video decoder via play/pause — required when the server
-    //    does not support Range requests (e.g. behind Cloudflare Access).
-    //    Without activation, setting currentTime won't render frames.
-    //    Triggered by loadeddata (not scroll) to avoid racing with seek.
-    const activate = () => {
-      video
-        .play()
-        .then(() => {
-          video.pause();
-          seek();
-        })
-        .catch(() => seek());
+    // 3. Fetch video as Blob and use a Blob URL.
+    //    This ensures seeking works even when the server does not support
+    //    Range requests (e.g. Cloudflare Pages returning 200 instead of 206).
+    const controller = new AbortController();
 
-      if (priority) {
-        window.dispatchEvent(new Event("scrollvideo:ready"));
-      }
-    };
-
-    // iOS ignores preload="auto", so call play() to force loading.
-    // On desktop, preload works normally — skip play() and use loadeddata.
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-      video
-        .play()
-        .then(() => {
-          video.pause();
-          seek();
-          if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
-        })
-        .catch(() => {
-          video.addEventListener("loadeddata", activate, { once: true });
-        });
-    } else if (video.readyState >= 2) {
-      activate();
-    } else {
-      video.addEventListener("loadeddata", activate, { once: true });
-    }
+    fetch(resolvedSrc, { signal: controller.signal })
+      .then((res) => res.blob())
+      .then((blob) => {
+        if (controller.signal.aborted) return;
+        const blobUrl = URL.createObjectURL(blob);
+        video.src = blobUrl;
+        video.addEventListener(
+          "loadeddata",
+          () => {
+            seek();
+            if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
+          },
+          { once: true },
+        );
+      })
+      .catch(() => {
+        // Fetch failed (e.g. aborted) — fall back to original src
+        if (!controller.signal.aborted) {
+          video.src = resolvedSrc;
+          video.addEventListener(
+            "loadeddata",
+            () => {
+              seek();
+              if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
+            },
+            { once: true },
+          );
+        }
+      });
 
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      controller.abort();
       window.removeEventListener("scroll", onScroll);
-      video.removeEventListener("loadeddata", activate);
+      if (video.src.startsWith("blob:")) URL.revokeObjectURL(video.src);
     };
   }, [src, mobileSrc, priority]);
 
