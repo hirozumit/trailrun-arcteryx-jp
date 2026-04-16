@@ -1,0 +1,92 @@
+.splash {
+  --t: 0;
+  --logo-expanded: 10rem;
+  --logo-compact: 3.75rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: calc(100svh - (100svh - var(--header-compact-h, 10.25rem)) * var(--t));
+  mix-blend-mode: difference;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: calc(5svh * (1 - var(--t)));
+  pointer-events: none;
+}
+
+/* ── Copy text (2-line vertical) ── */
+
+.copy {
+  position: absolute;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-start;
+  gap: 1rem;
+  width: 4.8rem;
+  opacity: 0;
+}
+
+.copyLine {
+  display: block;
+  width: 100%;
+  height: auto;
+  clip-path: inset(0 0 100% 0);
+}
+
+.visible.copy {
+  opacity: 1;
+  animation: copy-fade-out 0.5s 3.5s ease forwards;
+}
+
+.visible .copyLine:nth-child(1) {
+  animation: clip-reveal 0.5s 1s ease forwards;
+}
+
+.visible .copyLine:nth-child(2) {
+  animation: clip-reveal 0.5s 2s ease forwards;
+}
+
+@keyframes clip-reveal {
+  from { clip-path: inset(0 0 100% 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes copy-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ── Logo ── */
+
+.logo {
+  display: block;
+  width: calc(var(--logo-expanded) - (var(--logo-expanded) - var(--logo-compact)) * var(--t));
+  height: auto;
+  opacity: 0;
+}
+
+.visible.logo {
+  animation: fade-in 0.5s 4s ease-out forwards;
+}
+
+.skipped.logo {
+  animation: none;
+  opacity: 1;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── Spacer ── */
+
+.spacer {
+  position: relative;
+  z-index: 51;
+  height: 100svh;
+  background: var(--color-bg);
+}

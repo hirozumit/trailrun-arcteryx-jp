@@ -1,0 +1,67 @@
+.footer {
+  position: relative;
+  z-index: 101;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  min-height: 100lvh;
+  padding: 2rem var(--content-px);
+  color: var(--color-bg);
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  line-height: var(--leading-tight);
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.4);
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand img {
+  width: 6rem;
+  height: auto;
+}
+
+.social {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.social a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.legal {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+}
+
+.legal a {
+  color: inherit;
+  text-decoration: none;
+}

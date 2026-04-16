@@ -1,0 +1,87 @@
+.section {
+  background: #f0f0f0;
+}
+
+.inner {
+  max-width: var(--content-max-width);
+  min-height: 100lvh;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  gap: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 48rem) {
+  .inner {
+    padding: 4rem 0;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+/* ── Poster (illustration) ── */
+
+.poster {
+  flex: 1;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+
+.poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ── Body (text content) ── */
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+}
+
+.title small {
+  margin-top: 1rem;
+  display: block;
+  font-size: var(--text-sm);
+}
+
+.text {
+  font-size: var(--text-base);
+  line-height: var(--leading-cozy);
+}
+
+.caption {
+  font-size: var(--text-xs);
+  line-height: var(--leading-cozy);
+}
+
+/* ── CTA button (mobile only) ── */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border-subtle);
+  background: none;
+  font-size: var(--text-sm);
+  color: inherit;
+  text-decoration: none;
+  line-height: var(--leading-none);
+}

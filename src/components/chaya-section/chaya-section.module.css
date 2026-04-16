@@ -1,0 +1,275 @@
+.section {
+  padding: var(--section-py) var(--content-px);
+  background: var(--color-bg);
+}
+
+.inner {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+/* ── Header: label + intro ── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+}
+
+@media (min-width: 48rem) {
+  .header {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+/* Section label (茶屋 / The Chaya) */
+
+.label {
+  align-self: flex-end;
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+  border-left: 1px solid var(--color-border);
+}
+
+@media (min-width: 48rem) {
+  .label {
+    align-self: flex-start;
+  }
+}
+
+.label-ja {
+  font-size: var(--text-2xl);
+  writing-mode: vertical-rl;
+  line-height: var(--leading-none);
+}
+
+.label-en {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  writing-mode: vertical-rl;
+  line-height: var(--leading-none);
+}
+
+/* Intro text */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 48rem) {
+  .intro {
+    width: 30rem;
+    padding-top: 6rem;
+  }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+}
+
+.body {
+  font-size: var(--text-base);
+  line-height: var(--leading-cozy);
+}
+
+.caption {
+  font-size: var(--text-xs);
+}
+
+/* ── Hero image ── */
+
+.hero-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: var(--color-placeholder);
+  overflow: hidden;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Service block ── */
+
+.service {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+@media (min-width: 48rem) {
+  .service {
+    flex-direction: row;
+    gap: 6rem;
+    align-items: flex-end;
+  }
+
+  .service-reverse {
+    flex-direction: row-reverse;
+  }
+}
+
+.service-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 48rem) {
+  .service-text {
+    flex: 1;
+  }
+}
+
+.service-heading {
+  font-size: var(--text-xl);
+  line-height: var(--leading-none);
+}
+
+.service-body {
+  font-size: var(--text-base);
+  line-height: var(--leading-cozy);
+}
+
+/* Note toggle */
+
+.note-toggle {
+  display: inline;
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: var(--text-xs);
+  line-height: var(--leading-base);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Supplementary notes below body */
+
+.note-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .note-group {
+    flex-direction: column-reverse;
+  }
+}
+
+.service-note {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border-subtle);
+  padding: 1rem;
+  font-size: var(--text-xs);
+}
+
+.note-heading {
+  font-weight: 700;
+}
+
+.note-list {
+  list-style: none;
+  padding-left: 1.125rem;
+  & li::before {
+    content: "・";
+    position: absolute;
+    margin-left: -1.125rem;
+  }
+}
+
+.service-images {
+  display: flex;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .service-images {
+    gap: 1.5rem;
+  }
+}
+
+.service-image {
+  flex: 1;
+  aspect-ratio: 7 / 10;
+  background: var(--color-placeholder);
+  overflow: hidden;
+}
+
+.service-images-single .service-image {
+  aspect-ratio: 584 / 400;
+}
+
+@media (min-width: 48rem) {
+  .service-image {
+    flex: none;
+    width: 17.5rem;
+  }
+
+  .service-images-single .service-image {
+    width: 36.5rem;
+  }
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Map + Address ── */
+
+.map-block {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.map {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.address-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-none);
+}
+
+.address-detail {
+  font-size: var(--text-xs);
+}
+
+.address-caption {
+  margin-top: 1.5rem;
+  font-size: var(--text-xs);
+}

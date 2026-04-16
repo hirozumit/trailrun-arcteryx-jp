@@ -1,0 +1,42 @@
+:root {
+  --reveal-duration: 0.5s;
+  --reveal-easing: ease;
+}
+
+/* ---- fade-up ---- */
+[data-reveal="fade-up"] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition: opacity var(--reveal-duration) var(--reveal-easing), transform var(--reveal-duration) var(--reveal-easing);
+}
+[data-reveal="fade-up"][data-revealed] {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---- fade ---- */
+[data-reveal="fade"] {
+  opacity: 0;
+  transition: opacity var(--reveal-duration) var(--reveal-easing);
+}
+[data-reveal="fade"][data-revealed] {
+  opacity: 1;
+}
+
+/* ---- clip-down ---- */
+[data-reveal="clip-down"] {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path var(--reveal-duration) var(--reveal-easing);
+}
+[data-reveal="clip-down"][data-revealed] {
+  clip-path: inset(0);
+}
+
+/* ---- clip-left ---- */
+[data-reveal="clip-left"] {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--reveal-duration) var(--reveal-easing);
+}
+[data-reveal="clip-left"][data-revealed] {
+  clip-path: inset(0);
+}
