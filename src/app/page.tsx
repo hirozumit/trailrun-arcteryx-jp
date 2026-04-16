@@ -14,14 +14,20 @@ export default function Home() {
         <Splash />
         <Header />
         <ScrollVideo
-          src="/videos/straw_158_3s_landscape.mp4"
-          mobileSrc="/videos/straw_158_3s_portrait.mp4"
+          src="/videos/straw_landscape.mp4"
+          mobileSrc="/videos/straw_portrait.mp4"
           priority
         />        
         <ChayaSection />
-        <ScrollVideo src="/videos/test_3s.mp4" />
+        <ScrollVideo
+          src="/videos/gear_landscape.mp4"
+          mobileSrc="/videos/gear_portrait.mp4"
+        />
         <GearSection />
-        <ScrollVideo src="/videos/test_3s.mp4" />
+        <ScrollVideo
+          src="/videos/event_landscape.mp4"
+          mobileSrc="/videos/event_portrait.mp4"
+        />
         <EventSection />
         <YoyogiSection />
       </main>
