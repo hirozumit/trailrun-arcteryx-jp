@@ -72,7 +72,7 @@ export function ChayaSection() {
             <span className={styles["label-en"]}>The Chaya</span>
           </div>
           <div className={styles.intro} data-reveal="fade-up">
-            <h2 className={styles.title}>ARC&apos;TERYX TRAIL HUB TAKAO</h2>
+            <h2 className={styles.title}>ARC'TERYX<br /> TRAIL HUB TAKAO</h2>
             <p className={styles.body}>
               トレイルランニングが生まれる何世紀も以前から、日本では、山間の街道沿いに茶屋が点在し、旅行者のための休息所として機能してきました。アークテリクスは、トレイルランナーをサポートし、人々を山へと誘うための茶屋を、高尾山麓に期間限定でオープンしました。ランの前後の休憩やエネルギー補給の拠点として、山のコンディションやルートの情報交換、最新のギアの試し履きの場として。山へと向かう前に、山から降りた後に、どうぞお立ち寄りください。
             </p>
