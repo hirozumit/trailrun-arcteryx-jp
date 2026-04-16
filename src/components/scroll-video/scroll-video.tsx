@@ -95,7 +95,12 @@ export function ScrollVideo({
         if (priority) window.dispatchEvent(new Event("scrollvideo:ready"));
       })
       .catch(() => {
-        video.addEventListener("loadeddata", activate, { once: true });
+        if (video.readyState >= 2) {
+          // loadeddata already fired — activate immediately
+          activate();
+        } else {
+          video.addEventListener("loadeddata", activate, { once: true });
+        }
       });
 
     window.addEventListener("scroll", onScroll, { passive: true });
