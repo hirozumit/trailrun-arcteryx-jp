@@ -8,12 +8,12 @@
   left: 0;
   right: 0;
   z-index: 100;
-  height: calc(100dvh - (100dvh - var(--header-compact-h, 10.25rem)) * var(--t));
+  height: calc(100svh - (100svh - var(--header-compact-h, 10.25rem)) * var(--t));
   mix-blend-mode: difference;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-bottom: calc(5dvh * (1 - var(--t)));
+  padding-bottom: calc(5svh * (1 - var(--t)));
   pointer-events: none;
 }
 
@@ -87,6 +87,6 @@
 .spacer {
   position: relative;
   z-index: 51;
-  height: 100dvh;
+  height: 100svh;
   background: var(--color-bg);
 }
