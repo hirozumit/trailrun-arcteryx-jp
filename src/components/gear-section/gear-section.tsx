@@ -29,10 +29,10 @@ export function GearSection() {
         <div className={styles.panel} data-reveal="clip-left">
           <div className={styles["panel-images"]}>
             <div className={styles["panel-image"]}>
-              <img src="/images/gear-hero-1.jpg" alt="" />
+              <img src="/images/gear-hero-1.jpg" alt="" style={{ objectPosition: "11% center" }} />
             </div>
             <div className={styles["panel-image"]}>
-              <img src="/images/gear-hero-2.jpg" alt="" />
+              <img src="/images/gear-hero-2.jpg" alt="" style={{ objectPosition: "38% 60%" }} />
             </div>
           </div>
           <div className={styles["panel-overlay"]}>
