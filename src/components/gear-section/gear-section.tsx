@@ -26,7 +26,7 @@ export function GearSection() {
           </div>
         </div>
 
-        <div className={styles.panel} data-reveal="clip-left">
+        <a href="https://arcteryx.jp/pages/260326_sylan2" className={styles.panel} data-reveal="clip-left" target="_blank" rel="noopener noreferrer">
           <div className={styles["panel-images"]}>
             <div className={styles["panel-image"]}>
               <img src="/images/gear-hero-1.jpg" alt="" style={{ objectPosition: "11% center" }} />
@@ -37,16 +37,9 @@ export function GearSection() {
           </div>
           <div className={styles["panel-overlay"]}>
             <p className={styles["panel-title"]}>Footwear + Apparel</p>
-            <a
-              href="https://arcteryx.jp/pages/260326_sylan2"
-              className={styles["panel-link"]}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              More
-            </a>
+            <span className={styles["panel-link"]}>More</span>
           </div>
-        </div>
+        </a>
       </div>
     </section>
   );
