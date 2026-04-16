@@ -20,7 +20,7 @@ const MOBILE_MQ = "(max-width: 47.999rem)";
 export function ScrollVideo({
   src,
   mobileSrc,
-  scrollLength = 3,
+  scrollLength = 2,
   poster,
   priority,
 }: ScrollVideoProps) {

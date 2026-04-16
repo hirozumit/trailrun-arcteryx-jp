@@ -28,15 +28,15 @@ const itcElanBook = localFont({
   display: "swap",
 });
 
-const siteName = "山へ - TRAIL RUNNING | ARC'TERYX";
+const siteName = "山へ行く人のための茶屋 | ARC'TERYX アークテリクス";
 const siteDescription =
-  "xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx xxxxx";
+  "トレイルランナーのための期間限定の茶屋が高尾山麓にオープン。最新シューズの試し履き、限定羊羹とお茶。4.17〜";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://trailrun.arcteryx.jp"),
   title: {
     default: siteName,
-    template: `%s | 山へ - TRAIL RUNNING | ARC'TERYX`,
+    template: `%s | 山へ行く人のための茶屋 | ARC'TERYX アークテリクス`,
   },
   description: siteDescription,
   openGraph: {
