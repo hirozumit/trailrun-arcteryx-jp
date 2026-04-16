@@ -5,6 +5,7 @@ import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./chaya-section.module.css";
 
 type ServiceProps = {
+  id?: string;
   heading: string;
   body: string;
   reverse?: boolean;
@@ -13,11 +14,12 @@ type ServiceProps = {
   children?: ReactNode;
 };
 
-function Service({ heading, body, reverse, images = [], noteLabel, children }: ServiceProps) {
+function Service({ id, heading, body, reverse, images = [], noteLabel, children }: ServiceProps) {
   const [noteOpen, setNoteOpen] = useState(false);
 
   return (
     <div
+      id={id}
       className={`${styles.service} ${reverse ? styles["service-reverse"] : ""}`}
     >
       <div className={styles["service-text"]} data-reveal="fade-up">
@@ -89,6 +91,7 @@ export function ChayaSection() {
 
         {/* Services */}
         <Service
+          id="try-gear"
           heading="ギアを試す"
           body="アークテリクスの最新のトレイルラン フットウェアをレンタルし、高尾山のフィールドでお試しいただけます。ウェアも実物をご覧いただけます。"
           images={["/images/gear-1.jpg", "/images/gear-2.jpg"]}
@@ -107,6 +110,7 @@ export function ChayaSection() {
           </p>
         </Service>
         <Service
+          id="yokan"
           heading="羊羹とお茶"
           body="出発前や下山後のひとときに、 TRAIL HUB TAKAO限定の羊羹セットやお団子セットをお楽しみいただけます（有料）。"
           images={["/images/yokan.jpg"]}
@@ -119,6 +123,7 @@ export function ChayaSection() {
           </ul>
         </Service>
         <Service
+          id="novelty"
           heading="ノベルティ"
           body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方や、BIRD CLUB会員の方、LINEで友だち登録していただいた方に、限定のノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
