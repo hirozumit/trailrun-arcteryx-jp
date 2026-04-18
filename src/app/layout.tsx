@@ -62,15 +62,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${spectral.variable} ${zenOldMincho.variable} ${itcElanBook.variable}`}>
-      <body>
-        {children}
-        {process.env.NEXT_PUBLIC_GTM_ID && (
-          <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
-        )}
-        {process.env.NEXT_PUBLIC_GA4_ID && (
-          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
-        )}
-      </body>
+      {process.env.NEXT_PUBLIC_GTM_ID && (
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
+      )}
+      <body>{children}</body>
+      {process.env.NEXT_PUBLIC_GA4_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
+      )}
     </html>
   );
 }
