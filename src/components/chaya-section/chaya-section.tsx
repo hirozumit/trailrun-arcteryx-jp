@@ -105,9 +105,17 @@ export function ChayaSection() {
               上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
             </li>
           </ul>
-          <p className={styles["note-caption"]}>
-            ※無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
-          </p>
+          <ul className={styles["note-caption"]}>
+            <li>
+              無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
+            </li>
+            <li>
+              ギアのお貸し出しは平日・土日祝日とも16:00 までとさせていただきます
+            </li>
+            <li>
+              ご好評により、シューズ‧ウェアのサイズによっては ご希望に沿えない、ノベルティが一部ご用意できない場合がございます。ご了承ください。
+            </li>            
+          </ul>
         </Service>
         <Service
           id="yokan"
@@ -151,11 +159,12 @@ export function ChayaSection() {
               </p>
               <p>期間：2026年4月17日(金) 〜 6月28日(日)</p>
               <p>
-                レンタル・カフェ営業時間：平日 8:00〜20:00　土・日・祝日 7:00〜20:00
+                レンタル・カフェ営業時間：平日 8:00〜20:00　土・日・祝日 7:00〜20:00　(L.O. 19:00)
               </p>
-              <p className={styles["address-caption"]}>
-                ※期間中の土・日・祝日は、ARC’TERYX STAFFが16:00まで駐在。
-              </p>
+              <ul className={styles["address-caption"]}>
+                <li>期間中の土・日・祝日は、ARC’TERYX STAFFが 16:00 まで駐在。</li>
+                <li>ギアのお貸し出しは 平日‧土日祝日とも16:00 までとさせていただきます。</li>
+              </ul>
             </div>
           </div>
         </div>
