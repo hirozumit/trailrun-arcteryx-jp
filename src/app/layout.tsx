@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Spectral, Zen_Old_Mincho } from "next/font/google";
 import localFont from "next/font/local";
-import { GoogleTagManager, GoogleAnalytics } from "@next/third-parties/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 import "@/styles/reveal.css";
 
@@ -66,9 +66,6 @@ export default function RootLayout({
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID} />
       )}
       <body>{children}</body>
-      {process.env.NEXT_PUBLIC_GA4_ID && (
-        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA4_ID} />
-      )}
     </html>
   );
 }
