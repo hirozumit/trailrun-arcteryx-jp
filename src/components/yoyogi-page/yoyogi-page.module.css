@@ -16,7 +16,6 @@
   top: 0;
   right: 0;
   width: 100%;
-  height: auto;
   will-change: transform;
 }
 
@@ -31,7 +30,6 @@
 }
 
 .hero-title {
-  position: relative;
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 4rem);
   text-align: center;
