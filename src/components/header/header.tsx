@@ -4,22 +4,36 @@ import { useCallback, useEffect, useRef } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import styles from "./header.module.css";
 
-const NAV_ITEMS = [
+const SECTION_NAV_ITEMS = [
   { label: "茶屋", href: "#chaya" },
   { label: "ギア", href: "#gear" },
   { label: "イベント", href: "#events" },
 ] as const;
 
-const SECTION_IDS = NAV_ITEMS.map((item) => item.href.slice(1));
+const SECTION_IDS = SECTION_NAV_ITEMS.map((item) => item.href.slice(1));
 
-export function Header() {
+type TitleItem = {
+  label: string;
+  href: string;
+  current?: boolean;
+};
+
+type HeaderProps = {
+  /** Hide the left section nav (茶屋/ギア/イベント). Default: false */
+  hideSectionNav?: boolean;
+  /** Title bar items. Default: single "TRAIL RUNNING" label */
+  titleItems?: TitleItem[];
+};
+
+export function Header({ hideSectionNav, titleItems }: HeaderProps = {}) {
   const navRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
 
   useReveal(titleRef, { threshold: 0, rootMargin: "0px" });
 
   // Current section indicator
   useEffect(() => {
+    if (hideSectionNav) return;
     const nav = navRef.current;
     if (!nav) return;
 
@@ -45,7 +59,7 @@ export function Header() {
 
     for (const section of sections) observer.observe(section);
     return () => observer.disconnect();
-  }, []);
+  }, [hideSectionNav]);
 
   // Smooth scroll for anchor links
   const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -61,14 +75,30 @@ export function Header() {
 
   return (
     <>
-      <nav ref={navRef} className={styles.nav} aria-label="セクションナビゲーション">
-        {NAV_ITEMS.map(({ label, href }) => (
-          <a key={href} href={href} className={styles.navItem} onClick={handleClick}>
-            {label}
-          </a>
-        ))}
-      </nav>
-      <h1 ref={titleRef} className={styles.title} data-reveal="fade">TRAIL RUNNING</h1>
+      {!hideSectionNav && (
+        <nav ref={navRef} className={styles.nav} aria-label="セクションナビゲーション">
+          {SECTION_NAV_ITEMS.map(({ label, href }) => (
+            <a key={href} href={href} className={styles.navItem} onClick={handleClick}>
+              {label}
+            </a>
+          ))}
+        </nav>
+      )}
+      <div ref={titleRef} className={styles.title} data-reveal="fade">
+        {titleItems ? (
+          titleItems.map(({ label, href, current }) => (
+            <a
+              key={href}
+              href={href}
+              className={`${styles.titleItem} ${current ? styles.titleCurrent : ""}`}
+            >
+              {label}
+            </a>
+          ))
+        ) : (
+          <span className={styles.titleItem}>TRAIL RUNNING</span>
+        )}
+      </div>
     </>
   );
 }

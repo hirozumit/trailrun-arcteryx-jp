@@ -12,7 +12,12 @@ export default function Home() {
     <>
       <main>
         <Splash />
-        <Header />
+        <Header
+          titleItems={[
+            { label: "TRAIL RUNNING", href: "/", current: true },
+            { label: "YOYOGI", href: "/yoyogi" },
+          ]}
+        />
         <ScrollVideo
           src="/videos/straw_landscape.mp4"
           mobileSrc="/videos/straw_portrait.mp4"

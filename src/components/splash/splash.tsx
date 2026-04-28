@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import copyLine1 from "./copy-line1.svg";
-import copyLine2 from "./copy-line2.svg";
+import type { StaticImageData } from "next/image";
+import defaultCopyLine1 from "./copy-line1.svg";
+import defaultCopyLine2 from "./copy-line2.svg";
 import logoYamae from "./logo-yamae.svg";
 import styles from "./splash.module.css";
+
+type SplashProps = {
+  copyLine1?: StaticImageData;
+  copyLine2?: StaticImageData;
+};
 
 function smoothScrollTo(target: number, duration: number) {
   const start = window.scrollY;
@@ -21,7 +27,10 @@ function smoothScrollTo(target: number, duration: number) {
   requestAnimationFrame(step);
 }
 
-export function Splash() {
+export function Splash({
+  copyLine1 = defaultCopyLine1,
+  copyLine2 = defaultCopyLine2,
+}: SplashProps = {}) {
   const splashRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [skipped, setSkipped] = useState(false);
