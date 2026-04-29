@@ -58,6 +58,81 @@
   }
 }
 
+/* ── #3 Map ── */
+
+.map {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem var(--content-px);
+  overflow: hidden;
+}
+
+.map-inner {
+  position: relative;
+  width: 100%;
+  max-width: 45rem;
+}
+
+.map-bg {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+.map-route {
+  position: absolute;
+  inset: 0;
+}
+
+.map-distance {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.map-distance-label {
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.03em;
+  color: #666565;
+}
+
+.map-distance-value {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  color: #666565;
+
+  & span {
+    line-height: var(--leading-none);
+    text-box: trim-both cap alphabetic;
+  }
+
+  & span:first-child {
+    font-size: 4.5rem;
+    line-height: var(--leading-none);
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+    min-width: 2.5ch;
+    text-align: right;
+  }
+}
+
+.map-distance-unit {
+  font-size: var(--text-xl);
+  letter-spacing: -0.03em;
+}
+
 /* ── #4 Menu nav ── */
 
 .menu {
