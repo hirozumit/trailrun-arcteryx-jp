@@ -571,7 +571,7 @@
 
 @media (min-width: 48rem) {
   .facility-detail {
-    flex-direction: row;
+    flex-direction: row-reverse;
     gap: 4rem;
     align-items: flex-end;
   }
