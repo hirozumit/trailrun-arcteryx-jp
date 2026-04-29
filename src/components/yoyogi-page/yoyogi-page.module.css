@@ -187,7 +187,7 @@
 /* ── #5 Gear collage ── */
 
 .gear-collage {
-  padding: 3rem var(--content-px);
+  padding: 4rem var(--content-px);
 }
 
 @media (min-width: 48rem) {
@@ -195,8 +195,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 56.25rem;
-    padding: 3rem 1rem;
+    min-height: 100lvh;
+    padding: 4rem 1rem;
   }
 }
 
@@ -406,9 +406,10 @@
   flex-direction: column;
   gap: 2rem;
   align-items: center;
+  min-height: 100lvh;
   max-width: 90rem;
   margin: 0 auto;
-  padding: 3rem var(--content-px);
+  padding: 4rem var(--content-px);
   overflow: hidden;
 }
 
@@ -416,8 +417,7 @@
   .photo-gallery {
     flex-direction: row;
     justify-content: center;
-    height: 56.25rem;
-    padding: 3rem 1rem;
+    padding: 4rem 1rem;
   }
 }
 
@@ -446,7 +446,7 @@
 
 .full-image {
   position: relative;
-  height: 56.25rem;
+  min-height: 100lvh;
   clip-path: inset(0);
 }
 
