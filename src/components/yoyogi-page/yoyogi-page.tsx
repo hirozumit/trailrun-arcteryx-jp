@@ -46,7 +46,7 @@ function Instruction({
       className={`${styles.instruction} ${reverse ? styles["instruction-reverse"] : ""}`}
     >
       <div className={styles["instruction-media"]}>
-        <div className={styles["instruction-video"]} data-reveal="fade-up">
+        <div className={styles["instruction-video"]} data-reveal="fade">
           <video src={videoSrc} controls playsInline preload="metadata" />
         </div>
       </div>
@@ -55,7 +55,7 @@ function Instruction({
           <span>{title[0]}</span>
           <span>{title[1]}</span>
         </h3>
-        <div className={styles["instruction-body"]} data-reveal="clip-left">
+        <div className={styles["instruction-body"]} data-reveal="fade-up">
           <p>{body}</p>
           {ctaText && ctaHref && (
             <a href={ctaHref} className={styles["instruction-cta"]}>
@@ -216,21 +216,33 @@ export function YoyogiPage() {
           <p>
             山へ行き、山に触れ、何かが変わる。
             <br />
-            その第一歩を踏み出す前の方や、今まさに踏み出しつつある方へ。
+            その第一歩を踏み出す前の方や、
+            <br className={styles["mobile-only"]} />
+            今まさに踏み出しつつある方へ。
           </p>
           <p>
-            アークテリクスによるトレイルランニングのための準備拠点が、
+            アークテリクスによる
+            <br className={styles["mobile-only"]} />
+            トレイルランニングのための準備拠点が、
             <br />
-            代々木公園のほど近くに、期間限定でオープンします。
+            代々木公園のほど近くに、
+            <br className={styles["mobile-only"]} />
+            期間限定でオープンします。
           </p>
           <p>
-            トレイルランに必要なギアや知識をチェックし、
+            トレイルランに必要な
+            <br className={styles["mobile-only"]} />
+            ギアや知識をチェックし、
             <br />
             アークテリクスの最新のフットウェアを試し、
             <br />
-            山道をイメージしながら公園内を走っていただけるなど、
+            山道をイメージしながら
+            <br className={styles["mobile-only"]} />
+            公園内を走っていただけるなど、
             <br />
-            いつものランの延長上で、山を知り、山へと備えていただけます。
+            いつものランの延長上で、
+            <br className={styles["mobile-only"]} />
+            山を知り、山へと備えていただけます。
           </p>
         </section>
       </div>
@@ -511,7 +523,7 @@ export function YoyogiPage() {
             <p className={styles["takao-label"]}>
               ARC&apos;TERYX TRAIL HUB TAKAO
             </p>
-            <p className={styles["takao-title"]}>最も身近な山、高尾へ</p>
+            <p className={styles["takao-title"]}>最も身近な山、<br />高尾へ</p>
           </div>
           <div className={styles["takao-body"]}>
             <p>

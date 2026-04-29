@@ -4,6 +4,18 @@
   background: #f8f9f4;
 }
 
+/* ── Utility ── */
+
+.mobile-only {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .mobile-only {
+    display: none;
+  }
+}
+
 /* ── #1 Hero + #2 Lead wrapper ── */
 
 .hero-wrap {
@@ -45,15 +57,13 @@
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-  padding: 8rem var(--content-px);
+  padding: 24rem var(--content-px) 8rem;
   text-align: center;
-  font-size: var(--text-base);
   line-height: var(--leading-cozy);
 }
 
 @media (min-width: 48rem) {
   .lead {
-    padding: 8rem var(--content-px);
     font-size: var(--text-xl);
   }
 }
@@ -102,7 +112,6 @@
   font-family: var(--font-display);
   font-size: var(--text-sm);
   line-height: var(--leading-tight);
-  letter-spacing: -0.03em;
   color: #666565;
 }
 
@@ -121,7 +130,6 @@
   & span:first-child {
     font-size: 4.5rem;
     line-height: var(--leading-none);
-    letter-spacing: -0.03em;
     font-variant-numeric: tabular-nums;
     min-width: 2.5ch;
     text-align: right;
@@ -130,7 +138,6 @@
 
 .map-distance-unit {
   font-size: var(--text-xl);
-  letter-spacing: -0.03em;
 }
 
 /* ── #4 Menu nav ── */
@@ -705,7 +712,7 @@
 .takao-title {
   font-family: var(--font-serif);
   font-size: var(--text-2xl);
-  line-height: var(--leading-none);
+  line-height: var(--leading-tight);
 }
 
 .takao-body {
@@ -722,7 +729,6 @@
 
 .takao-period {
   font-size: var(--text-sm);
-  letter-spacing: -0.05em;
 }
 
 .takao-button {

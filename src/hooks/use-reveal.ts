@@ -97,14 +97,18 @@ export function useRevealAll(
     if (!container) return;
 
     const scan = () => {
-      // Group containers — observe parent, reveal children together
-      const groups = container.querySelectorAll<HTMLElement>("[data-reveal-group]");
-      for (const group of groups) observeGroup(group, threshold, rootMargin);
+      const isDesktop = window.matchMedia("(min-width: 48rem)").matches;
 
-      // Individual elements not inside a group
+      // Group containers — observe parent, reveal children together (desktop only)
+      if (isDesktop) {
+        const groups = container.querySelectorAll<HTMLElement>("[data-reveal-group]");
+        for (const group of groups) observeGroup(group, threshold, rootMargin);
+      }
+
+      // Individual elements — skip grouped ones on desktop
       const els = container.querySelectorAll<HTMLElement>("[data-reveal]");
       for (const el of els) {
-        if (el.closest("[data-reveal-group]")) continue;
+        if (isDesktop && el.closest("[data-reveal-group]")) continue;
         observe(el, threshold, rootMargin);
       }
     };
