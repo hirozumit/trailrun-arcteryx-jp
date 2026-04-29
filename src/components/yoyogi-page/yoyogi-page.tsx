@@ -27,6 +27,7 @@ type InstructionProps = {
   body: string;
   reverse?: boolean;
   videoSrc: string;
+  videoPoster: string;
   ctaText?: string;
   ctaHref?: string;
 };
@@ -37,6 +38,7 @@ function Instruction({
   body,
   reverse,
   videoSrc,
+  videoPoster,
   ctaText,
   ctaHref,
 }: InstructionProps) {
@@ -47,7 +49,7 @@ function Instruction({
     >
       <div className={styles["instruction-media"]}>
         <div className={styles["instruction-video"]} data-reveal="fade">
-          <video src={videoSrc} controls playsInline preload="metadata" />
+          <video src={videoSrc} poster={videoPoster} controls playsInline preload="metadata" />
         </div>
       </div>
       <div className={styles["instruction-content"]}>
@@ -341,6 +343,7 @@ export function YoyogiPage() {
         title={["ギアを", "揃える"]}
         body="都市で行うロードランとは異なり、身一つで山へと入るトレイルランでは、安全で快適なランのために、さまざまな装備が欠かせません。トレイルに適したシューズやウェアのほか、携行品を収納できる軽量なベスト、故障を防ぎ疲労を抑えるスポーツテープ、夜間に視界を照らすヘッドランプ、すぐに水分補給できるフラスクボトル、救急時にも役立つ手ぬぐい、効率よくエネルギーを摂取できる行動食など。山へと向かう前に、一つひとつ準備と確認を。"
         videoSrc="/videos/yoyogi/instruction-1.mp4"
+        videoPoster="/images/yoyogi/instruction-1-poster.jpg"
         ctaText="トレイルランニングギアはこちら"
         ctaHref="https://arcteryx.jp"
       />
@@ -360,6 +363,7 @@ export function YoyogiPage() {
         title={["シューレースを", "結ぶ"]}
         body="シューズを足にフィットさせるためには、足長だけではなく、足幅や甲の高さも見ながらフィッティングを行い、自分の足に合う一足を選ぶことが肝心です。その上で、シューレースをきちんと結ぶことも大切なポイント。2番目のアイレットでループを作って通す「ダブルアイレット」は、足首をしっかりと固定することができ、下りでもシューズの中で足がずれにくく、結び目も解けにくいのが特長です。他にもさまざまな結び方があるため、自分に合った結び方を探してみてください。シューズと足が一体になると、走りも変わります。"
         videoSrc="/videos/yoyogi/instruction-2.mp4"
+        videoPoster="/images/yoyogi/instruction-2-poster.jpg"
         reverse
       />
 
@@ -378,6 +382,7 @@ export function YoyogiPage() {
         title={["リズムよく", "下る"]}
         body="トレイルラン初心者にとって、スピードが出やすく、転倒のリスクもある下りは、恐さを感じやすい部分です。しかし、いくつかのコツを意識することで、スムーズに下ることができます。まずは、歩幅を小さくすること。細かなステップでリズムよく下ることで、関節への負荷を減らすことができます。次に、視線を前へ向けること。足元ではなく数歩先を見て、次に足を置く地点をイメージしながら走ります。さらに、腕や上半身も活用し、全身でバランスをとることで、衝撃を逃がしながら、軽やかに下ることができます。"
         videoSrc="/videos/yoyogi/instruction-3.mp4"
+        videoPoster="/images/yoyogi/instruction-3-poster.jpg"
       />
 
       {/* ── #11 Full-width image ── */}
