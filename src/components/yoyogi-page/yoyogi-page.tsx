@@ -50,12 +50,12 @@ function Instruction({
           <video src={videoSrc} controls playsInline preload="metadata" />
         </div>
       </div>
-      <div className={styles["instruction-content"]} data-reveal="clip-left">
-        <h3 className={styles["instruction-title"]}>
+      <div className={styles["instruction-content"]}>
+        <h3 className={styles["instruction-title"]} data-reveal="clip-down">
           <span>{title[0]}</span>
           <span>{title[1]}</span>
         </h3>
-        <div className={styles["instruction-body"]}>
+        <div className={styles["instruction-body"]} data-reveal="clip-left">
           <p>{body}</p>
           {ctaText && ctaHref && (
             <a href={ctaHref} className={styles["instruction-cta"]}>
@@ -78,14 +78,16 @@ type PhotoGalleryProps = {
   mobileReverse?: boolean;
 };
 
+const clipReveals = ["clip-down", "clip-right", "clip-up", "clip-left"] as const;
+
 function PhotoGallery({ images, mobileReverse }: PhotoGalleryProps) {
   return (
     <section
       className={`${styles["photo-gallery"]} ${mobileReverse ? styles["photo-gallery-reverse"] : ""}`}
-      data-reveal="fade-up"
+      data-reveal-group
     >
-      {images.map((src) => (
-        <div key={src} className={styles["photo-item"]}>
+      {images.map((src, i) => (
+        <div key={src} className={styles["photo-item"]} data-reveal={clipReveals[i % clipReveals.length]}>
           <img src={src} alt="" />
         </div>
       ))}
@@ -205,7 +207,7 @@ export function YoyogiPage() {
         </picture>
 
         <section className={styles.hero}>
-          <h2 className={styles["hero-title"]} data-reveal="fade">
+          <h2 className={styles["hero-title"]} data-reveal="fade-up">
             ARC&apos;TERYX<br />TRAIL HUB YOYOGI
           </h2>
         </section>
@@ -296,26 +298,26 @@ export function YoyogiPage() {
 
       {/* ── #5 Gear collage ── */}
       <section className={styles["gear-collage"]}>
-        <div className={styles["collage-grid"]} data-reveal="fade-up">
-          <div className={`${styles["collage-item"]} ${styles["collage-1"]}`}>
+        <div className={styles["collage-grid"]} data-reveal-group>
+          <div className={`${styles["collage-item"]} ${styles["collage-1"]}`} data-reveal="clip-down">
             <img src="/images/yoyogi/gear-collage-1.png" alt="" />
           </div>
-          <div className={`${styles["collage-item"]} ${styles["collage-2"]}`}>
+          <div className={`${styles["collage-item"]} ${styles["collage-2"]}`} data-reveal="clip-right">
             <img src="/images/yoyogi/gear-collage-2.png" alt="" />
           </div>
-          <div className={`${styles["collage-item"]} ${styles["collage-3"]}`}>
+          <div className={`${styles["collage-item"]} ${styles["collage-3"]}`} data-reveal="clip-up">
             <img src="/images/yoyogi/gear-collage-3.png" alt="" />
           </div>
-          <div className={`${styles["collage-item"]} ${styles["collage-4"]}`}>
+          <div className={`${styles["collage-item"]} ${styles["collage-4"]}`} data-reveal="clip-left">
             <img src="/images/yoyogi/gear-collage-4.png" alt="" />
           </div>
-          <div className={`${styles["collage-item"]} ${styles["collage-5"]}`}>
+          <div className={`${styles["collage-item"]} ${styles["collage-5"]}`} data-reveal="clip-right">
             <img src="/images/yoyogi/gear-collage-5.png" alt="" />
           </div>
-          <div className={`${styles["collage-item"]} ${styles["collage-6"]}`}>
+          <div className={`${styles["collage-item"]} ${styles["collage-6"]}`} data-reveal="clip-up">
             <img src="/images/yoyogi/gear-collage-6.png" alt="" />
           </div>
-          <div className={`${styles["collage-item"]} ${styles["collage-7"]}`}>
+          <div className={`${styles["collage-item"]} ${styles["collage-7"]}`} data-reveal="clip-left">
             <img src="/images/yoyogi/gear-collage-7.png" alt="" />
           </div>
         </div>
@@ -376,7 +378,7 @@ export function YoyogiPage() {
       {/* ── #12 About ── */}
       <section className={styles.about} id="about">
         <div className={styles["about-inner"]}>
-          <div className={styles["about-header"]} data-reveal="fade-up">
+          <div className={styles["about-header"]} data-reveal="clip-left">
             <div className={styles["about-label"]}>
               <p className={styles["about-label-en"]}>TRAIL HUB YOYOGI</p>
               <p className={styles["about-label-ja"]}>について</p>
@@ -408,7 +410,7 @@ export function YoyogiPage() {
               <img src="/images/yoyogi/facility-5.jpg" alt="" />
             </div>
           </div>
-          <div className={styles["facility-detail"]}>
+          <div className={styles["facility-detail"]} data-reveal="fade-up">
             <div className={styles["facility-info"]}>
               <p className={styles["facility-name"]}>
                 ARC&apos;TERYX TRAIL HUB YOYOGI
@@ -458,7 +460,7 @@ export function YoyogiPage() {
         </div>
 
         {/* ── #14 Footwear + Apparel ── */}
-        <div data-reveal="fade-up">
+        <div data-reveal="clip-left">
           <ImagePanel
             images={[
               { src: "/images/yoyogi/footwear-1.jpg" },

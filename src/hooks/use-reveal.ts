@@ -33,6 +33,46 @@ function observe(el: HTMLElement, threshold: number, rootMargin: string) {
   getObserver(t, rootMargin).observe(el);
 }
 
+// Shared group observer pool — keyed by threshold|rootMargin
+const groupPool = new Map<string, IntersectionObserver>();
+const groupCallbacks = new Map<Element, () => void>();
+
+function getGroupObserver(threshold: number, rootMargin: string) {
+  const key = `g|${threshold}|${rootMargin}`;
+  let obs = groupPool.get(key);
+  if (!obs) {
+    obs = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            groupCallbacks.get(entry.target)?.();
+            groupCallbacks.delete(entry.target);
+            obs!.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold, rootMargin },
+    );
+    groupPool.set(key, obs);
+  }
+  return obs;
+}
+
+function observeGroup(container: HTMLElement, threshold: number, rootMargin: string) {
+  const children = container.querySelectorAll<HTMLElement>("[data-reveal]");
+  // Skip children that belong to a nested group
+  const targets = Array.from(children).filter(
+    (el) => el.closest("[data-reveal-group]") === container,
+  );
+  if (targets.length === 0) return;
+
+  groupCallbacks.set(container, () => {
+    for (const el of targets) el.dataset.revealed = "";
+  });
+  const obs = getGroupObserver(threshold, rootMargin);
+  obs.observe(container);
+}
+
 /** Reveal a single element with `data-reveal`. */
 export function useReveal(
   ref: RefObject<HTMLElement | null>,
@@ -57,8 +97,16 @@ export function useRevealAll(
     if (!container) return;
 
     const scan = () => {
+      // Group containers — observe parent, reveal children together
+      const groups = container.querySelectorAll<HTMLElement>("[data-reveal-group]");
+      for (const group of groups) observeGroup(group, threshold, rootMargin);
+
+      // Individual elements not inside a group
       const els = container.querySelectorAll<HTMLElement>("[data-reveal]");
-      for (const el of els) observe(el, threshold, rootMargin);
+      for (const el of els) {
+        if (el.closest("[data-reveal-group]")) continue;
+        observe(el, threshold, rootMargin);
+      }
     };
 
     scan();
@@ -72,6 +120,13 @@ export function useRevealAll(
       const els = container.querySelectorAll<HTMLElement>("[data-reveal]");
       const obs = getObserver(threshold, rootMargin);
       for (const el of els) obs.unobserve(el);
+
+      const groups = container.querySelectorAll<HTMLElement>("[data-reveal-group]");
+      const gObs = getGroupObserver(threshold, rootMargin);
+      for (const group of groups) {
+        groupCallbacks.delete(group);
+        gObs.unobserve(group);
+      }
     };
   }, [ref, threshold, rootMargin]);
 }
