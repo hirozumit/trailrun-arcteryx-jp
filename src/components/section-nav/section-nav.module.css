@@ -1,0 +1,22 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 3rem var(--content-px);
+  mix-blend-mode: difference;
+}
+
+.item {
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  line-height: var(--leading-none);
+  color: #fff;
+  text-decoration: none;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid transparent;
+}
+
+.current {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}

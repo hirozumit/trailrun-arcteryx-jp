@@ -18,7 +18,6 @@ export default function Yoyogi() {
       <main>
         <Splash copyLine1={copyLine1} copyLine2={copyLine2} />
         <Header
-          hideSectionNav
           titleItems={[
             { label: "TRAIL RUNNING", href: "/" },
             { label: "YOYOGI", href: "/yoyogi", current: true },

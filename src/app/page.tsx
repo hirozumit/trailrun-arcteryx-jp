@@ -1,6 +1,7 @@
 import { Header } from "@/components/header/header";
 import { Splash } from "@/components/splash/splash";
 import { ScrollVideo } from "@/components/scroll-video/scroll-video";
+import { SectionNav } from "@/components/section-nav/section-nav";
 import { ChayaSection } from "@/components/chaya-section/chaya-section";
 import { GearSection } from "@/components/gear-section/gear-section";
 import { EventSection } from "@/components/event-section/event-section";
@@ -22,7 +23,8 @@ export default function Home() {
           src="/videos/straw_landscape.mp4"
           mobileSrc="/videos/straw_portrait.mp4"
           priority
-        />        
+        />
+        <SectionNav />
         <ChayaSection />
         <ScrollVideo
           src="/videos/gear_landscape.mp4"
