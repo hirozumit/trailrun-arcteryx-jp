@@ -42,6 +42,18 @@ function Instruction({
   ctaText,
   ctaHref,
 }: InstructionProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    const mq = window.matchMedia("(min-width: 48rem)");
+    const update = () => { video.playsInline = mq.matches; };
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
   return (
     <section
       id={id}
@@ -49,7 +61,7 @@ function Instruction({
     >
       <div className={styles["instruction-media"]}>
         <div className={styles["instruction-video"]} data-reveal="fade">
-          <video src={videoSrc} poster={videoPoster} controls playsInline preload="metadata" />
+          <video ref={videoRef} src={videoSrc} poster={videoPoster} controls preload="metadata" />
         </div>
       </div>
       <div className={styles["instruction-content"]}>
