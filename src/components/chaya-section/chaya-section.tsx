@@ -1,7 +1,9 @@
 "use client";
 
-import { type ReactNode, useRef, useState } from "react";
+import { type ReactNode, useRef } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { NoteToggle } from "@/components/note-toggle/note-toggle";
+import noteStyles from "@/components/note-toggle/note-toggle.module.css";
 import styles from "./chaya-section.module.css";
 
 type ServiceProps = {
@@ -15,8 +17,6 @@ type ServiceProps = {
 };
 
 function Service({ id, heading, body, reverse, images = [], noteLabel, children }: ServiceProps) {
-  const [noteOpen, setNoteOpen] = useState(false);
-
   return (
     <div
       id={id}
@@ -26,18 +26,9 @@ function Service({ id, heading, body, reverse, images = [], noteLabel, children 
         <h3 className={styles["service-heading"]}>{heading}</h3>
         <p className={styles["service-body"]}>{body}</p>
         {noteLabel && (
-          <div className={styles["note-group"]}>
-            <button
-              className={styles["note-toggle"]}
-              onClick={() => setNoteOpen((v) => !v)}
-              aria-expanded={noteOpen}
-            >
-              {noteOpen ? "−" : "+"} {noteLabel}
-            </button>
-            {noteOpen && children && (
-              <div className={styles["service-note"]}>{children}</div>
-            )}
-          </div>
+          <NoteToggle label={noteLabel}>
+            {children}
+          </NoteToggle>
         )}
       </div>
       <div
@@ -97,7 +88,7 @@ export function ChayaSection() {
           images={["/images/gear-1.jpg", "/images/gear-2.jpg"]}
           noteLabel="お貸し出しについて"
         >
-          <ul className={styles["note-list"]}>
+          <ul className={noteStyles.list}>
             <li>
               BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
             </li>
@@ -105,7 +96,7 @@ export function ChayaSection() {
               上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
             </li>
           </ul>
-          <ul className={styles["note-caption"]}>
+          <ul className={noteStyles.caption}>
             <li>
               無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
             </li>
@@ -125,7 +116,7 @@ export function ChayaSection() {
           noteLabel="カフェ内スペシャルメニュー"
           reverse
         >
-          <ul className={styles["note-list"]}>
+          <ul className={noteStyles.list}>
             <li>羊羹セット（880円）</li>
             <li>お団子セット（880円）</li>
           </ul>

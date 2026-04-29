@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { ImagePanel } from "@/components/image-panel/image-panel";
 import styles from "./gear-section.module.css";
 
 export function GearSection() {
@@ -26,20 +27,16 @@ export function GearSection() {
           </div>
         </div>
 
-        <a href="https://arcteryx.jp/pages/260326_sylan2" className={styles.panel} data-reveal="clip-left" target="_blank" rel="noopener noreferrer">
-          <div className={styles["panel-images"]}>
-            <div className={styles["panel-image"]}>
-              <img src="/images/gear-hero-1.jpg" alt="" style={{ objectPosition: "11% center" }} />
-            </div>
-            <div className={styles["panel-image"]}>
-              <img src="/images/gear-hero-2.jpg" alt="" style={{ objectPosition: "38% 60%" }} />
-            </div>
-          </div>
-          <div className={styles["panel-overlay"]}>
-            <p className={styles["panel-title"]}>Footwear + Apparel</p>
-            <span className={styles["panel-link"]}>More</span>
-          </div>
-        </a>
+        <div data-reveal="clip-left">
+          <ImagePanel
+            images={[
+              { src: "/images/gear-hero-1.jpg", objectPosition: "11% center" },
+              { src: "/images/gear-hero-2.jpg", objectPosition: "38% 60%" },
+            ]}
+            title="Footwear + Apparel"
+            href="https://arcteryx.jp/pages/260326_sylan2"
+          />
+        </div>
       </div>
     </section>
   );

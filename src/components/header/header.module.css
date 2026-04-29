@@ -48,6 +48,7 @@
   font-size: var(--text-lg);
   color: var(--color-bg);
   text-align: center;
+  line-height: 1;
   mix-blend-mode: difference;
   pointer-events: none;
   display: flex;
@@ -71,15 +72,14 @@
   pointer-events: auto;
   padding-bottom: 0.25rem;
   border-bottom: 1px solid transparent;
-  letter-spacing: -0.03em;
 }
 
 @media (min-width: 48rem) {
   .titleItem {
     padding-bottom: 0;
     border-bottom: none;
-    padding-right: 0.25rem;
-    border-right: 1px solid transparent;
+    padding-left: 0.25rem;
+    border-left: 1px solid transparent;
   }
 }
 
@@ -89,6 +89,6 @@
 
 @media (min-width: 48rem) {
   .titleCurrent {
-    border-right-color: rgba(255, 255, 255, 0.5);
+    border-left-color: rgba(255, 255, 255, 0.5);
   }
 }

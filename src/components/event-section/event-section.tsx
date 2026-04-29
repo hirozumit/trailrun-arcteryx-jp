@@ -5,19 +5,21 @@ import Image from "next/image";
 import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./event-section.module.css";
 
-type EventItem = {
+export type EventItem = {
   name: string;
   date: string;
   image: string;
   url: string;
+  ended?: boolean;
 };
 
-const communityEvents: EventItem[] = [
+export const communityEvents: EventItem[] = [
   {
     name: "TRAIL CLINIC 高尾山",
     date: "2026年4月26日(日)",
     image: "/images/events/trail-clinic-takao.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260426",
+    ended: true,
   },
   {
     name: "TRAIL CLINIC 六甲山",
@@ -33,7 +35,7 @@ const communityEvents: EventItem[] = [
   },
 ];
 
-const storeEvents: EventItem[] = [
+export const storeEvents: EventItem[] = [
   {
     name: "CITY TRAIL MEET UP 神戸",
     date: "2026年5月3日(日)",
@@ -62,13 +64,16 @@ function EventPanel({ item }: { item: EventItem }) {
       </div>
       <div className={styles["panel-info"]}>
         <p className={styles["panel-name"]}>{item.name}</p>
-        <p className={styles["panel-date"]}>{item.date}</p>
+        <div className={styles["panel-meta"]}>
+          <p className={styles["panel-date"]}>{item.date}</p>
+          {item.ended && <span className={styles["panel-ended"]}>開催終了</span>}
+        </div>
       </div>
     </a>
   );
 }
 
-function EventCategory({
+export function EventCategory({
   title,
   items,
   visibleCount = 3,

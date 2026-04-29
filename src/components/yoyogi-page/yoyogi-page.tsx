@@ -1,7 +1,12 @@
 "use client";
 
-import { type ReactNode, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { NoteToggle } from "@/components/note-toggle/note-toggle";
+import noteStyles from "@/components/note-toggle/note-toggle.module.css";
+import { ImagePanel } from "@/components/image-panel/image-panel";
+import { EventCategory, communityEvents, storeEvents } from "@/components/event-section/event-section";
+import eventStyles from "@/components/event-section/event-section.module.css";
 import styles from "./yoyogi-page.module.css";
 
 /* ── Menu nav items ── */
@@ -17,40 +22,24 @@ const MENU_ITEMS = [
 
 type InstructionProps = {
   id?: string;
-  titleLines: string[][];
+  /** [right column, left column] in vertical-rl reading order */
+  title: [string, string];
   body: string;
   reverse?: boolean;
   videoSrc: string;
-  videoPoster?: string;
   ctaText?: string;
   ctaHref?: string;
 };
 
 function Instruction({
   id,
-  titleLines,
+  title,
   body,
   reverse,
   videoSrc,
-  videoPoster,
   ctaText,
   ctaHref,
 }: InstructionProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-
-  const togglePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      video.play();
-      setPlaying(true);
-    } else {
-      video.pause();
-      setPlaying(false);
-    }
-  };
-
   return (
     <section
       id={id}
@@ -58,44 +47,14 @@ function Instruction({
     >
       <div className={styles["instruction-media"]}>
         <div className={styles["instruction-video"]} data-reveal="fade-up">
-          <video
-            ref={videoRef}
-            src={videoSrc}
-            poster={videoPoster}
-            playsInline
-            loop
-            muted
-            preload="metadata"
-            onEnded={() => setPlaying(false)}
-          />
-          <button
-            className={styles["play-button"]}
-            onClick={togglePlay}
-            aria-label={playing ? "一時停止" : "再生"}
-          >
-            {playing ? (
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <rect x="3" y="3" width="4" height="10" fill="currentColor" />
-                <rect x="9" y="3" width="4" height="10" fill="currentColor" />
-              </svg>
-            ) : (
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M4 3L13 8L4 13V3Z" fill="currentColor" />
-              </svg>
-            )}
-          </button>
+          <video src={videoSrc} controls playsInline preload="metadata" />
         </div>
       </div>
       <div className={styles["instruction-content"]} data-reveal="clip-left">
-        <div className={styles["instruction-title"]}>
-          {titleLines.map((column, i) => (
-            <div key={i} className={styles["title-column"]}>
-              {column.map((char, j) => (
-                <p key={j}>{char}</p>
-              ))}
-            </div>
-          ))}
-        </div>
+        <h3 className={styles["instruction-title"]}>
+          <span>{title[0]}</span>
+          <span>{title[1]}</span>
+        </h3>
         <div className={styles["instruction-body"]}>
           <p>{body}</p>
           {ctaText && ctaHref && (
@@ -116,13 +75,13 @@ function Instruction({
 
 type PhotoGalleryProps = {
   images: string[];
-  layout?: "row" | "overlap";
+  mobileReverse?: boolean;
 };
 
-function PhotoGallery({ images, layout = "row" }: PhotoGalleryProps) {
+function PhotoGallery({ images, mobileReverse }: PhotoGalleryProps) {
   return (
     <section
-      className={`${styles["photo-gallery"]} ${layout === "overlap" ? styles["photo-gallery-overlap"] : ""}`}
+      className={`${styles["photo-gallery"]} ${mobileReverse ? styles["photo-gallery-reverse"] : ""}`}
       data-reveal="fade-up"
     >
       {images.map((src) => (
@@ -134,53 +93,6 @@ function PhotoGallery({ images, layout = "row" }: PhotoGalleryProps) {
   );
 }
 
-/* ── Expandable note (like ChayaSection's note-toggle) ── */
-
-type NoteToggleProps = {
-  label: string;
-  children: ReactNode;
-};
-
-function NoteToggle({ label, children }: NoteToggleProps) {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className={styles["note-group"]}>
-      <button
-        className={styles["note-toggle"]}
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-      >
-        <span className={styles["note-icon"]}>{open ? "−" : "+"}</span>
-        <span>{label}</span>
-      </button>
-      {open && <div className={styles["note-content"]}>{children}</div>}
-    </div>
-  );
-}
-
-/* ── Event panel sub-component ── */
-
-type EventPanelProps = {
-  image: string;
-  title: string;
-  date: string;
-  body?: string;
-};
-
-function EventPanel({ image, title, date, body }: EventPanelProps) {
-  return (
-    <div className={styles["event-panel"]}>
-      <div className={styles["event-image"]}>
-        <img src={image} alt="" />
-      </div>
-      <div className={styles["event-info"]}>
-        <h4 className={styles["event-title"]}>{title}</h4>
-        <p className={styles["event-date"]}>{date}</p>
-        {body && <p className={styles["event-body"]}>{body}</p>}
-      </div>
-    </div>
-  );
-}
 
 /* ── Main page component ── */
 
@@ -296,25 +208,25 @@ export function YoyogiPage() {
       <section className={styles["gear-collage"]}>
         <div className={styles["collage-grid"]} data-reveal="fade-up">
           <div className={`${styles["collage-item"]} ${styles["collage-1"]}`}>
-            <img src="/images/yoyogi/gear-collage-1.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-1.png" alt="" />
           </div>
           <div className={`${styles["collage-item"]} ${styles["collage-2"]}`}>
-            <img src="/images/yoyogi/gear-collage-2.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-2.png" alt="" />
           </div>
           <div className={`${styles["collage-item"]} ${styles["collage-3"]}`}>
-            <img src="/images/yoyogi/gear-collage-3.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-3.png" alt="" />
           </div>
           <div className={`${styles["collage-item"]} ${styles["collage-4"]}`}>
-            <img src="/images/yoyogi/gear-collage-4.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-4.png" alt="" />
           </div>
           <div className={`${styles["collage-item"]} ${styles["collage-5"]}`}>
-            <img src="/images/yoyogi/gear-collage-5.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-5.png" alt="" />
           </div>
           <div className={`${styles["collage-item"]} ${styles["collage-6"]}`}>
-            <img src="/images/yoyogi/gear-collage-6.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-6.png" alt="" />
           </div>
           <div className={`${styles["collage-item"]} ${styles["collage-7"]}`}>
-            <img src="/images/yoyogi/gear-collage-7.jpg" alt="" />
+            <img src="/images/yoyogi/gear-collage-7.png" alt="" />
           </div>
         </div>
       </section>
@@ -322,7 +234,7 @@ export function YoyogiPage() {
       {/* ── #6 Instruction 1: ギアを揃える ── */}
       <Instruction
         id="gear"
-        titleLines={[["ギ", "ア", "を"], ["揃", "え", "る"]]}
+        title={["ギアを", "揃える"]}
         body="都市で行うロードランとは異なり、身一つで山へと入るトレイルランでは、安全で快適なランのために、さまざまな装備が欠かせません。トレイルに適したシューズやウェアのほか、携行品を収納できる軽量なベスト、故障を防ぎ疲労を抑えるスポーツテープ、夜間に視界を照らすヘッドランプ、すぐに水分補給できるフラスクボトル、救急時にも役立つ手ぬぐい、効率よくエネルギーを摂取できる行動食など。山へと向かう前に、一つひとつ準備と確認を。"
         videoSrc="/videos/yoyogi/instruction-1.mp4"
         ctaText="トレイルランニングギアはこちら"
@@ -332,16 +244,16 @@ export function YoyogiPage() {
       {/* ── #7 Photos 1 ── */}
       <PhotoGallery
         images={[
-          "/images/yoyogi/instruction-1-1.jpg",
-          "/images/yoyogi/instruction-1-2.jpg",
-          "/images/yoyogi/instruction-1-3.jpg",
+          "/images/yoyogi/instruction-1-1.png",
+          "/images/yoyogi/instruction-1-2.png",
+          "/images/yoyogi/instruction-1-3.png",
         ]}
       />
 
       {/* ── #8 Instruction 2: シューレースを結ぶ ── */}
       <Instruction
         id="shoelace"
-        titleLines={[["シ", "ュ", "ー", "レ", "ー", "ス", "を"], ["結", "ぶ"]]}
+        title={["シューレースを", "結ぶ"]}
         body="シューズを足にフィットさせるためには、足長だけではなく、足幅や甲の高さも見ながらフィッティングを行い、自分の足に合う一足を選ぶことが肝心です。その上で、シューレースをきちんと結ぶことも大切なポイント。2番目のアイレットでループを作って通す「ダブルアイレット」は、足首をしっかりと固定することができ、下りでもシューズの中で足がずれにくく、結び目も解けにくいのが特長です。他にもさまざまな結び方があるため、自分に合った結び方を探してみてください。シューズと足が一体になると、走りも変わります。"
         videoSrc="/videos/yoyogi/instruction-2.mp4"
         reverse
@@ -350,23 +262,25 @@ export function YoyogiPage() {
       {/* ── #9 Photos 2 ── */}
       <PhotoGallery
         images={[
-          "/images/yoyogi/instruction-2-1.jpg",
-          "/images/yoyogi/instruction-2-2.jpg",
+          "/images/yoyogi/instruction-2-1.png",
+          "/images/yoyogi/instruction-2-2.png",
         ]}
-        layout="overlap"
+        mobileReverse
       />
 
       {/* ── #10 Instruction 3: リズムよく下る ── */}
       <Instruction
         id="downhill"
-        titleLines={[["リ", "ズ", "ム", "よ", "く"], ["下", "る"]]}
+        title={["リズムよく", "下る"]}
         body="トレイルラン初心者にとって、スピードが出やすく、転倒のリスクもある下りは、恐さを感じやすい部分です。しかし、いくつかのコツを意識することで、スムーズに下ることができます。まずは、歩幅を小さくすること。細かなステップでリズムよく下ることで、関節への負荷を減らすことができます。次に、視線を前へ向けること。足元ではなく数歩先を見て、次に足を置く地点をイメージしながら走ります。さらに、腕や上半身も活用し、全身でバランスをとることで、衝撃を逃がしながら、軽やかに下ることができます。"
         videoSrc="/videos/yoyogi/instruction-3.mp4"
       />
 
       {/* ── #11 Full-width image ── */}
       <section className={styles["full-image"]}>
-        <img src="/images/yoyogi/full-image.jpg" alt="" />
+        <div className={styles["full-image-bg"]}>
+          <img src="/images/yoyogi/full-image.jpg" alt="" />
+        </div>
       </section>
 
       {/* ── #12 About ── */}
@@ -387,8 +301,22 @@ export function YoyogiPage() {
 
         {/* ── #13 Facility info ── */}
         <div className={styles.facility} data-reveal="fade-up">
-          <div className={styles["facility-image"]}>
-            <img src="/images/yoyogi/facility.jpg" alt="TRAIL HUB YOYOGI" />
+          <div className={styles["facility-photos"]}>
+            <div className={`${styles["facility-photo"]} ${styles["facility-photo-tall"]}`}>
+              <img src="/images/yoyogi/facility-1.jpg" alt="" />
+            </div>
+            <div className={styles["facility-photo"]}>
+              <img src="/images/yoyogi/facility-2.jpg" alt="" />
+            </div>
+            <div className={styles["facility-photo"]}>
+              <img src="/images/yoyogi/facility-3.jpg" alt="" />
+            </div>
+            <div className={styles["facility-photo"]}>
+              <img src="/images/yoyogi/facility-4.jpg" alt="" />
+            </div>
+            <div className={styles["facility-photo"]}>
+              <img src="/images/yoyogi/facility-5.jpg" alt="" />
+            </div>
           </div>
           <div className={styles["facility-detail"]}>
             <div className={styles["facility-info"]}>
@@ -403,45 +331,69 @@ export function YoyogiPage() {
                 </p>
                 <p>オープン期間：2026年5月2日〜31日</p>
                 <NoteToggle label="シューズのレンタルについて">
-                  <p>詳細は準備中です。</p>
+                  <ul className={noteStyles.list}>
+                    <li>
+                      BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
+                    </li>
+                    <li>
+                      上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
+                    </li>
+                  </ul>
+                  <ul className={noteStyles.caption}>
+                    <li>
+                      無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
+                    </li>
+                    <li>
+                      ギアのお貸し出しは平日・土日祝日とも16:00 までとさせていただきます
+                    </li>
+                    <li>
+                      ご好評により、シューズ‧ウェアのサイズによっては ご希望に沿えない、ノベルティが一部ご用意できない場合がございます。ご了承ください。
+                    </li>
+                  </ul>
                 </NoteToggle>
               </div>
             </div>
-            <div className={styles["facility-photo"]}>
-              <img src="/images/yoyogi/facility-2.jpg" alt="" />
+            <div className={styles["facility-map"]}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.4345074799626!2d139.69871441254514!3d35.66630173067758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d003c44e355%3A0x4f53a3a729034f15!2sRuntrip%20BASE%20YOYOGI%20PARK!5e0!3m2!1sja!2sjp!4v1777432440197!5m2!1sja!2sjp"
+                width={600}
+                height={450}
+                style={{ border: "0" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>
 
         {/* ── #14 Footwear + Apparel ── */}
-        <div className={styles.footwear} data-reveal="fade-up">
-          <div className={styles["footwear-images"]}>
-            <div className={styles["footwear-image"]}>
-              <img src="/images/yoyogi/footwear-1.jpg" alt="" />
-            </div>
-            <div className={styles["footwear-image"]}>
-              <img src="/images/yoyogi/footwear-2.jpg" alt="" />
-            </div>
-          </div>
-          <div className={styles["footwear-overlay"]}>
-            <p className={styles["footwear-title"]}>Footwear + Apparel</p>
-            <a href="https://arcteryx.jp" className={styles["footwear-button"]}>
-              More
-            </a>
-          </div>
+        <div data-reveal="fade-up">
+          <ImagePanel
+            images={[
+              { src: "/images/yoyogi/footwear-1.jpg" },
+              { src: "/images/yoyogi/footwear-2.jpg" },
+            ]}
+            title="Footwear + Apparel"
+            href="https://arcteryx.jp/pages/260326_sylan2"
+          />
         </div>
 
         {/* ── #15 Pickup Event ── */}
-        <div className={styles["pickup-event"]}>
-          <h3 className={styles["section-heading"]} data-reveal="fade-up">
+        <div className={eventStyles.category}>
+          <h3 className={eventStyles["category-title"]} data-reveal="fade-up">
             Pickup Event
           </h3>
-          <div className={styles["pickup-panel"]} data-reveal="fade-up">
+          <div className={styles["pickup-panel"]} data-reveal="clip-left">
             <div className={styles["pickup-image"]}>
-              <img src="/images/yoyogi/events/pickup-1.jpg" alt="" />
+              <a href="https://arcteryx.jp" target="_blank" rel="noopener noreferrer">
+                <img src="/images/yoyogi/pickup-1.jpg" alt="" />
+              </a>
             </div>
             <div className={styles["pickup-info"]}>
-              <h4 className={styles["pickup-title"]}>TRAIL CLINIC 代々木</h4>
+              <a href="https://arcteryx.jp" target="_blank" rel="noopener noreferrer" className={styles["pickup-name"]}>
+                TRAIL CLINIC 代々木
+              </a>
               <p className={styles["pickup-date"]}>
                 2026年5月19日(火) 18:30 - 21:00
               </p>
@@ -454,60 +406,10 @@ export function YoyogiPage() {
         </div>
 
         {/* ── #16 Community Events ── */}
-        <div className={styles.events}>
-          <h3 className={styles["section-heading"]} data-reveal="fade-up">
-            Community Events
-          </h3>
-          <div className={styles["event-grid"]} data-reveal="fade-up">
-            <EventPanel
-              image="/images/yoyogi/events/community-1.jpg"
-              title="TRAIL CLINIC 代々木"
-              date="2026年5月24日(日)"
-            />
-            <EventPanel
-              image="/images/yoyogi/events/community-2.jpg"
-              title="TRAIL CLINIC 六甲山"
-              date="2026年5月16日(土)"
-            />
-            <EventPanel
-              image="/images/yoyogi/events/community-3.jpg"
-              title="TRAIL CLINIC 高尾山"
-              date="2026年5月23日(土)"
-            />
-          </div>
-          <button className={styles["more-button"]}>
-            <span className={styles["more-icon"]}>+</span>
-            <span>More</span>
-          </button>
-        </div>
+        <EventCategory title="Community Events" items={communityEvents} />
 
         {/* ── #17 Store Events ── */}
-        <div className={styles.events}>
-          <h3 className={styles["section-heading"]} data-reveal="fade-up">
-            Store Events
-          </h3>
-          <div className={styles["event-grid"]} data-reveal="fade-up">
-            <EventPanel
-              image="/images/yoyogi/events/store-1.jpg"
-              title="CITY TRAIL MEET UP 神戸"
-              date="2026年5月3日(日)"
-            />
-            <EventPanel
-              image="/images/yoyogi/events/store-2.jpg"
-              title="CITY TRAIL MEET UP 神戸"
-              date="2026年5月5日(火)"
-            />
-            <EventPanel
-              image="/images/yoyogi/events/store-3.jpg"
-              title="CITY TRAIL MEET UP 心斎橋"
-              date="2026年5月9日(土)"
-            />
-          </div>
-          <button className={styles["more-button"]}>
-            <span className={styles["more-icon"]}>+</span>
-            <span>More</span>
-          </button>
-        </div>
+        <EventCategory title="Store Events" items={storeEvents} />
       </section>
 
       {/* ── #18 Takao CTA ── */}
@@ -532,7 +434,7 @@ export function YoyogiPage() {
           </div>
         </div>
         <div className={styles["takao-image"]}>
-          <img src="/images/yoyogi/takao-cta.jpg" alt="" />
+          <img src="/images/yoyogi/takao-cta.png" alt="" />
         </div>
       </section>
     </div>
