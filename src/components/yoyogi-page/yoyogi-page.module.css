@@ -313,7 +313,7 @@
   align-items: center;
   justify-content: center;
   background: #fff;
-  padding: 3rem var(--content-px);
+  padding: 4rem var(--content-px);
   overflow: hidden;
 }
 
@@ -340,7 +340,7 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
-  padding: 3rem var(--content-px);
+  padding: 4rem var(--content-px);
   gap: 3rem;
 }
 
