@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
 import { NoteToggle } from "@/components/note-toggle/note-toggle";
 import noteStyles from "@/components/note-toggle/note-toggle.module.css";
@@ -33,6 +33,47 @@ type InstructionProps = {
   ctaHref?: string;
 };
 
+function InstructionVideo({ video }: { video: VideoEntry }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  const handlePlay = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.play();
+    setPlaying(true);
+  };
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const onEnded = () => setPlaying(false);
+    v.addEventListener("ended", onEnded);
+    return () => v.removeEventListener("ended", onEnded);
+  }, []);
+
+  return (
+    <div className={styles["instruction-video"]} data-reveal="fade">
+      <video
+        ref={videoRef}
+        src={video.src}
+        controls={playing}
+        playsInline
+        preload="metadata"
+      />
+      {!playing && (
+        <button
+          type="button"
+          className={styles["instruction-video-poster"]}
+          onClick={handlePlay}
+        >
+          <img src={video.poster} alt="" />
+        </button>
+      )}
+    </div>
+  );
+}
+
 function Instruction({
   id,
   title,
@@ -42,18 +83,6 @@ function Instruction({
   ctaText,
   ctaHref,
 }: InstructionProps) {
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 48rem)");
-    const update = () => {
-      videoRefs.current.forEach((v) => { if (v) v.playsInline = mq.matches; });
-    };
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
   return (
     <section
       id={id}
@@ -61,15 +90,7 @@ function Instruction({
     >
       <div className={styles["instruction-media"]}>
         {videos.map((v, i) => (
-          <div key={i} className={styles["instruction-video"]} data-reveal="fade">
-            <video
-              ref={(el) => { videoRefs.current[i] = el; }}
-              src={v.src}
-              poster={v.poster}
-              controls
-              preload="metadata"
-            />
-          </div>
+          <InstructionVideo key={i} video={v} />
         ))}
       </div>
       <div className={styles["instruction-content"]}>
