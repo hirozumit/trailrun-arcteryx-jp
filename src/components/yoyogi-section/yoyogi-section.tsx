@@ -37,7 +37,7 @@ export function YoyogiSection() {
               });
             }}
           >
-            詳細をみる
+            TRAIL HUB YOYOGI
           </a>
         </div>
       </div>

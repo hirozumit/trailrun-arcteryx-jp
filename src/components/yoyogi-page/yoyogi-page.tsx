@@ -605,7 +605,7 @@ export function YoyogiPage() {
               期間：2026年4月17日(金) 〜 6月28日(日)
             </p>
             <a href="/" className={styles["takao-button"]}>
-              詳細をみる
+              TRAIL HUB TAKAO
             </a>
           </div>
         </div>
