@@ -499,11 +499,15 @@ export function YoyogiPage() {
               </p>
               <div className={styles["facility-address"]}>
                 <p>
-                  東京都渋谷区神南1丁目1番1号 3F Runtrip BASE YOYOGI PARK
+                  東京都渋谷区神南1丁目1番1号 3F
+                  <br />
+                  Runtrip BASE YOYOGI PARK
                   <br />
                   期間：2026年5月2日（土）〜5月31日（日）
                   <br />
-                  営業時間：平日 7:00〜22:00（最終受付21:00） 土・日・祝日 7:00〜20:00（最終受付19:00）
+                  営業時間：平日 7:00〜22:00（最終受付21:00）
+                  <br />
+                  土・日・祝日 7:00〜20:00（最終受付19:00）
                 </p>
                 <NoteToggle label="シューズのお貸し出しについて">
                   <ul className={noteStyles.list}>
@@ -601,7 +605,7 @@ export function YoyogiPage() {
               期間：2026年4月17日(金) 〜 6月28日(日)
             </p>
             <a href="/" className={styles["takao-button"]}>
-              More
+              詳細をみる
             </a>
           </div>
         </div>
