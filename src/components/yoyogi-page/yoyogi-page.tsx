@@ -33,9 +33,20 @@ type InstructionProps = {
   ctaHref?: string;
 };
 
+const MOBILE_MQ = "(max-width: 47.999rem)";
+
 function InstructionVideo({ video }: { video: VideoEntry }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_MQ);
+    setIsMobile(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   const handlePlay = () => {
     const v = videoRef.current;
@@ -48,8 +59,15 @@ function InstructionVideo({ video }: { video: VideoEntry }) {
     const v = videoRef.current;
     if (!v) return;
     const onEnded = () => setPlaying(false);
+    const onPause = () => {
+      if (v.ended || v.currentTime === 0) setPlaying(false);
+    };
     v.addEventListener("ended", onEnded);
-    return () => v.removeEventListener("ended", onEnded);
+    v.addEventListener("pause", onPause);
+    return () => {
+      v.removeEventListener("ended", onEnded);
+      v.removeEventListener("pause", onPause);
+    };
   }, []);
 
   return (
@@ -58,7 +76,7 @@ function InstructionVideo({ video }: { video: VideoEntry }) {
         ref={videoRef}
         src={video.src}
         controls={playing}
-        playsInline
+        playsInline={!isMobile}
         preload="metadata"
       />
       {!playing && (
