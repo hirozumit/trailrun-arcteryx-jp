@@ -20,14 +20,15 @@ const MENU_ITEMS = [
 
 /* ── Instruction sub-component ── */
 
+type VideoEntry = { src: string; poster: string };
+
 type InstructionProps = {
   id?: string;
   /** [right column, left column] in vertical-rl reading order */
   title: [string, string];
   body: string;
   reverse?: boolean;
-  videoSrc: string;
-  videoPoster: string;
+  videos: VideoEntry[];
   ctaText?: string;
   ctaHref?: string;
 };
@@ -37,18 +38,17 @@ function Instruction({
   title,
   body,
   reverse,
-  videoSrc,
-  videoPoster,
+  videos,
   ctaText,
   ctaHref,
 }: InstructionProps) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
     const mq = window.matchMedia("(min-width: 48rem)");
-    const update = () => { video.playsInline = mq.matches; };
+    const update = () => {
+      videoRefs.current.forEach((v) => { if (v) v.playsInline = mq.matches; });
+    };
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
@@ -60,9 +60,17 @@ function Instruction({
       className={`${styles.instruction} ${reverse ? styles["instruction-reverse"] : ""}`}
     >
       <div className={styles["instruction-media"]}>
-        <div className={styles["instruction-video"]} data-reveal="fade">
-          <video ref={videoRef} src={videoSrc} poster={videoPoster} controls preload="metadata" />
-        </div>
+        {videos.map((v, i) => (
+          <div key={i} className={styles["instruction-video"]} data-reveal="fade">
+            <video
+              ref={(el) => { videoRefs.current[i] = el; }}
+              src={v.src}
+              poster={v.poster}
+              controls
+              preload="metadata"
+            />
+          </div>
+        ))}
       </div>
       <div className={styles["instruction-content"]}>
         <h3 className={styles["instruction-title"]} data-reveal="clip-down">
@@ -354,8 +362,7 @@ export function YoyogiPage() {
         id="gear"
         title={["ギアを", "揃える"]}
         body="都市で行うロードランとは異なり、身一つで山へと入るトレイルランでは、安全で快適なランのために、さまざまな装備が欠かせません。トレイルに適したシューズやウェアのほか、携行品を収納できる軽量なベスト、故障を防ぎ疲労を抑えるスポーツテープ、夜間に視界を照らすヘッドランプ、すぐに水分補給できるフラスクボトル、救急時にも役立つ手ぬぐい、効率よくエネルギーを摂取できる行動食など。山へと向かう前に、一つひとつ準備と確認を。"
-        videoSrc="/videos/yoyogi/instruction-1.mp4"
-        videoPoster="/images/yoyogi/instruction-1-poster.jpg"
+        videos={[{ src: "/videos/yoyogi/instruction-1.mp4", poster: "/images/yoyogi/instruction-1-poster.jpg" }]}
         ctaText="トレイルランニングギアはこちら"
         ctaHref="https://arcteryx.jp"
       />
@@ -374,8 +381,7 @@ export function YoyogiPage() {
         id="shoelace"
         title={["シューレースを", "結ぶ"]}
         body="シューズを足にフィットさせるためには、足長だけではなく、足幅や甲の高さも見ながらフィッティングを行い、自分の足に合う一足を選ぶことが肝心です。その上で、シューレースをきちんと結ぶことも大切なポイント。2番目のアイレットでループを作って通す「ダブルアイレット」は、足首をしっかりと固定することができ、下りでもシューズの中で足がずれにくく、結び目も解けにくいのが特長です。他にもさまざまな結び方があるため、自分に合った結び方を探してみてください。シューズと足が一体になると、走りも変わります。"
-        videoSrc="/videos/yoyogi/instruction-2.mp4"
-        videoPoster="/images/yoyogi/instruction-2-poster.jpg"
+        videos={[{ src: "/videos/yoyogi/instruction-2.mp4", poster: "/images/yoyogi/instruction-2-poster.jpg" }]}
         reverse
       />
 
@@ -393,8 +399,7 @@ export function YoyogiPage() {
         id="downhill"
         title={["リズムよく", "下る"]}
         body="トレイルラン初心者にとって、スピードが出やすく、転倒のリスクもある下りは、恐さを感じやすい部分です。しかし、いくつかのコツを意識することで、スムーズに下ることができます。まずは、歩幅を小さくすること。細かなステップでリズムよく下ることで、関節への負荷を減らすことができます。次に、視線を前へ向けること。足元ではなく数歩先を見て、次に足を置く地点をイメージしながら走ります。さらに、腕や上半身も活用し、全身でバランスをとることで、衝撃を逃がしながら、軽やかに下ることができます。"
-        videoSrc="/videos/yoyogi/instruction-3.mp4"
-        videoPoster="/images/yoyogi/instruction-3-poster.jpg"
+        videos={[{ src: "/videos/yoyogi/instruction-3.mp4", poster: "/images/yoyogi/instruction-3-poster.jpg" }]}
       />
 
       {/* ── #11 Full-width image ── */}
