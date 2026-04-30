@@ -74,9 +74,23 @@ export const storeEvents: EventItem[] = [
   },
 ];
 
-function EventPanel({ item }: { item: EventItem }) {
+type GA4Event = {
+  event: string;
+  link_type: string;
+  link_name: string;
+  link_category: string;
+};
+
+function EventPanel({ item, ga4Event }: { item: EventItem; ga4Event?: GA4Event }) {
+  const handleClick = ga4Event
+    ? () => {
+        const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+        w.dataLayer?.push({ ...ga4Event });
+      }
+    : undefined;
+
   return (
-    <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.panel}>
+    <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.panel} onClick={handleClick}>
       <div className={styles["panel-image"]}>
         <Image src={item.image} alt={item.name} width={640} height={480} />
       </div>
@@ -95,10 +109,12 @@ export function EventCategory({
   title,
   items,
   visibleCount = 3,
+  ga4Event,
 }: {
   title: string;
   items: EventItem[];
   visibleCount?: number;
+  ga4Event?: GA4Event;
 }) {
   const [expanded, setExpanded] = useState(false);
   const hasMore = items.length > visibleCount;
@@ -113,7 +129,7 @@ export function EventCategory({
         data-reveal="clip-left"
       >
         {visibleItems.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} ga4Event={ga4Event} />
         ))}
       </div>
       {/* Mobile: full carousel */}
@@ -122,7 +138,7 @@ export function EventCategory({
         data-reveal="clip-left"
       >
         {items.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} ga4Event={ga4Event} />
         ))}
       </div>
       {hasMore && !expanded && (
@@ -158,8 +174,26 @@ export function EventSection() {
             </p>
           </div>
         </div>
-        <EventCategory title="Community Events" items={communityEvents} />
-        <EventCategory title="Store Events" items={storeEvents} />
+        <EventCategory
+          title="Community Events"
+          items={communityEvents}
+          ga4Event={{
+            event: "click",
+            link_type: "events",
+            link_name: "community_trail",
+            link_category: "event",
+          }}
+        />
+        <EventCategory
+          title="Store Events"
+          items={storeEvents}
+          ga4Event={{
+            event: "click",
+            link_type: "events",
+            link_name: "store_trail",
+            link_category: "event",
+          }}
+        />
       </div>
     </section>
   );

@@ -506,6 +506,12 @@ export function YoyogiPage() {
             ]}
             title="Footwear + Apparel"
             href="https://arcteryx.jp/pages/260326_sylan2"
+            ga4Event={{
+              event: "click",
+              link_type: "ecom",
+              link_name: "yoyogi_gear",
+              link_category: "product",
+            }}
           />
         </div>
 
