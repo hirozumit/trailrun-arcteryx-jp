@@ -12,9 +12,9 @@ import styles from "./yoyogi-page.module.css";
 /* ── Menu nav items ── */
 
 const MENU_ITEMS = [
-  { label: "ギアを揃える", href: "#gear" },
-  { label: "シューレースを結ぶ", href: "#shoelace" },
-  { label: "リズムよく下る", href: "#downhill" },
+  { label: "ギアを揃える", href: "#prep" },
+  { label: "シューレースを結ぶ", href: "#lacing" },
+  { label: "リズムよく下る", href: "#technique" },
   { label: "TRAIL HUB YOYOGI について", href: "#about" },
 ] as const;
 
@@ -357,7 +357,7 @@ export function YoyogiPage() {
 
       {/* ── #6 Instruction 1: ギアを揃える ── */}
       <Instruction
-        id="gear"
+        id="prep"
         title={["ギアを", "揃える"]}
         body="都市で行うロードランとは異なり、設備が万全ではない山へと入るトレイルランでは、安全かつ快適に走るための装備が欠かせません。トレイルに適したシューズやウェアのほか、携行品を収納できる軽量なベスト、故障を防ぎ疲労を抑えるスポーツテープ、日中も常に備えておきたいヘッドランプ、すぐに水分補給できるフラスクボトル、救急時にも役立つ手ぬぐい、効率よくエネルギーを摂取できる行動食など。山へと向かう前に、一つひとつ準備と確認を。"
         videos={[{ src: "/videos/yoyogi/instruction-1.mp4", poster: "/images/yoyogi/instruction-1-poster.jpg" }]}
@@ -376,7 +376,7 @@ export function YoyogiPage() {
 
       {/* ── #8 Instruction 2: シューレースを結ぶ ── */}
       <Instruction
-        id="shoelace"
+        id="lacing"
         title={["シューレースを", "結ぶ"]}
         body="シューズを足にフィットさせるためには、足長だけではなく、足幅や甲の高さも見ながらフィッティングを行い、自分の足に合う一足を選ぶことが肝心です。その上で、シューレースをきちんと結ぶことも大切なポイント。2番目のホールでループを作って通す「ダブルアイレット」は、足首をしっかりと固定することができ、下りでもシューズの中で足がずれにくく、結び目も解けにくいのが特長です。他にもさまざまな結び方があるため、自分に合った結び方を探してみてください。シューズと足が一体になると、走りも変わります。"
         videos={[{ src: "/videos/yoyogi/instruction-2.mp4", poster: "/images/yoyogi/instruction-2-poster.jpg" }]}
@@ -394,7 +394,7 @@ export function YoyogiPage() {
 
       {/* ── #10 Instruction 3: リズムよく下る ── */}
       <Instruction
-        id="downhill"
+        id="technique"
         title={["リズムよく", "下る"]}
         body="トレイルラン初心者にとって、スピードが出やすく、転倒のリスクもある下りは、恐さを感じやすい部分です。しかし、いくつかのコツを意識することで、スムーズに下ることができます。まずは、歩幅を小さくすること。細かなステップでリズムよく下ることで、関節への負荷を減らすことができます。次に、視線を前へ向けること。足元ではなく数歩先を見て、次に足を置く地点をイメージしながら走ります。さらに、足裏全体で着地することで、衝撃を逃がしながら、軽やかに下ることができます。"
         videos={[{ src: "/videos/yoyogi/instruction-3.mp4", poster: "/images/yoyogi/instruction-3-poster.jpg" }]}
