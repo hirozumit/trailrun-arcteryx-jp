@@ -554,7 +554,7 @@ export function YoyogiPage() {
 
         {/* ── #15 Pickup Event ── */}
         <div className={eventStyles.category}>
-          <h3 className={eventStyles["category-title"]} data-reveal="fade-up">
+          <h3 className={eventStyles["category-title"]} data-reveal="fade-up" id="pickup" style={{ scrollMarginTop: "8rem" }}>
             Pickup Event
           </h3>
           <div className={styles["pickup-panel"]} data-reveal="clip-left">
