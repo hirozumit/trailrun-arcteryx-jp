@@ -29,7 +29,7 @@ const itcElanBook = localFont({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_PRODUCTION_URL ?? "https://trailrun.arcteryx.jp";
-const siteName = "山へ行く人のための茶屋 | ARC'TERYX アークテリクス";
+const siteName = "TRAIL HUB TAKAO | ARC'TERYX アークテリクス";
 const siteDescription =
   "トレイルランナーのための期間限定の茶屋が高尾山麓にオープン。最新のフットウェアの試し履き、限定羊羹とお茶。4.17〜6.28";
 
