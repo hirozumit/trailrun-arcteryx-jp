@@ -87,6 +87,6 @@
 .spacer {
   position: relative;
   z-index: 51;
-  height: 100svh;
+  height: 100lvh;
   background: var(--color-bg);
 }
