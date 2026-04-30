@@ -462,29 +462,33 @@ export function YoyogiPage() {
               </p>
               <div className={styles["facility-address"]}>
                 <p>
-                  〒150-0041 東京都渋谷区神南1丁目1-1 3F
+                  東京都渋谷区神南1丁目1番1号 3F Runtrip BASE YOYOGIPARK
                   <br />
-                  Runtrip BASE YOYOGI PARK
+                  期間: 2026年5月2日(土)〜5月31日(日)
+                  <br />
+                  営業時間: 平日 7:00-22:00 (最終受付 21:00) / 土日祝 7:00-20:00 (最終受付 19:00)
                 </p>
-                <p>オープン期間：2026年5月2日〜31日</p>
                 <NoteToggle label="シューズのレンタルについて">
                   <ul className={noteStyles.list}>
                     <li>
-                      BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
+                      期間中、Runtrip BASE YOYOGI PARK をご利用（有料）いただいた方を対象に、フットウェアを無料でお貸し出しいたします。
                     </li>
                     <li>
-                      上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
+                      ご返却時に、アンケートおよび商品レビューにご回答いただくと、オリジナルノベルティを進呈いたします。
+                    </li>
+                    <li>
+                      アンケートおよび商品レビューは、BIRD CLUB 会員の方は EXPERIENCE POINT（XP）の獲得、または LINE で友だち登録をしていただくことでご回答いただけます。
                     </li>
                   </ul>
                   <ul className={noteStyles.caption}>
                     <li>
-                      無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
+                      ご好評により、シューズ・ウェアのサイズによってはご希望に沿えない場合や、ノベルティが一部ご用意できない場合がございます。ご了承ください。
                     </li>
                     <li>
-                      ギアのお貸し出しは平日・土日祝日とも16:00 までとさせていただきます
+                      Runtrip BASE YOYOGI PARKのご利用案内については <a href="https://base.runtrip.jp/#howtouse" target="_blank" rel="noopener noreferrer">こちら</a> をご覧ください。
                     </li>
                     <li>
-                      ご好評により、シューズ‧ウェアのサイズによっては ご希望に沿えない、ノベルティが一部ご用意できない場合がございます。ご了承ください。
+                      EXPERIENCE POINT（XP）については <a href="https://arcteryx.jp/pages/experience-points" target="_blank" rel="noopener noreferrer">こちら</a> をご覧ください。
                     </li>
                   </ul>
                 </NoteToggle>

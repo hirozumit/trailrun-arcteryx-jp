@@ -38,9 +38,6 @@
 }
 
 .list {
-  list-style: none;
-  padding-left: 1.125rem;
-
   & li::before {
     content: "・";
     position: absolute;
@@ -49,12 +46,25 @@
 }
 
 .caption {
-  list-style: none;
-  padding-left: 1.125rem;
-
   & li::before {
     content: "※";
     position: absolute;
     margin-left: -1.125rem;
+  }
+}
+
+.list, .caption {
+  list-style: none;
+  padding-left: 1.125rem;
+  line-height: var(--leading-base);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  & a {
+    color: var(--color-fg);
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
   }
 }

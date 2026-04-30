@@ -90,7 +90,7 @@ export function ChayaSection() {
         >
           <ul className={noteStyles.list}>
             <li>
-              BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
+              BIRD CLUB 会員の方、または LINE で友だち登録をしていただいた方は、レンタル料無料となります。
             </li>
             <li>
               上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
