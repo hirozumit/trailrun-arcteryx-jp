@@ -512,7 +512,7 @@ export function YoyogiPage() {
                 <NoteToggle label="シューズのお貸し出しについて">
                   <ul className={noteStyles.list}>
                     <li>
-                      期間中、Runtrip BASE YOYOGI PARK（有料）をご利用いただいた方を対象に、フットウェアを無料でお貸し出しいたします。
+                      期間中、Runtrip BASE YOYOGI PARK（有料）をご利用いただいた方を対象に、シューズを無料でお貸し出しいたします。
                     </li>
                     <li>
                       ご返却時に、アンケートおよび商品レビューにご回答いただいた方には、オリジナルノベルティを差し上げます。
