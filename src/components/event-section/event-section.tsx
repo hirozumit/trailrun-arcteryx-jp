@@ -15,11 +15,22 @@ export type EventItem = {
 
 export const communityEvents: EventItem[] = [
   {
+    name: "TRAIL CLINIC 代々木",
+    date: "2026年5月24日(日)",
+    image: "/images/events/trail-clinic-yoyogi.jpg",
+    url: "#",
+  },
+  {
     name: "TRAIL CLINIC 高尾山",
-    date: "2026年4月26日(日)",
+    date: "2026年5月23日(土)",
     image: "/images/events/trail-clinic-takao.jpg",
-    url: "https://arcteryx.jp/pages/trail_clinic_20260426",
-    ended: true,
+    url: "https://arcteryx.jp/pages/trail_clinic_20260523",
+  },
+  {
+    name: "TRAIL CLINIC 代々木",
+    date: "2026年5月19日(月)",
+    image: "/images/events/trail-clinic-yoyogi.jpg",
+    url: "#",
   },
   {
     name: "TRAIL CLINIC 六甲山",
@@ -28,10 +39,17 @@ export const communityEvents: EventItem[] = [
     url: "https://arcteryx.jp/pages/trail_clinic_20260516",
   },
   {
+    name: "TRAIL CLINIC 代々木",
+    date: "2026年5月8日(金)",
+    image: "/images/events/trail-clinic-yoyogi.jpg",
+    url: "#",
+  },
+  {
     name: "TRAIL CLINIC 高尾山",
-    date: "2026年5月23日(土)",
+    date: "2026年4月26日(日)",
     image: "/images/events/trail-clinic-takao.jpg",
-    url: "https://arcteryx.jp/pages/trail_clinic_20260523",
+    url: "https://arcteryx.jp/pages/trail_clinic_20260426",
+    ended: true,
   },
 ];
 
