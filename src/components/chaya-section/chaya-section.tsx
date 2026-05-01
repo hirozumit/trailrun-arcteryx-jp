@@ -92,10 +92,10 @@ export function ChayaSection() {
         >
           <ul className={noteStyles.list}>
             <li>
-              BIRD CLUB 会員の方、または LINE で友だち登録をしていただいた方は、レンタル料無料となります。
+              シューズ・ベストを、各330円/1日にてお貸し出しいたします。
             </li>
             <li>
-              上記に該当しない方でも、通常料金（シューズ・ベスト各330円/1日）でお貸し出し可能です。
+              BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
             </li>
           </ul>
           <ul className={noteStyles.caption}>
