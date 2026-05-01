@@ -37,14 +37,15 @@ export function Splash({
 
   useEffect(() => {
     const skip = process.env.NEXT_PUBLIC_SKIP_SPLASH === "1";
-    const seen = sessionStorage.getItem("splash-seen") === "1";
+    const seenKey = `splash-seen:${window.location.pathname}`;
+    const seen = sessionStorage.getItem(seenKey) === "1";
     const hash = window.location.hash;
 
     // Prevent browser from restoring scroll position on reload
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
 
-    if (skip || seen || hash) {
+    if (skip || seen) {
       setSkipped(true);
       setReady(true);
 
@@ -96,8 +97,17 @@ export function Splash({
       document.documentElement.style.overflow = "";
       requestAnimationFrame(() => {
         if (!active) return;
-        smoothScrollTo(window.innerHeight * 0.5, 1000);
-        sessionStorage.setItem("splash-seen", "1");
+        if (hash) {
+          const target = document.querySelector(hash);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          } else {
+            smoothScrollTo(window.innerHeight * 0.5, 1000);
+          }
+        } else {
+          smoothScrollTo(window.innerHeight * 0.5, 1000);
+        }
+        sessionStorage.setItem(`splash-seen:${window.location.pathname}`, "1");
       });
     });
 
