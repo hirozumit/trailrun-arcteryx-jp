@@ -34,7 +34,7 @@ export function GearSection() {
               { src: "/images/gear-hero-2.jpg", objectPosition: "38% 60%" },
             ]}
             title="Footwear + Apparel"
-            href="https://arcteryx.jp/pages/260326_sylan2"
+            href="https://arcteryx.jp/collections/trail-run"
             ga4Event={{
               event: "click",
               link_type: "ecom",
