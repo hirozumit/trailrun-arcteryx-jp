@@ -37,18 +37,19 @@ export function Splash({
 
   useEffect(() => {
     const skip = process.env.NEXT_PUBLIC_SKIP_SPLASH === "1";
+    const seen = sessionStorage.getItem("splash-seen") === "1";
     const hash = window.location.hash;
 
     // Prevent browser from restoring scroll position on reload
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
 
-    if (skip || hash) {
-      splashRef.current?.style.setProperty("--t", "1");
+    if (skip || seen || hash) {
       setSkipped(true);
       setReady(true);
 
       if (hash) {
+        splashRef.current?.style.setProperty("--t", "1");
         // Wait one frame for layout, then scroll to anchor
         requestAnimationFrame(() => {
           const target = document.querySelector(hash);
@@ -59,7 +60,10 @@ export function Splash({
           }
         });
       } else {
-        window.scrollTo(0, window.innerHeight * 0.5);
+        // Start with logo visible, then scroll down
+        requestAnimationFrame(() => {
+          smoothScrollTo(window.innerHeight * 0.5, 1000);
+        });
       }
       return;
     }
@@ -93,6 +97,7 @@ export function Splash({
       requestAnimationFrame(() => {
         if (!active) return;
         smoothScrollTo(window.innerHeight * 0.5, 1000);
+        sessionStorage.setItem("splash-seen", "1");
       });
     });
 
