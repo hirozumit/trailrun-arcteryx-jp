@@ -2,6 +2,7 @@
 
 import { type ReactNode, useRef } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { useIframeClickTracker } from "@/hooks/use-iframe-click-tracker";
 import { NoteToggle } from "@/components/note-toggle/note-toggle";
 import noteStyles from "@/components/note-toggle/note-toggle.module.css";
 import styles from "./chaya-section.module.css";
@@ -54,6 +55,7 @@ function Service({ id, heading, body, reverse, images = [], noteLabel, children 
 export function ChayaSection() {
   const sectionRef = useRef<HTMLElement>(null);
   useRevealAll(sectionRef);
+  const mapRef = useIframeClickTracker("google_map");
 
   return (
     <section ref={sectionRef} className={styles.section} id="chaya">
@@ -136,7 +138,7 @@ export function ChayaSection() {
 
         {/* Map + Address */}
         <div className={styles["map-block"]} data-reveal="fade-up">
-          <div className={styles.map}>
+          <div className={styles.map} ref={mapRef}>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.7122737469517!2d139.26784277695484!3d35.63481907260237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60191959193b2129%3A0xfb4f2d7e71c9e7df!2zTXQuVGFrYW8gQmFzZSBDYW1wLCDvvJHvvJfvvJnvvJniiJLvvJMg6auY5bC-55S6IOWFq-eOi-WtkOW4giDmnbHkuqzpg70gMTkzLTA4NDQ!5e0!3m2!1sja!2sjp!4v1776213846478!5m2!1sja!2sjp" width={600} height={450} style={{ border: "0" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div className={styles.address}>

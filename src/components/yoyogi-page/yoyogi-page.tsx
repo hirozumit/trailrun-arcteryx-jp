@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { useIframeClickTracker } from "@/hooks/use-iframe-click-tracker";
 import { NoteToggle } from "@/components/note-toggle/note-toggle";
 import noteStyles from "@/components/note-toggle/note-toggle.module.css";
 import { ImagePanel } from "@/components/image-panel/image-panel";
@@ -167,6 +168,7 @@ export function YoyogiPage() {
   const mapPathRef = useRef<SVGPathElement>(null);
   const mapCounterRef = useRef<HTMLSpanElement>(null);
   useRevealAll(pageRef);
+  const gmapRef = useIframeClickTracker("google_map_yoyogi");
 
   // Parallax: background scrolls at 60% of normal speed (ratio 0.4).
   // Image is absolute-positioned in hero-wrap; overflow hidden clips it.
@@ -297,7 +299,7 @@ export function YoyogiPage() {
             <br />
             アークテリクスの最新のフットウェアを試し、
             <br />
-            山道をイメージしながら公園内を走るなど、
+            山道をイメージしながら公園内を走る。
             <br />
             いつものランの延長上で、
             <br className={styles["mobile-only"]} />
@@ -482,7 +484,7 @@ export function YoyogiPage() {
             </div>
           </div>
           <div className={styles["facility-detail"]} data-reveal="fade-up">
-            <div className={styles["facility-map"]}>
+            <div className={styles["facility-map"]} ref={gmapRef}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.4345074799626!2d139.69871441254514!3d35.66630173067758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d003c44e355%3A0x4f53a3a729034f15!2sRuntrip%20BASE%20YOYOGI%20PARK!5e0!3m2!1sja!2sjp!4v1777432440197!5m2!1sja!2sjp"
                 width={600}
