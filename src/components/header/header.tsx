@@ -23,15 +23,17 @@ export function Header({ titleItems }: HeaderProps = {}) {
   return (
     <div ref={titleRef} className={styles.title} data-reveal="fade">
       {titleItems ? (
-        titleItems.map(({ label, href, current }) => (
-          <a
-            key={href}
-            href={href}
-            className={`${styles.titleItem} ${current ? styles.titleCurrent : ""}`}
-          >
-            {label}
-          </a>
-        ))
+        titleItems.map(({ label, href, current }) =>
+          current ? (
+            <span key={href} className={`${styles.titleItem} ${styles.titleCurrent}`}>
+              {label}
+            </span>
+          ) : (
+            <a key={href} href={href} className={styles.titleItem}>
+              {label}
+            </a>
+          )
+        )
       ) : (
         <span className={styles.titleItem}>TRAIL RUNNING</span>
       )}
