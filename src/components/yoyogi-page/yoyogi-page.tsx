@@ -551,7 +551,7 @@ export function YoyogiPage() {
                   </ul>
                   <ul className={noteStyles.caption}>
                     <li>
-                      ご好評により、シューズ・ウェアのサイズによってはご希望に沿えない場合や、ノベルティが一部ご用意できない場合がございます。ご了承ください。
+                      ご好評により、シューズのサイズによってはご希望に沿えない場合や、ノベルティが一部ご用意できない場合がございます。ご了承ください。
                     </li>
                     <li>
                       Runtrip BASE YOYOGI PARKのご利用案内については <a href="https://base.runtrip.jp/#howtouse" target="_blank" rel="noopener noreferrer">こちら</a> をご覧ください。

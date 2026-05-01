@@ -126,13 +126,12 @@ export function ChayaSection() {
         <Service
           id="novelty"
           heading="ノベルティ"
-          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方に、限定のノベルティを差し上げます。"
+          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方に、オリジナルノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
           noteLabel="ノベルティについて"
         >
           <p>
-            ギアをレンタルされた方には「オリジナル
-            羊羹」、さらに BIRD CLUB 会員の方、LINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます
+            ギアをレンタルされた方には「オリジナル 羊羹」を、さらに、 BIRD CLUB 会員の方またはLINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご協力いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます。
           </p>
         </Service>
 
