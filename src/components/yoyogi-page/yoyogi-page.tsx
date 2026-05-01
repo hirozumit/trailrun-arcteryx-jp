@@ -23,6 +23,13 @@ const MENU_ITEMS = [
 
 type VideoEntry = { src: string; poster: string };
 
+type GA4Event = {
+  event: string;
+  link_type: string;
+  link_name: string;
+  link_category: string;
+};
+
 type InstructionProps = {
   id?: string;
   /** [right column, left column] in vertical-rl reading order */
@@ -32,11 +39,13 @@ type InstructionProps = {
   videos: VideoEntry[];
   ctaText?: string;
   ctaHref?: string;
+  ctaGa4Event?: GA4Event;
+  videoGa4Event?: GA4Event;
 };
 
 const MOBILE_MQ = "(max-width: 47.999rem)";
 
-function InstructionVideo({ video }: { video: VideoEntry }) {
+function InstructionVideo({ video, ga4Event }: { video: VideoEntry; ga4Event?: GA4Event }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -54,6 +63,10 @@ function InstructionVideo({ video }: { video: VideoEntry }) {
     if (!v) return;
     v.play();
     setPlaying(true);
+    if (ga4Event) {
+      const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+      w.dataLayer?.push({ ...ga4Event });
+    }
   };
 
   useEffect(() => {
@@ -101,7 +114,16 @@ function Instruction({
   videos,
   ctaText,
   ctaHref,
+  ctaGa4Event,
+  videoGa4Event,
 }: InstructionProps) {
+  const handleCtaClick = ctaGa4Event
+    ? () => {
+        const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+        w.dataLayer?.push({ ...ctaGa4Event });
+      }
+    : undefined;
+
   return (
     <section
       id={id}
@@ -109,7 +131,7 @@ function Instruction({
     >
       <div className={styles["instruction-media"]}>
         {videos.map((v, i) => (
-          <InstructionVideo key={i} video={v} />
+          <InstructionVideo key={i} video={v} ga4Event={videoGa4Event} />
         ))}
       </div>
       <div className={styles["instruction-content"]}>
@@ -120,7 +142,7 @@ function Instruction({
         <div className={styles["instruction-body"]} data-reveal="fade-up">
           <p>{body}</p>
           {ctaText && ctaHref && (
-            <a href={ctaHref} className={styles["instruction-cta"]}>
+            <a href={ctaHref} className={styles["instruction-cta"]} onClick={handleCtaClick}>
               <span>{ctaText}</span>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                 <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" />
@@ -402,8 +424,10 @@ export function YoyogiPage() {
         title={["ギアを", "揃える"]}
         body="都市で行うロードランとは異なり、設備が万全ではない山へと入るトレイルランでは、安全かつ快適に走るための装備が欠かせません。トレイルに適したシューズやウェアのほか、携行品を収納できる軽量なベスト、故障を防ぎ疲労を抑えるスポーツテープ、日中も常に備えておきたいヘッドランプ、すぐに水分補給できるフラスクボトル、救急時にも役立つ手ぬぐい、効率よくエネルギーを摂取できる行動食など。山へと向かう前に、一つひとつ準備と確認を。"
         videos={[{ src: "/videos/yoyogi/instruction-1.mp4", poster: "/images/yoyogi/instruction-1-poster.jpg" }]}
-        ctaText="トレイルランニングギアはこちら"
-        ctaHref="https://arcteryx.jp"
+        ctaText="オンラインストアをみる"
+        ctaHref="https://arcteryx.jp/pages/260326_sylan2"
+        ctaGa4Event={{ event: "click", link_type: "ecom", link_name: "yoyogi_online_store", link_category: "cta" }}
+        videoGa4Event={{ event: "click", link_type: "video", link_name: "yoyogi_instruction_1", link_category: "video" }}
       />
 
       {/* ── #7 Photos 1 ── */}
@@ -422,6 +446,7 @@ export function YoyogiPage() {
         body="シューズを足にフィットさせるためには、足長だけではなく、足幅や甲の高さも見ながらフィッティングを行い、自分の足に合う一足を選ぶことが肝心です。その上で、シューレースをきちんと結ぶことも大切なポイント。2番目のホールでループを作って通す「ダブルアイレット」は、足首をしっかりと固定することができ、下りでもシューズの中で足がずれにくく、結び目も解けにくいのが特長です。他にもさまざまな結び方があるため、自分に合った結び方を探してみてください。シューズと足が一体になると、走りも変わります。"
         videos={[{ src: "/videos/yoyogi/instruction-2.mp4", poster: "/images/yoyogi/instruction-2-poster.jpg" }]}
         reverse
+        videoGa4Event={{ event: "click", link_type: "video", link_name: "yoyogi_instruction_2", link_category: "video" }}
       />
 
       {/* ── #9 Photos 2 ── */}
@@ -439,6 +464,7 @@ export function YoyogiPage() {
         title={["リズムよく", "下る"]}
         body="トレイルラン初心者にとって、スピードが出やすく、転倒のリスクもある下りは、恐さを感じやすい部分です。しかし、いくつかのコツを意識することで、スムーズに下ることができます。まずは、歩幅を小さくすること。細かなステップでリズムよく下ることで、関節への負荷を減らすことができます。次に、視線を前へ向けること。足元ではなく数歩先を見て、次に足を置く地点をイメージしながら走ります。さらに、足裏全体で着地することで、衝撃を逃がしながら、軽やかに下ることができます。"
         videos={[{ src: "/videos/yoyogi/instruction-3.mp4", poster: "/images/yoyogi/instruction-3-poster.jpg" }]}
+        videoGa4Event={{ event: "click", link_type: "video", link_name: "yoyogi_instruction_3", link_category: "video" }}
       />
 
       {/* ── #11 Full-width image ── */}
@@ -484,7 +510,7 @@ export function YoyogiPage() {
             </div>
           </div>
           <div className={styles["facility-detail"]} data-reveal="fade-up">
-            <div className={styles["facility-map"]} ref={gmapRef}>
+            <div className={styles["facility-map"]}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.4345074799626!2d139.69871441254514!3d35.66630173067758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d003c44e355%3A0x4f53a3a729034f15!2sRuntrip%20BASE%20YOYOGI%20PARK!5e0!3m2!1sja!2sjp!4v1777432440197!5m2!1sja!2sjp"
                 width={600}
@@ -565,12 +591,29 @@ export function YoyogiPage() {
           </h3>
           <div className={styles["pickup-panel"]} data-reveal="clip-left">
             <div className={styles["pickup-image"]}>
-              <a href="https://arcteryx.jp" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://arcteryx.jp"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => {
+                  const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+                  w.dataLayer?.push({ event: "click", link_type: "events", link_name: "yoyogi_pickup_event", link_category: "event" });
+                }}
+              >
                 <img src="/images/yoyogi/pickup-1.jpg" alt="" />
               </a>
             </div>
             <div className={styles["pickup-info"]}>
-              <a href="https://arcteryx.jp" target="_blank" rel="noopener noreferrer" className={styles["pickup-name"]}>
+              <a
+                href="https://arcteryx.jp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles["pickup-name"]}
+                onClick={() => {
+                  const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+                  w.dataLayer?.push({ event: "click", link_type: "events", link_name: "yoyogi_pickup_event", link_category: "event" });
+                }}
+              >
                 TRAIL CLINIC 代々木
               </a>
               <p className={styles["pickup-date"]}>
@@ -584,10 +627,18 @@ export function YoyogiPage() {
         </div>
 
         {/* ── #16 Community Events ── */}
-        <EventCategory title="Community Events" items={communityEvents} />
+        <EventCategory
+          title="Community Events"
+          items={communityEvents}
+          ga4Event={{ event: "click", link_type: "events", link_name: "yoyogi_community", link_category: "event" }}
+        />
 
         {/* ── #17 Store Events ── */}
-        <EventCategory title="Store Events" items={storeEvents} />
+        <EventCategory
+          title="Store Events"
+          items={storeEvents}
+          ga4Event={{ event: "click", link_type: "events", link_name: "yoyogi_store", link_category: "event" }}
+        />
       </section>
 
       {/* ── #18 Takao CTA ── */}
@@ -606,7 +657,19 @@ export function YoyogiPage() {
             <p className={styles["takao-period"]}>
               期間：2026年4月17日(金) 〜 6月28日(日)
             </p>
-            <a href="/" className={styles["takao-button"]}>
+            <a
+              href="/"
+              className={styles["takao-button"]}
+              onClick={() => {
+                const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+                w.dataLayer?.push({
+                  event: "click",
+                  link_type: "hub",
+                  link_name: "takao_hub",
+                  link_category: "hub",
+                });
+              }}
+            >
               TRAIL HUB TAKAO
             </a>
           </div>
