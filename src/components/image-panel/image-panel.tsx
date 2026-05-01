@@ -26,7 +26,7 @@ export function ImagePanel({
   images,
   title,
   href,
-  linkLabel = "More",
+  linkLabel = "オンラインストア",
   ga4Event,
 }: ImagePanelProps) {
   const handleClick = ga4Event
@@ -57,7 +57,12 @@ export function ImagePanel({
       </div>
       <div className={styles.overlay}>
         <p className={styles.title}>{title}</p>
-        <span className={styles.link}>{linkLabel}</span>
+        <span className={styles.link}>
+          {linkLabel}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 4L10 8L6 12" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+        </span>
       </div>
     </a>
   );

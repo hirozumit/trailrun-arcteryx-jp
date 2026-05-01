@@ -424,7 +424,7 @@ export function YoyogiPage() {
         title={["ギアを", "揃える"]}
         body="都市で行うロードランとは異なり、設備が万全ではない山へと入るトレイルランでは、安全かつ快適に走るための装備が欠かせません。トレイルに適したシューズやウェアのほか、携行品を収納できる軽量なベスト、故障を防ぎ疲労を抑えるスポーツテープ、日中も常に備えておきたいヘッドランプ、すぐに水分補給できるフラスクボトル、救急時にも役立つ手ぬぐい、効率よくエネルギーを摂取できる行動食など。山へと向かう前に、一つひとつ準備と確認を。"
         videos={[{ src: "/videos/yoyogi/instruction-1.mp4", poster: "/images/yoyogi/instruction-1-poster.jpg" }]}
-        ctaText="オンラインストアをみる"
+        ctaText="オンラインストア"
         ctaHref="https://arcteryx.jp/pages/260326_sylan2"
         ctaGa4Event={{ event: "click", link_type: "ecom", link_name: "yoyogi_online_store", link_category: "cta" }}
         videoGa4Event={{ event: "click", link_type: "video", link_name: "yoyogi_instruction_1", link_category: "video" }}
