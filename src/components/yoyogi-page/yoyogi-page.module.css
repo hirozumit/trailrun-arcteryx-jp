@@ -495,10 +495,10 @@
 .about {
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 8rem var(--content-px);
+  padding: var(--section-py) var(--content-px);
   display: flex;
   flex-direction: column;
-  gap: 8rem;
+  gap: var(--section-gap);
 }
 
 .about-inner {
