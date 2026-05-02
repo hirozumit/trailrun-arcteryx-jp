@@ -18,7 +18,7 @@ export const communityEvents: EventItem[] = [
     name: "TRAIL CLINIC 代々木",
     date: "2026年5月24日(日)",
     image: "/images/events/trail-clinic-yoyogi.jpg",
-    url: "#",
+    url: "https://arcteryx.jp/pages/trail_clinic_20260524",
   },
   {
     name: "TRAIL CLINIC 高尾山",
@@ -30,7 +30,7 @@ export const communityEvents: EventItem[] = [
     name: "TRAIL CLINIC 代々木",
     date: "2026年5月19日(月)",
     image: "/images/events/trail-clinic-yoyogi.jpg",
-    url: "#",
+    url: "https://arcteryx.jp/pages/trail_clinic_20260519",
   },
   {
     name: "TRAIL CLINIC 六甲山",
@@ -42,7 +42,7 @@ export const communityEvents: EventItem[] = [
     name: "TRAIL CLINIC 代々木",
     date: "2026年5月8日(金)",
     image: "/images/events/trail-clinic-yoyogi.jpg",
-    url: "#",
+    url: "https://arcteryx.jp/pages/trail_clinic_20260508",
   },
   {
     name: "TRAIL CLINIC 高尾山",
