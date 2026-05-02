@@ -134,7 +134,7 @@ function Instruction({
           <InstructionVideo key={i} video={v} ga4Event={videoGa4Event} />
         ))}
       </div>
-      <div className={styles["instruction-content"]}>
+      <div className={styles["instruction-content"]} data-reveal-group>
         <h3 className={styles["instruction-title"]} data-reveal="clip-down">
           <span>{title[0]}</span>
           <span>{title[1]}</span>
@@ -162,7 +162,7 @@ type PhotoGalleryProps = {
   mobileReverse?: boolean;
 };
 
-const clipReveals = ["clip-down", "clip-right", "clip-up", "clip-left"] as const;
+const clipReveals = ["clip-right", "clip-down", "clip-left"] as const;
 
 function PhotoGallery({ images, mobileReverse }: PhotoGalleryProps) {
   return (
@@ -491,17 +491,18 @@ export function YoyogiPage() {
         </div>
 
         {/* ── #13 Facility info ── */}
-        <div className={styles.facility} data-reveal="fade-up">
-          <div className={styles["facility-photos"]}>
+        <div className={styles.facility}>
+          <div className={styles["facility-photos"]} data-reveal-group>
             <div
               className={`${styles["facility-photo"]} ${styles["facility-photo-main"]}`}
+              data-reveal="clip-left"
             >
               <img src="/images/yoyogi/facility-1.jpg" alt="" />
             </div>
-            <div className={styles["facility-photo"]}>
+            <div className={styles["facility-photo"]} data-reveal="clip-left">
               <img src="/images/yoyogi/facility-2.jpg" alt="" />
             </div>
-            <div className={styles["facility-photo"]}>
+            <div className={styles["facility-photo"]} data-reveal="clip-left">
               <img src="/images/yoyogi/facility-3.jpg" alt="" />
             </div>
           </div>
