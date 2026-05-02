@@ -22,12 +22,23 @@ export function YoyogiSection() {
             </h2>
           </div>
           <p className={styles.text}>
-            山への第一歩を踏み出す前の方や、今まさに踏み出しつつある方へ。アークテリクスによるトレイルランニングのための準備拠点が、代々木公園に期間限定でオープンします。本格的なトレイルランに臨む前に、山で必要となるギアや持ち物、走り方の知識などをチェックしていただけるほか、代々木公園内でトレイルランの練習におすすめのコースもご紹介。アークテリクスの最新のマウンテンラン & トレイルランニングシューズをレンタルしてお試しいただけます（有料）。
+            山への第一歩を踏み出す前の方や、今まさに踏み出しつつある方へ。アークテリクスによるトレイルランニングのための準備拠点が、代々木公園のほど近くに、期間限定でオープンします。本格的なトレイルランに臨む前に、山で必要となるギアや持ち物、走り方の知識などをチェックしていただけるほか、代々木公園内でトレイルランの練習におすすめのコースもご紹介。アークテリクスの最新のトレイルランニングシューズをレンタルしてお試しいただけます（有料）。
           </p>
-          <p>COMING SOON</p>
-          {/* <a href="/trail/yoyogi" className={styles.button}>
-            詳細をみる
-          </a> */}
+          <a
+            href="/yoyogi"
+            className={styles.button}
+            onClick={() => {
+              const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+              w.dataLayer?.push({
+                event: "click",
+                link_type: "hub",
+                link_name: "yoyogi_hub",
+                link_category: "hub",
+              });
+            }}
+          >
+            TRAIL HUB YOYOGI
+          </a>
         </div>
       </div>
     </section>

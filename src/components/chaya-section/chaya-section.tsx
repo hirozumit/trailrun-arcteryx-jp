@@ -1,7 +1,10 @@
 "use client";
 
-import { type ReactNode, useRef, useState } from "react";
+import { type ReactNode, useRef } from "react";
 import { useRevealAll } from "@/hooks/use-reveal";
+import { useIframeClickTracker } from "@/hooks/use-iframe-click-tracker";
+import { NoteToggle } from "@/components/note-toggle/note-toggle";
+import noteStyles from "@/components/note-toggle/note-toggle.module.css";
 import styles from "./chaya-section.module.css";
 
 type ServiceProps = {
@@ -15,8 +18,6 @@ type ServiceProps = {
 };
 
 function Service({ id, heading, body, reverse, images = [], noteLabel, children }: ServiceProps) {
-  const [noteOpen, setNoteOpen] = useState(false);
-
   return (
     <div
       id={id}
@@ -26,18 +27,9 @@ function Service({ id, heading, body, reverse, images = [], noteLabel, children 
         <h3 className={styles["service-heading"]}>{heading}</h3>
         <p className={styles["service-body"]}>{body}</p>
         {noteLabel && (
-          <div className={styles["note-group"]}>
-            <button
-              className={styles["note-toggle"]}
-              onClick={() => setNoteOpen((v) => !v)}
-              aria-expanded={noteOpen}
-            >
-              {noteOpen ? "−" : "+"} {noteLabel}
-            </button>
-            {noteOpen && children && (
-              <div className={styles["service-note"]}>{children}</div>
-            )}
-          </div>
+          <NoteToggle label={noteLabel}>
+            {children}
+          </NoteToggle>
         )}
       </div>
       <div
@@ -63,6 +55,7 @@ function Service({ id, heading, body, reverse, images = [], noteLabel, children 
 export function ChayaSection() {
   const sectionRef = useRef<HTMLElement>(null);
   useRevealAll(sectionRef);
+  const mapRef = useIframeClickTracker("google_map");
 
   return (
     <section ref={sectionRef} className={styles.section} id="chaya">
@@ -76,7 +69,7 @@ export function ChayaSection() {
           <div className={styles.intro} data-reveal="fade-up">
             <h2 className={styles.title}>ARC'TERYX<br /> TRAIL HUB TAKAO</h2>
             <p className={styles.body}>
-              トレイルランニングが生まれる何世紀も以前から、日本では、山間の街道沿いに茶屋が点在し、旅行者のための休息所として機能してきました。アークテリクスは、トレイルランナーをサポートし、人々を山へと誘うための茶屋を、高尾山麓に期間限定でオープンしました。ランの前後の休憩やエネルギー補給の拠点として、山のコンディションやルートの情報交換、最新のギアの試し履きの場として。山へと向かう前に、山から降りた後に、どうぞお立ち寄りください。
+              トレイルランニングが生まれる何世紀も以前から、日本では、山間の街道沿いに茶屋が点在し、旅行者のための休息所として機能してきました。アークテリクスは、トレイルランナーをサポートし、人々を山へと誘うための茶屋を、高尾山麓に期間限定でオープンしました。ランの前後の休憩やエネルギー補給の拠点として、また、山のコンディションやルートの情報交換、最新のギアをお試しいただく場として。山へと向かう前に、山から下りた後に、どうぞお立ち寄りください。
             </p>
             <p className={styles.caption}>
               期間：2026年4月17日(金) 〜 6月28日(日)
@@ -93,27 +86,27 @@ export function ChayaSection() {
         <Service
           id="try-gear"
           heading="ギアを試す"
-          body="アークテリクスの最新のトレイルラン フットウェアをレンタルし、高尾山のフィールドでお試しいただけます。"
+          body="アークテリクスの最新のギアをレンタルし、高尾山のフィールドでお試しいただけます。 "
           images={["/images/gear-1.jpg", "/images/gear-2.jpg"]}
-          noteLabel="お貸し出しについて"
+          noteLabel="ギアのお貸し出しについて"
         >
-          <ul className={styles["note-list"]}>
+          <ul className={noteStyles.list}>
+            <li>
+              シューズ・ベストを、各330円/1日にてお貸し出しいたします。
+            </li>
             <li>
               BIRD CLUB会員の方、またはLINEで友だち登録をしていただいた方は、レンタル料無料となります。
             </li>
-            <li>
-              上記に該当しない方でも、通常料金（フットウェア＆ベスト 330円/1日）でお貸し出し可能です。
-            </li>
           </ul>
-          <ul className={styles["note-caption"]}>
+          <ul className={noteStyles.caption}>
             <li>
               無料でのご利用は、お一人さま1回限りとさせていただきます。ご了承ください。
             </li>
             <li>
-              ギアのお貸し出しは平日・土日祝日とも16:00 までとさせていただきます
+              ギアのお貸し出しは平日・土日祝日とも16:00 までとさせていただきます。
             </li>
             <li>
-              ご好評により、シューズ‧ウェアのサイズによっては ご希望に沿えない、ノベルティが一部ご用意できない場合がございます。ご了承ください。
+              ご好評により、シューズ・ベストのサイズによってはご希望に沿えない、ノベルティが一部ご用意できない場合がございます。ご了承ください。
             </li>            
           </ul>
         </Service>
@@ -125,7 +118,7 @@ export function ChayaSection() {
           noteLabel="カフェ内スペシャルメニュー"
           reverse
         >
-          <ul className={styles["note-list"]}>
+          <ul className={noteStyles.list}>
             <li>羊羹セット（880円）</li>
             <li>お団子セット（880円）</li>
           </ul>
@@ -133,19 +126,18 @@ export function ChayaSection() {
         <Service
           id="novelty"
           heading="ノベルティ"
-          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方に、限定のノベルティを差し上げます。"
+          body="TRAIL HUB TAKAOにてアークテリクスのギアをレンタルされた方に、オリジナルノベルティを差し上げます。"
           images={["/images/novelty-1.jpg", "/images/novelty-2.jpg"]}
           noteLabel="ノベルティについて"
         >
           <p>
-            ギアをレンタルされた方には「オリジナル
-            羊羹」、さらに BIRD CLUB 会員の方、LINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご参加いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます
+            ギアをレンタルされた方には「オリジナル 羊羹」を、さらに、 BIRD CLUB 会員の方またはLINE 友だち登録をされた方で、フィールドでのお試し後、アンケート・商品レビューにご協力いただいた方には「オリジナル手ぬぐい・ステッカー」を差し上げます。
           </p>
         </Service>
 
         {/* Map + Address */}
         <div className={styles["map-block"]} data-reveal="fade-up">
-          <div className={styles.map}>
+          <div className={styles.map} ref={mapRef}>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.7122737469517!2d139.26784277695484!3d35.63481907260237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60191959193b2129%3A0xfb4f2d7e71c9e7df!2zTXQuVGFrYW8gQmFzZSBDYW1wLCDvvJHvvJfvvJnvvJniiJLvvJMg6auY5bC-55S6IOWFq-eOi-WtkOW4giDmnbHkuqzpg70gMTkzLTA4NDQ!5e0!3m2!1sja!2sjp!4v1776213846478!5m2!1sja!2sjp" width={600} height={450} style={{ border: "0" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div className={styles.address}>

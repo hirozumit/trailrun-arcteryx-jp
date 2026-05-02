@@ -5,19 +5,32 @@ import Image from "next/image";
 import { useRevealAll } from "@/hooks/use-reveal";
 import styles from "./event-section.module.css";
 
-type EventItem = {
+export type EventItem = {
   name: string;
   date: string;
   image: string;
   url: string;
+  ended?: boolean;
 };
 
-const communityEvents: EventItem[] = [
+export const communityEvents: EventItem[] = [
+  {
+    name: "TRAIL CLINIC 代々木",
+    date: "2026年5月24日(日)",
+    image: "/images/events/trail-clinic-yoyogi.jpg",
+    url: "#",
+  },
   {
     name: "TRAIL CLINIC 高尾山",
-    date: "2026年4月26日(日)",
+    date: "2026年5月23日(土)",
     image: "/images/events/trail-clinic-takao.jpg",
-    url: "https://arcteryx.jp/pages/trail_clinic_20260426",
+    url: "https://arcteryx.jp/pages/trail_clinic_20260523",
+  },
+  {
+    name: "TRAIL CLINIC 代々木",
+    date: "2026年5月19日(月)",
+    image: "/images/events/trail-clinic-yoyogi.jpg",
+    url: "#",
   },
   {
     name: "TRAIL CLINIC 六甲山",
@@ -26,14 +39,21 @@ const communityEvents: EventItem[] = [
     url: "https://arcteryx.jp/pages/trail_clinic_20260516",
   },
   {
+    name: "TRAIL CLINIC 代々木",
+    date: "2026年5月8日(金)",
+    image: "/images/events/trail-clinic-yoyogi.jpg",
+    url: "#",
+  },
+  {
     name: "TRAIL CLINIC 高尾山",
-    date: "2026年5月23日(土)",
+    date: "2026年4月26日(日)",
     image: "/images/events/trail-clinic-takao.jpg",
-    url: "https://arcteryx.jp/pages/trail_clinic_20260523",
+    url: "https://arcteryx.jp/pages/trail_clinic_20260426",
+    ended: true,
   },
 ];
 
-const storeEvents: EventItem[] = [
+export const storeEvents: EventItem[] = [
   {
     name: "CITY TRAIL MEET UP 神戸",
     date: "2026年5月3日(日)",
@@ -54,28 +74,47 @@ const storeEvents: EventItem[] = [
   },
 ];
 
-function EventPanel({ item }: { item: EventItem }) {
+type GA4Event = {
+  event: string;
+  link_type: string;
+  link_name: string;
+  link_category: string;
+};
+
+function EventPanel({ item, ga4Event }: { item: EventItem; ga4Event?: GA4Event }) {
+  const handleClick = ga4Event
+    ? () => {
+        const w = window as typeof window & { dataLayer?: Record<string, unknown>[] };
+        w.dataLayer?.push({ ...ga4Event });
+      }
+    : undefined;
+
   return (
-    <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.panel}>
+    <a href={item.url} target="_blank" rel="noopener noreferrer" className={styles.panel} onClick={handleClick}>
       <div className={styles["panel-image"]}>
         <Image src={item.image} alt={item.name} width={640} height={480} />
       </div>
       <div className={styles["panel-info"]}>
         <p className={styles["panel-name"]}>{item.name}</p>
-        <p className={styles["panel-date"]}>{item.date}</p>
+        <div className={styles["panel-meta"]}>
+          <p className={styles["panel-date"]}>{item.date}</p>
+          {item.ended && <span className={styles["panel-ended"]}>開催終了</span>}
+        </div>
       </div>
     </a>
   );
 }
 
-function EventCategory({
+export function EventCategory({
   title,
   items,
   visibleCount = 3,
+  ga4Event,
 }: {
   title: string;
   items: EventItem[];
   visibleCount?: number;
+  ga4Event?: GA4Event;
 }) {
   const [expanded, setExpanded] = useState(false);
   const hasMore = items.length > visibleCount;
@@ -90,7 +129,7 @@ function EventCategory({
         data-reveal="clip-left"
       >
         {visibleItems.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} ga4Event={ga4Event} />
         ))}
       </div>
       {/* Mobile: full carousel */}
@@ -99,7 +138,7 @@ function EventCategory({
         data-reveal="clip-left"
       >
         {items.map((item, i) => (
-          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} />
+          <EventPanel key={`${item.name}-${item.date}-${i}`} item={item} ga4Event={ga4Event} />
         ))}
       </div>
       {hasMore && !expanded && (
@@ -135,8 +174,26 @@ export function EventSection() {
             </p>
           </div>
         </div>
-        <EventCategory title="Community Events" items={communityEvents} />
-        <EventCategory title="Store Events" items={storeEvents} />
+        <EventCategory
+          title="Community Events"
+          items={communityEvents}
+          ga4Event={{
+            event: "click",
+            link_type: "events",
+            link_name: "community_trail",
+            link_category: "event",
+          }}
+        />
+        <EventCategory
+          title="Store Events"
+          items={storeEvents}
+          ga4Event={{
+            event: "click",
+            link_type: "events",
+            link_name: "store_trail",
+            link_category: "event",
+          }}
+        />
       </div>
     </section>
   );

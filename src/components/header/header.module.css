@@ -1,40 +1,3 @@
-/* --- nav-local (fixed) --- */
-
-.nav {
-  display: none;
-}
-
-@media (min-width: 48rem) {
-  .nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 50;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1.5rem;
-    width: 4rem;
-    padding: 1.5rem 1rem;
-  }
-}
-
-.navItem {
-  writing-mode: vertical-rl;
-  color: var(--color-bg);
-  font-size: var(--text-base);
-  text-decoration: none;
-  pointer-events: auto;
-}
-
-.navItem.current {
-  border-left: 1px solid currentColor;
-}
-
 /* --- title (fixed, footer covers it) --- */
 
 .title {
@@ -48,8 +11,13 @@
   font-size: var(--text-lg);
   color: var(--color-bg);
   text-align: center;
+  line-height: 1;
   mix-blend-mode: difference;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 
   @media (min-width: 48rem) {
     writing-mode: vertical-rl;
@@ -58,8 +26,41 @@
     right: 0;
     bottom: 0;
     width: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  }
+}
+
+.titleLabel {
+  padding-bottom: 0.25rem;
+}
+
+.titleItem {
+  color: inherit;
+  text-decoration: none;
+  pointer-events: auto;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid transparent;
+}
+
+@media (min-width: 48rem) {
+  .titleLabel {
+    padding-bottom: 0;
+    padding-left: 0.25rem;
+  }
+
+  .titleItem {
+    padding-bottom: 0;
+    border-bottom: none;
+    padding-left: 0.25rem;
+    border-left: 1px solid transparent;
+  }
+}
+
+.titleCurrent {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
+@media (min-width: 48rem) {
+  .titleCurrent {
+    border-left-color: rgba(255, 255, 255, 0.5);
   }
 }

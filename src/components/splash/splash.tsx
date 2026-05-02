@@ -1,10 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import copyLine1 from "./copy-line1.svg";
-import copyLine2 from "./copy-line2.svg";
+import type { StaticImageData } from "next/image";
+import defaultCopyLine1 from "./copy-line1.svg";
+import defaultCopyLine2 from "./copy-line2.svg";
 import logoYamae from "./logo-yamae.svg";
 import styles from "./splash.module.css";
+
+type SplashProps = {
+  copyLine1?: StaticImageData;
+  copyLine2?: StaticImageData;
+};
 
 function smoothScrollTo(target: number, duration: number) {
   const start = window.scrollY;
@@ -21,25 +27,30 @@ function smoothScrollTo(target: number, duration: number) {
   requestAnimationFrame(step);
 }
 
-export function Splash() {
+export function Splash({
+  copyLine1 = defaultCopyLine1,
+  copyLine2 = defaultCopyLine2,
+}: SplashProps = {}) {
   const splashRef = useRef<HTMLDivElement>(null);
   const [ready, setReady] = useState(false);
   const [skipped, setSkipped] = useState(false);
 
   useEffect(() => {
     const skip = process.env.NEXT_PUBLIC_SKIP_SPLASH === "1";
+    const seenKey = `splash-seen:${window.location.pathname}`;
+    const seen = sessionStorage.getItem(seenKey) === "1";
     const hash = window.location.hash;
 
     // Prevent browser from restoring scroll position on reload
     history.scrollRestoration = "manual";
     window.scrollTo(0, 0);
 
-    if (skip || hash) {
-      splashRef.current?.style.setProperty("--t", "1");
+    if (skip || seen) {
       setSkipped(true);
       setReady(true);
 
       if (hash) {
+        splashRef.current?.style.setProperty("--t", "1");
         // Wait one frame for layout, then scroll to anchor
         requestAnimationFrame(() => {
           const target = document.querySelector(hash);
@@ -50,7 +61,10 @@ export function Splash() {
           }
         });
       } else {
-        window.scrollTo(0, window.innerHeight * 0.5);
+        // Start with logo visible, then scroll down
+        requestAnimationFrame(() => {
+          smoothScrollTo(window.innerHeight * 0.5, 1000);
+        });
       }
       return;
     }
@@ -83,7 +97,17 @@ export function Splash() {
       document.documentElement.style.overflow = "";
       requestAnimationFrame(() => {
         if (!active) return;
-        smoothScrollTo(window.innerHeight * 0.5, 1000);
+        if (hash) {
+          const target = document.querySelector(hash);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+          } else {
+            smoothScrollTo(window.innerHeight * 0.5, 1000);
+          }
+        } else {
+          smoothScrollTo(window.innerHeight * 0.5, 1000);
+        }
+        sessionStorage.setItem(`splash-seen:${window.location.pathname}`, "1");
       });
     });
 

@@ -40,3 +40,21 @@
 [data-reveal="clip-left"][data-revealed] {
   clip-path: inset(0);
 }
+
+/* ---- clip-right ---- */
+[data-reveal="clip-right"] {
+  clip-path: inset(0 0 0 100%);
+  transition: clip-path var(--reveal-duration) var(--reveal-easing);
+}
+[data-reveal="clip-right"][data-revealed] {
+  clip-path: inset(0);
+}
+
+/* ---- clip-up ---- */
+[data-reveal="clip-up"] {
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path var(--reveal-duration) var(--reveal-easing);
+}
+[data-reveal="clip-up"][data-revealed] {
+  clip-path: inset(0);
+}
