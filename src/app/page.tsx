@@ -14,8 +14,8 @@ export default function Home() {
       <main>
         <Splash />
         <Header
-          titleItems={[
-            { label: "TRAIL RUNNING", href: "/", current: true },
+          navItems={[
+            { label: "TAKAO", href: "/", current: true },
             { label: "YOYOGI", href: "/yoyogi" },
           ]}
         />

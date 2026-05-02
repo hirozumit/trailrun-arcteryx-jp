@@ -31,8 +31,8 @@ export default function Yoyogi() {
       <main>
         <Splash copyLine1={copyLine1} copyLine2={copyLine2} />
         <Header
-          titleItems={[
-            { label: "TRAIL RUNNING", href: "/" },
+          navItems={[
+            { label: "TAKAO", href: "/" },
             { label: "YOYOGI", href: "/yoyogi", current: true },
           ]}
         />

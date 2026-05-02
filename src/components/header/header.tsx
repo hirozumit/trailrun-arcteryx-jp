@@ -4,38 +4,34 @@ import { useRef } from "react";
 import { useReveal } from "@/hooks/use-reveal";
 import styles from "./header.module.css";
 
-type TitleItem = {
+type NavItem = {
   label: string;
   href: string;
   current?: boolean;
 };
 
 type HeaderProps = {
-  /** Title bar items. Default: single "TRAIL RUNNING" label */
-  titleItems?: TitleItem[];
+  navItems?: NavItem[];
 };
 
-export function Header({ titleItems }: HeaderProps = {}) {
+export function Header({ navItems }: HeaderProps = {}) {
   const titleRef = useRef<HTMLDivElement>(null);
 
   useReveal(titleRef, { threshold: 0, rootMargin: "0px" });
 
   return (
     <div ref={titleRef} className={styles.title} data-reveal="fade">
-      {titleItems ? (
-        titleItems.map(({ label, href, current }) =>
-          current ? (
-            <span key={href} className={`${styles.titleItem} ${styles.titleCurrent}`}>
-              {label}
-            </span>
-          ) : (
-            <a key={href} href={href} className={styles.titleItem}>
-              {label}
-            </a>
-          )
+      <span className={styles.titleLabel}>TRAIL HUB</span>
+      {navItems?.map(({ label, href, current }) =>
+        current ? (
+          <span key={href} className={`${styles.titleItem} ${styles.titleCurrent}`}>
+            {label}
+          </span>
+        ) : (
+          <a key={href} href={href} className={styles.titleItem}>
+            {label}
+          </a>
         )
-      ) : (
-        <span className={styles.titleItem}>TRAIL RUNNING</span>
       )}
     </div>
   );
