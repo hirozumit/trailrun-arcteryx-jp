@@ -493,7 +493,9 @@ export function YoyogiPage() {
         {/* ── #13 Facility info ── */}
         <div className={styles.facility} data-reveal="fade-up">
           <div className={styles["facility-photos"]}>
-            <div className={`${styles["facility-photo"]} ${styles["facility-photo-tall"]}`}>
+            <div
+              className={`${styles["facility-photo"]} ${styles["facility-photo-main"]}`}
+            >
               <img src="/images/yoyogi/facility-1.jpg" alt="" />
             </div>
             <div className={styles["facility-photo"]}>
@@ -501,12 +503,6 @@ export function YoyogiPage() {
             </div>
             <div className={styles["facility-photo"]}>
               <img src="/images/yoyogi/facility-3.jpg" alt="" />
-            </div>
-            <div className={styles["facility-photo"]}>
-              <img src="/images/yoyogi/facility-4.jpg" alt="" />
-            </div>
-            <div className={styles["facility-photo"]}>
-              <img src="/images/yoyogi/facility-5.jpg" alt="" />
             </div>
           </div>
           <div className={styles["facility-detail"]} data-reveal="fade-up">
