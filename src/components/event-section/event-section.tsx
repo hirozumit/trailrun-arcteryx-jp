@@ -59,11 +59,11 @@ export const communityEvents: EventItem[] = [
 
 export const storeEvents: EventItem[] = [
   {
-    name: "CITY TRAIL MEET UP 神戸",
-    date: "2026年5月3日(日)",
-    image: "/images/events/city-trail-meetup-kobe.jpg",
-    url: "https://reserva.be/arcteryx_event/reserve?mode=service_staff&search_evt_no=f8eJwzMTO2NDIHAAReAUA&ctg_no=0eeJwzMjY0MQQAAvcA_A&sctg_no=25eJwzNTE2BQACDwDS",
-  },
+    name: "CITY TRAIL MEET UP 心斎橋",
+    date: "2026年5月9日(土)",
+    image: "/images/events/city-trail-meetup-shinsaibashi.jpg",
+    url: "https://reserva.be/arcteryx_event/reserve?mode=service_staff&search_evt_no=27eJwzNTK2tDQFAARcAUI&ctg_no=0eeJwzMjY0MQQAAvcA_A&sctg_no=16eJwzNTE2AwACEADT",
+  },  
   {
     name: "CITY TRAIL MEET UP 神戸",
     date: "2026年5月5日(火)",
@@ -71,11 +71,11 @@ export const storeEvents: EventItem[] = [
     url: "https://reserva.be/arcteryx_event/reserve?mode=service_staff&search_evt_no=f8eJwzMTO2NDIHAAReAUA&ctg_no=0eeJwzMjY0MQQAAvcA_A&sctg_no=25eJwzNTE2BQACDwDS",
   },
   {
-    name: "CITY TRAIL MEET UP 心斎橋",
-    date: "2026年5月9日(土)",
-    image: "/images/events/city-trail-meetup-shinsaibashi.jpg",
-    url: "https://reserva.be/arcteryx_event/reserve?mode=service_staff&search_evt_no=27eJwzNTK2tDQFAARcAUI&ctg_no=0eeJwzMjY0MQQAAvcA_A&sctg_no=16eJwzNTE2AwACEADT",
-  },
+    name: "CITY TRAIL MEET UP 神戸",
+    date: "2026年5月3日(日)",
+    image: "/images/events/city-trail-meetup-kobe.jpg",
+    url: "https://reserva.be/arcteryx_event/reserve?mode=service_staff&search_evt_no=f8eJwzMTO2NDIHAAReAUA&ctg_no=0eeJwzMjY0MQQAAvcA_A&sctg_no=25eJwzNTE2BQACDwDS",
+  },  
 ];
 
 type GA4Event = {
