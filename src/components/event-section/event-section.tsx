@@ -10,7 +10,7 @@ export type EventItem = {
   date: string;
   image: string;
   url: string;
-  ended?: boolean;
+  status?: "ended" | "closed";
 };
 
 export const communityEvents: EventItem[] = [
@@ -19,18 +19,21 @@ export const communityEvents: EventItem[] = [
     date: "2026年5月24日(日)",
     image: "/images/events/trail-clinic-yoyogi.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260524",
+    status: "closed",
   },
   {
     name: "TRAIL CLINIC 高尾山",
     date: "2026年5月23日(土)",
     image: "/images/events/trail-clinic-takao.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260523",
+    status: "closed",
   },
   {
     name: "TRAIL CLINIC 代々木",
     date: "2026年5月19日(月)",
     image: "/images/events/trail-clinic-yoyogi.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260519",
+    status: "closed",
   },
   {
     name: "TRAIL CLINIC 六甲山",
@@ -43,13 +46,14 @@ export const communityEvents: EventItem[] = [
     date: "2026年5月8日(金)",
     image: "/images/events/trail-clinic-yoyogi.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260508",
+    status: "closed",
   },
   {
     name: "TRAIL CLINIC 高尾山",
     date: "2026年4月26日(日)",
     image: "/images/events/trail-clinic-takao.jpg",
     url: "https://arcteryx.jp/pages/trail_clinic_20260426",
-    ended: true,
+    status: "ended",
   },
 ];
 
@@ -98,7 +102,8 @@ function EventPanel({ item, ga4Event }: { item: EventItem; ga4Event?: GA4Event }
         <p className={styles["panel-name"]}>{item.name}</p>
         <div className={styles["panel-meta"]}>
           <p className={styles["panel-date"]}>{item.date}</p>
-          {item.ended && <span className={styles["panel-ended"]}>開催終了</span>}
+          {item.status === "ended" && <span className={styles["panel-ended"]}>開催終了</span>}
+          {item.status === "closed" && <span className={styles["panel-ended"]}>募集終了</span>}
         </div>
       </div>
     </a>
