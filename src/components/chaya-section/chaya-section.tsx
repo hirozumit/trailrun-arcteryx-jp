@@ -137,15 +137,15 @@ export function ChayaSection() {
         </Service>
 
         {/* Map + Address */}
-        <div className={styles["map-block"]} data-reveal="fade-up">
-          <div className={styles.map} ref={mapRef}>
+        <div className={styles["map-block"]} data-reveal-group>
+          <div className={styles.map} ref={mapRef} data-reveal="fade-up">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.7122737469517!2d139.26784277695484!3d35.63481907260237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60191959193b2129%3A0xfb4f2d7e71c9e7df!2zTXQuVGFrYW8gQmFzZSBDYW1wLCDvvJHvvJfvvJnvvJniiJLvvJMg6auY5bC-55S6IOWFq-eOi-WtkOW4giDmnbHkuqzpg70gMTkzLTA4NDQ!5e0!3m2!1sja!2sjp!4v1776213846478!5m2!1sja!2sjp" width={600} height={450} style={{ border: "0" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
           </div>
-          <div className={styles.address}>
-            <p className={styles["address-title"]} data-reveal="fade-up">
+          <div className={styles.address} data-reveal="fade-up">
+            <p className={styles["address-title"]}>
               ARC'TERYX TRAIL HUB TAKAO
             </p>
-            <div className={styles["address-detail"]} data-reveal="fade-up">
+            <div className={styles["address-detail"]}>
               <p>
                 東京都八王子市高尾町1799-3　Mt.TAKAO BASE
                 CAMP<br />京王線高尾山口駅より徒歩3分
