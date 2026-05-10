@@ -22,6 +22,7 @@ function Service({ id, heading, body, reverse, images = [], noteLabel, children 
     <div
       id={id}
       className={`${styles.service} ${reverse ? styles["service-reverse"] : ""}`}
+      data-reveal-group
     >
       <div className={styles["service-text"]} data-reveal="fade-up">
         <h3 className={styles["service-heading"]}>{heading}</h3>
