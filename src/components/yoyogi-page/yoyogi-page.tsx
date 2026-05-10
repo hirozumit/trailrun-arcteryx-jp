@@ -586,7 +586,7 @@ export function YoyogiPage() {
           <h3 className={eventStyles["category-title"]} data-reveal="fade-up" id="pickup" style={{ scrollMarginTop: "8rem" }}>
             Pickup Event
           </h3>
-          <div className={styles["pickup-panel"]} data-reveal="clip-left">
+          <div className={styles["pickup-panel"]} data-reveal="fade-up">
             <div className={styles["pickup-image"]}>
               <a
                 href="https://arcteryx.jp"
